@@ -15,6 +15,17 @@ public class MoviesStreamsTopology {
 
 
     public static String MOVIES_INPUT="movies";
+    public static String CATEGORY_INPUT="categories";
+
+    public static String TAG_INPUT="tags";
+
+    public static String VIDEO_INPUT="videos";
+
+    public static String CREATOR_INPUT="creators";
+
+    public static String ACTOR_INPUT="actors";
+
+
     public static String MOVIES_OUTPUT="movies-output";
 
 
