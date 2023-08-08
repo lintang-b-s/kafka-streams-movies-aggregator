@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: movies-kafka-streams
+  profiles:
+    active: local
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+  kafka:
+    streams:
+      bootstrap-servers: localhost:9092
+      application-id: movies-kafka-streams
+
+---
+spring:
+  config:
+    activate:
+      on-profile: docker
