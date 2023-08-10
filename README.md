@@ -8,5 +8,6 @@ transform normalized movies data from multiple kafka topics(send by cdc postgres
     > bash create-topics.sh
     > bash kafka-connect.sh
     > bash connect-health.sh
+    > import postman  & test add actor,category,...,movies
     > bash check-isi-topics.sh
     
