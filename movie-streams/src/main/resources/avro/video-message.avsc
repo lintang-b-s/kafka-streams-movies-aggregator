@@ -1,0 +1,53 @@
+{
+  "type": "record",
+  "name": "Video",
+  "namespace": "com.kafkastreams.movie.commons.avro",
+  "fields": [
+    {
+      "name": "id",
+      "type": "int"
+    },
+    {
+      "name": "length",
+      "type": "int"
+    },
+    {
+      "name": "public_id",
+      "type": "string"
+    },
+    {
+      "name": "synopsis",
+      "type": "string"
+    },
+    {
+      "name": "title",
+      "type": "string"
+    },
+    {
+      "name": "url",
+      "type": "string"
+    },
+    {
+      "name": "movie_id",
+      "type": "int"
+    },
+    {
+      "name": "created_on",
+      "type": {
+        "type": "long",
+        "connect.version": 1,
+        "connect.name": "org.apache.kafka.connect.data.Timestamp",
+        "logicalType": "timestamp-millis"
+      }
+    },
+    {
+      "name": "last_updated_on",
+      "type": {
+        "type": "long",
+        "connect.version": 1,
+        "connect.name": "org.apache.kafka.connect.data.Timestamp",
+        "logicalType": "timestamp-millis"
+      }
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "type": "record",
+  "name": "Actor",
+  "namespace": "com.kafkastreams.movie.commons.avro",
+  "fields": [
+    {
+      "name": "id",
+      "type": "int"
+    },
+    {
+      "name": "name",
+      "type": "string"
+    },
+    {
+      "name": "created_on",
+      "type": {
+        "type": "long",
+        "connect.version": 1,
+        "connect.name": "org.apache.kafka.connect.data.Timestamp",
+        "logicalType": "timestamp-millis"
+      }
+    },
+    {
+      "name": "last_updated_on",
+      "type": {
+        "type": "long",
+        "connect.version": 1,
+        "connect.name": "org.apache.kafka.connect.data.Timestamp",
+        "logicalType": "timestamp-millis"
+      }
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "type": "record",
+  "name": "MovieCreator",
+  "namespace": "com.kafkastreams.movie.commons.avro",
+  "fields": [
+    {
+      "name": "movie_id",
+      "type": "int"
+    },
+    {
+      "name": "creator_id",
+      "type": "int"
+    },
+    {
+      "name": "created_on",
+      "type": {
+        "type": "long",
+        "connect.version": 1,
+        "connect.name": "org.apache.kafka.connect.data.Timestamp",
+        "logicalType": "timestamp-millis"
+      }
+    },
+    {
+      "name": "last_updated_on",
+      "type": {
+        "type": "long",
+        "connect.version": 1,
+        "connect.name": "org.apache.kafka.connect.data.Timestamp",
+        "logicalType": "timestamp-millis"
+      }
+    }
+  ]
+}

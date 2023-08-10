@@ -91,13 +91,13 @@ public class MoviesStreamsConfiguration {
                 .build();
     }
 
-    @Bean
-    public NewTopic tagsTopic(){
-        return TopicBuilder.name(MoviesStreamsTopology.TAG_INPUT)
-                .partitions(2)
-                .replicas(1)
-                .build();
-    }
+//    @Bean
+//    public NewTopic tagsTopic(){
+//        return TopicBuilder.name(MoviesStreamsTopology.TAG_INPUT)
+//                .partitions(2)
+//                .replicas(1)
+//                .build();
+//    }
 
 
 

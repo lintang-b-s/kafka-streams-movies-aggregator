@@ -96,7 +96,7 @@ ALTER TABLE  videos_id_seq OWNER TO netflik;
 -- create table
 
 create table  movies (
-   id integer DEFAULT nextval(' movies_id_seq'::regclass) NOT NULL,
+   id integer DEFAULT nextval('movies_id_seq'::regclass) NOT NULL,
    idmb_rating integer NOT NULL,
    image character varying(255),
    mpa_rating character varying(255),
@@ -118,7 +118,7 @@ create table  movie_actor (
 );
 
 create table  actors (
-       id integer default nextval(' actors_id_seq'::regclass) not null ,
+       id integer default nextval('actors_id_seq'::regclass) not null ,
        name  character varying(255) not null ,
        created_on TIMESTAMP WITH TIME ZONE not null ,
        last_updated_on TIMESTAMP WITH TIME ZONE not null
@@ -127,7 +127,7 @@ create table  actors (
 
 
 create table  creators (
-     id integer default nextval(' creators_id_seq'::regclass) not null ,
+     id integer default nextval('creators_id_seq'::regclass) not null ,
      name  character varying(255) not null ,
      created_on TIMESTAMP WITH TIME ZONE not null ,
      last_updated_on TIMESTAMP WITH TIME ZONE not null
