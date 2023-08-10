@@ -1,0 +1,43 @@
+{
+  "type": "record",
+  "name": "MovieElasticSearch",
+  "namespace": "com.kafkastreams.movie.commons.avro",
+  "fields": [
+    {
+      "name": "title",
+      "type": "string"
+    },
+    {
+      "name": "genre",
+      "type": ["string"]
+    },
+    {
+      "name": "synopsis",
+      "type": "string"
+    },
+    {
+      "name": "releaseYear",
+      "type": "int"
+    },
+    {
+      "name": "image",
+      "type": "string"
+    },
+    {
+      "name": "rating",
+      "type": "float"
+    },
+    {
+     "name" : "director",
+      "type": ["string"]
+    },
+    {
+      "name": "cast",
+      "type": ["string"]
+    },
+    {
+      "name": "url",
+      "type": "string"
+    }
+  ]
+}
