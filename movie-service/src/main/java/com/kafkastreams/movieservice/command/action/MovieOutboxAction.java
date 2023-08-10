@@ -11,11 +11,18 @@ import org.springframework.stereotype.Component;
 @Component
 public class MovieOutboxAction {
 
-    @Autowired
+
     private ObjectMapper objectMapper;
 
-    @Autowired
+
     private OutboxRepository outboxRepository;
+
+    @Autowired
+    public MovieOutboxAction(ObjectMapper objectMapper, OutboxRepository outboxRepository) {
+        this.objectMapper = objectMapper;
+        this.outboxRepository = outboxRepository;
+    }
+
     public void deleteOutbox(OutboxEntity outbox) {
         outboxRepository.delete(outbox);
     }

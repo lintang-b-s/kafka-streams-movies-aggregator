@@ -15,12 +15,12 @@ import static java.util.stream.Collectors.toList;
 public class VideoDtoMapper {
     public Video videoEntityToVideoDto(VideoEntity video) {
         Video videoDto = new Video(video.getId(), video.getUrl(), video.getPublicId(),
-                video.getLength(), video.getTitle(), video.getSynopsis(), video.getMovie().getId());
+                video.getLength(), video.getTitle(), video.getSynopsis());
         return videoDto;
     }
 
     public Video videoEntitySavetoVideoDto(VideoEntity video) {
-        Video videoDto = new Video(video.getId(), video.getUrl(),
+        Video videoDto = new Video(video.getId(), video.getUrl(), video.getPublicId(),
                 video.getLength(), video.getTitle(), video.getSynopsis());
         return videoDto;
     }

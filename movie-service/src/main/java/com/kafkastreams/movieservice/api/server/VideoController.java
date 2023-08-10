@@ -7,6 +7,7 @@ import com.kafkastreams.movieservice.util.DtoMapper.VideoDtoMapper;
 import com.kafkastreams.movieservice.api.request.AddVideoReq;
 import com.kafkastreams.movieservice.api.response.Video;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,10 +16,16 @@ import static org.springframework.http.ResponseEntity.ok;
 
 @RestController
 @RequestMapping("/api/v1/movie-service/videos")
-@AllArgsConstructor
 public class VideoController {
     private VideoDtoMapper mapper;
     private VideoCommandService videoService;
+
+
+    @Autowired
+    public VideoController(VideoDtoMapper mapper, VideoCommandService videoService) {
+        this.mapper = mapper;
+        this.videoService = videoService;
+    }
 
 
     @PostMapping

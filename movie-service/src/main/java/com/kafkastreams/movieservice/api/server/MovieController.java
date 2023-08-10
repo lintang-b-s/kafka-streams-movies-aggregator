@@ -5,6 +5,7 @@ import com.kafkastreams.movieservice.api.response.Movie;
 import com.kafkastreams.movieservice.command.service.MovieCommandService;
 import com.kafkastreams.movieservice.util.DtoMapper.MovieDtoMapper;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,12 +13,16 @@ import static org.springframework.http.ResponseEntity.ok;
 
 @RestController
 @RequestMapping("/api/v1/movie-service/movies")
-@AllArgsConstructor
 public class MovieController {
     private MovieDtoMapper mapper;
     private MovieCommandService movieService;
 
 
+    @Autowired
+    public MovieController(MovieDtoMapper mapper, MovieCommandService movieService) {
+        this.mapper = mapper;
+        this.movieService = movieService;
+    }
 
     @PostMapping
     public ResponseEntity<Movie> addMoviesWithVideo(@RequestBody AddMovieReq newMovie) {

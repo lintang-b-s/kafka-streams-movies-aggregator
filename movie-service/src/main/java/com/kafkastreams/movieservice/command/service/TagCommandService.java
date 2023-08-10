@@ -20,23 +20,24 @@ import org.springframework.transaction.annotation.Transactional;
 
 import jakarta.validation.Valid;
 
-@AllArgsConstructor
 @NoArgsConstructor
 @Service
 public class TagCommandService {
 
     private static final Logger LOG = LoggerFactory.getLogger(TagCommandService.class);
-
-
-    @Autowired
     private TagCommandAction tagCommandAction;
+    private MovieOutboxAction outboxAction;
 
     @Autowired
-    private MovieOutboxAction outboxAction;
+    public TagCommandService(TagCommandAction tagCommandAction, MovieOutboxAction outboxAction) {
+        this.tagCommandAction = tagCommandAction;
+        this.outboxAction = outboxAction;
+    }
+
 
     @Transactional
     public TagEntity addTag(@Valid AddTagReq newTag) {
-        TagEntity tag = tagCommandAction.save(newTag);
+        TagEntity tag = tagCommandAction.saveReqTag(newTag);
         return tag;
     }
 

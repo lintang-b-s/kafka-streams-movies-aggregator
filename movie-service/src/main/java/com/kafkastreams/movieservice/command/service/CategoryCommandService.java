@@ -21,21 +21,28 @@ import org.springframework.transaction.annotation.Transactional;
 import jakarta.validation.Valid;
 
 
-@AllArgsConstructor
 @NoArgsConstructor
 @Service
 public class CategoryCommandService {
     private static final Logger LOG = LoggerFactory.getLogger(CategoryCommandService.class);
 
-    @Autowired
+
     private CategoryCommandAction categoryCommandAction;
 
-    @Autowired
+
     private MovieOutboxAction outboxAction;
+
+    @Autowired
+    public CategoryCommandService(CategoryCommandAction categoryCommandAction, MovieOutboxAction outboxAction) {
+        this.categoryCommandAction = categoryCommandAction;
+        this.outboxAction = outboxAction;
+    }
+
+
 
     @Transactional
     public CategoryEntity addCategory(@Valid AddCategoryReq newCategory) {
-        CategoryEntity cat = categoryCommandAction.save(newCategory);
+        CategoryEntity cat = categoryCommandAction.saveReq(newCategory);
         return cat;
     }
 

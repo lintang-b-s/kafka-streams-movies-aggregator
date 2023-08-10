@@ -20,20 +20,7 @@ import static org.springframework.http.ResponseEntity.ok;
 @AllArgsConstructor
 public class UploadController {
 
-//    private GoogleDriveManager googleDriveManager;
-    private CloudinaryService cloudinaryService;
 
-    @PostMapping("/video")
-    public ResponseEntity<String> uploadFileWithPath(@RequestParam("file") MultipartFile file,
-                                                     @RequestParam("folderPath") String folderPath) {
-        log.info("upload file path: {}",folderPath);
-        // harusnya tambahin settingan protokol streaming sama format berbagai resolusi, biar pas get videonya bisa streaming kaya youtube
 
-        String fileId = cloudinaryService.upload(file);
-        if (fileId == null) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
-        String res=  "success upload , fileId: " + fileId;
-        return ok(fileId);
-    }
+
 }

@@ -7,6 +7,11 @@ import lombok.Builder;
 import lombok.NoArgsConstructor;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.SourceType;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,9 +27,15 @@ public class TagEntity {
 
     private String name;
 
-    @ManyToMany(mappedBy = "tags",  fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "tags",  fetch = FetchType.LAZY)
     @JsonIgnore
     private Set<MovieEntity> movies = new HashSet<>();
+
+    @CreationTimestamp(source = SourceType.DB)
+    private Instant createdOn;
+    @UpdateTimestamp(source = SourceType.DB)
+    private Instant lastUpdatedOn;
+
 
 
     public int getId() {

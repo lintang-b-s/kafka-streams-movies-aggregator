@@ -14,12 +14,18 @@ import static org.springframework.http.ResponseEntity.ok;
 
 @RestController
 @RequestMapping("/api/v1/movie-service/tags")
-@AllArgsConstructor
 public class TagController {
     private TagEntityMapper tagEntityMapper;
 
-    @Autowired
+
     private TagCommandService tagCommandService;
+
+
+    @Autowired
+    public TagController(TagEntityMapper tagEntityMapper, TagCommandService tagCommandService) {
+        this.tagEntityMapper = tagEntityMapper;
+        this.tagCommandService = tagCommandService;
+    }
 
     @PostMapping
     public ResponseEntity<Tag>  addTag(@RequestBody AddTagReq newTag) {

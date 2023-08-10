@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="6d1f0110-162b-45d1-8b74-d3d821cc1ccf" name="Changes" comment="add compose file">
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-service/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/MovieserviceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/MovieserviceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/api/response/Video.java" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/api/response/Video.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/api/server/ActorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/api/server/ActorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/api/server/CategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/api/server/CategoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/api/server/CreatorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/api/server/CreatorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/api/server/MovieController.java" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/api/server/MovieController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/api/server/TagController.java" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/api/server/TagController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/api/server/UploadController.java" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/api/server/UploadController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/api/server/VideoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/api/server/VideoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/command/action/ActorCommandAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/command/action/ActorCommandAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/command/action/CategoryCommandAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/command/action/CategoryCommandAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/command/action/CloudinaryAction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/command/action/CreatorCommandAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/command/action/CreatorCommandAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/command/action/MovieCommandAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/command/action/MovieCommandAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/command/action/MovieOutboxAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/command/action/MovieOutboxAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/command/action/TagCommandAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/command/action/TagCommandAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/command/action/VideoCommandAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/command/action/VideoCommandAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/command/service/ActorCommandService.java" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/command/service/ActorCommandService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/command/service/CategoryCommandService.java" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/command/service/CategoryCommandService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/command/service/CloudinaryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/command/service/CloudinaryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/command/service/CreatorCommandService.java" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/command/service/CreatorCommandService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/command/service/MovieCommandService.java" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/command/service/MovieCommandService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/command/service/TagCommandService.java" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/command/service/TagCommandService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/command/service/VideoCommandService.java" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/command/service/VideoCommandService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/configuration/KafkaConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/configuration/KafkaConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/entity/ActorEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/entity/ActorEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/entity/CategoryEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/entity/CategoryEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/entity/CreatorEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/entity/CreatorEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/entity/MovieEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/entity/MovieEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/entity/TagEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/entity/TagEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/entity/VideoEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/entity/VideoEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/repository/ActorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/repository/ActorRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/repository/CategoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/repository/CategoryRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/repository/CreatorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/repository/CreatorRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/repository/MovieRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/repository/MovieRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/repository/MovieRepositoryExt.java" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/repository/MovieRepositoryExt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/repository/OutboxRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/repository/OutboxRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/repository/TagRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/repository/TagRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/repository/VideoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/repository/VideoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/util/DtoMapper/VideoDtoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/util/DtoMapper/VideoDtoMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/util/entityMapper/MovieEntityMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/util/entityMapper/MovieEntityMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/util/entityMapper/VideoEntityMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/util/entityMapper/VideoEntityMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/movie-streams/src/main/resources/application.yml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Use Maven wrapper" />
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2Tghs9vvzV4IKSUaoykXHcJo2wk" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/lintangbirdasaputra/Documents/learn/back-end/java/learn/project-personal/kafka-streams-baru/kafka-streams-movies-aggregator&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;29b93c5b12a3274e3d9cba56a251d495&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/config" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/movie-service/src/main/resources/db/changelog" />
+      <recent name="$PROJECT_DIR$/movie-service/src/main/resources/db/migration" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.MovieserviceApplication">
+    <configuration name="MovieApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="movie-streams" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.kafkastreams.movie.MovieApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MovieserviceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="movieservice" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.kafkastreams.movieservice.MovieserviceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6d1f0110-162b-45d1-8b74-d3d821cc1ccf" name="Changes" comment="" />
+      <created>1691470834429</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1691470834429</updated>
+      <workItem from="1691470835765" duration="2082000" />
+      <workItem from="1691473933009" duration="946000" />
+      <workItem from="1691483274433" duration="6160000" />
+      <workItem from="1691567528860" duration="23162000" />
+      <workItem from="1691601939425" duration="4929000" />
+      <workItem from="1691637164826" duration="4532000" />
+      <workItem from="1691641981461" duration="11040000" />
+    </task>
+    <task id="LOCAL-00001" summary="add docker files and how-to.txt">
+      <created>1691571102223</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1691571102223</updated>
+    </task>
+    <task id="LOCAL-00002" summary="add compose file">
+      <created>1691571355009</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1691571355009</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add docker files and how-to.txt" />
+    <MESSAGE value="add compose file" />
+    <option name="LAST_COMMIT_MESSAGE" value="add compose file" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/command/action/CreatorCommandAction.java</url>
+          <line>39</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/command/action/CreatorCommandAction.java</url>
+          <line>40</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/util/entityMapper/CreatorEntityMapper.java</url>
+          <line>10</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/util/entityMapper/CreatorEntityMapper.java</url>
+          <line>11</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/api/server/CreatorController.java</url>
+          <line>43</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/command/service/CreatorCommandService.java</url>
+          <line>47</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/command/action/MovieCommandAction.java</url>
+          <line>251</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/command/action/MovieCommandAction.java</url>
+          <line>229</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/util/DtoMapper/VideoDtoMapper.java</url>
+          <line>16</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/util/DtoMapper/VideoDtoMapper.java</url>
+          <line>18</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/util/messageMapper/MovieMessageMapper.java</url>
+          <line>29</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/util/messageMapper/MovieMessageMapper.java</url>
+          <line>55</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="com.kafkastreams.movieservice.entity.MovieEntity" memberName="videos" />
+      </pinned-members>
+    </pin-to-top-manager>
+    <watches-manager>
+      <configuration name="SpringBootApplicationConfigurationType">
+        <watch expression="newMovieEntity" />
+        <watch expression="newMovieEntity" />
+      </configuration>
+    </watches-manager>
+  </component>
+</project>

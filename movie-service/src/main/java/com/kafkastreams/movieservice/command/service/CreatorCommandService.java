@@ -25,19 +25,23 @@ import java.util.Optional;
 @Slf4j
 @Service
 @Transactional
-@AllArgsConstructor
 public class CreatorCommandService {
 
     private static final Logger LOG = LoggerFactory.getLogger(CreatorCommandService.class);
 
 
-    @Autowired
+
     private CreatorCommandAction creatorCommandAction;
 
 
-    @Autowired
+
     private MovieOutboxAction outboxAction;
 
+    @Autowired
+    public CreatorCommandService(CreatorCommandAction creatorCommandAction, MovieOutboxAction outboxAction) {
+        this.creatorCommandAction = creatorCommandAction;
+        this.outboxAction = outboxAction;
+    }
 
     @Transactional
     public CreatorEntity addCreator(@Valid AddCreatorReq newCreator) {

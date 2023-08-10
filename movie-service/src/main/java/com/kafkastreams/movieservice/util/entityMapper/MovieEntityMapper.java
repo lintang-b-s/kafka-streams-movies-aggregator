@@ -16,7 +16,7 @@ public class MovieEntityMapper {
         MovieEntity newEntity= entity.setName(model.getName()).setType(model.getType())
                 .setSynopsis(model.getSynopsis()).setMpaRating(model.getMpaRating())
                 .setrYear(modelTimestamp).setIdmbRating(model.getIdmbRating())
-                .setImage(model.getImage());
+                .setImage(model.getImage()).setNotification(model.getNotification());
         return newEntity;
     }
 }

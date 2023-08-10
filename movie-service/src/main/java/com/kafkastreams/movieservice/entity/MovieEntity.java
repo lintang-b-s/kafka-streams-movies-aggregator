@@ -1,15 +1,24 @@
 package com.kafkastreams.movieservice.entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.SourceType;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 
 
 @Entity
 @Table(name = "movies")
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class MovieEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,30 +36,38 @@ public class MovieEntity {
 
     private int idmbRating;
     private String image;
+    private Boolean notification;
+
+    @CreationTimestamp(source = SourceType.DB)
+    private Instant createdOn;
+    @UpdateTimestamp(source = SourceType.DB)
+    private Instant lastUpdatedOn;
 
 
-    @ManyToMany( fetch = FetchType.EAGER)
+
+
+    @ManyToMany( fetch = FetchType.LAZY)
     @JoinTable(
             name="movie_actor",
             joinColumns = @JoinColumn(name = "movie_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "actor_id", referencedColumnName = "id")
     )
-    @JsonIgnore
+//    @JsonIgnore
     private Set<ActorEntity> actors= new HashSet<>();
 
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name="movie_creator",
             joinColumns = @JoinColumn(name = "movie_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "creator_id", referencedColumnName = "id")
     )
-    @JsonIgnore
+//    @JsonIgnore
     private Set<CreatorEntity> creators= new HashSet<>() ;
 
 
-    @OneToMany(mappedBy = "movie",  fetch = FetchType.EAGER)
-    @JsonIgnore
+    @OneToMany(mappedBy = "movie",  fetch = FetchType.LAZY)
+//    @JsonIgnore
     private Set<VideoEntity> videos = new HashSet<>();
 
 
@@ -59,16 +76,18 @@ public class MovieEntity {
         name = "movie_tag",
         joinColumns = @JoinColumn(name = "movie_id", referencedColumnName = "id"),
         inverseJoinColumns = @JoinColumn(name = "tag_id", referencedColumnName = "id"))
+//    @JsonIgnore
     private Set<TagEntity> tags = new HashSet<>();
 
 
 
 
-    @ManyToMany( fetch = FetchType.EAGER)
+    @ManyToMany( fetch = FetchType.LAZY)
     @JoinTable(
             name = "movie_category",
             joinColumns = @JoinColumn(name = "movie_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "category_id", referencedColumnName = "id"))
+//    @JsonIgnore
     private Set<CategoryEntity> categories = new HashSet<>();
 
 
@@ -136,7 +155,32 @@ public class MovieEntity {
         return this;
     }
 
+    public Boolean getNotification() {
+        return notification;
+    }
 
+    public MovieEntity setNotification(Boolean notification) {
+        this.notification = notification;
+        return this;
+    }
+
+    public Instant getCreatedOn() {
+        return createdOn;
+    }
+
+    public MovieEntity setCreatedOn(Instant createdOn) {
+        this.createdOn = createdOn;
+        return this;
+    }
+
+    public Instant getLastUpdatedOn() {
+        return lastUpdatedOn;
+    }
+
+    public MovieEntity setLastUpdatedOn(Instant lastUpdatedOn) {
+        this.lastUpdatedOn = lastUpdatedOn;
+        return this;
+    }
 
     public MovieEntity addActor(ActorEntity actor) {
         this.actors.add(actor);
@@ -220,22 +264,6 @@ public class MovieEntity {
 
 
 
-    @Override
-    public String toString() {
-        return "MovieEntity{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", type='" + type + '\'' +
-                ", synopsis='" + synopsis + '\'' +
-                ", mpaRating='" + mpaRating + '\'' +
-                ", rYear=" + rYear +
-                ", idmbRating=" + idmbRating +
-                ", image='" + image + '\'' +
-                ", actors=" + actors +
-                ", creators=" + creators +
-                ", videos=" + videos +
-                ", tags=" + tags +
-                ", categories=" + categories +
-                '}';
-    }
+
+
 }

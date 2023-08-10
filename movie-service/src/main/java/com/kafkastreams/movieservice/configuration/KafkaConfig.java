@@ -2,10 +2,15 @@ package com.kafkastreams.movieservice.configuration;
 
 
 import com.kafkastreams.movieservice.broker.message.UploadVideoMessage;
+import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.ProducerConfig;
+import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
+import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.kafka.ConcurrentKafkaListenerContainerFactoryConfigurer;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,6 +22,10 @@ import org.springframework.kafka.listener.DefaultErrorHandler;
 import org.springframework.kafka.support.serializer.JsonSerializer;
 import org.springframework.util.backoff.FixedBackOff;
 
+import java.util.HashMap;
+import java.util.Map;
+
+
 @Configuration
 public class KafkaConfig {
 
@@ -24,8 +33,11 @@ public class KafkaConfig {
     private KafkaProperties kafkaProperties;
 
 
-    @Value("${spring.kafka.producer.bootstrap-servers}")
+    @Value("${spring.kafka.consumer.bootstrap-servers}")
     private String bootstrapServer;
+
+    @Value("${spring.kafka.consumer.group-id}")
+    private String consumerGroupId;
 
 
     @Bean
@@ -44,26 +56,11 @@ public class KafkaConfig {
         return new KafkaTemplate<>(producerFactoryWithJsonDeserializer());
     }
 
-    private ConsumerFactory<Object, Object> consumerFactory() {
-        var properties = kafkaProperties.buildConsumerProperties();
-
-
-        return new DefaultKafkaConsumerFactory<>(properties);
-    }
 
 
 
-    @Bean(value = "deadLetterContainerFactory")
-    public ConcurrentKafkaListenerContainerFactory<Object, Object> kafkaListenerContainerFactory(
-            KafkaTemplate<Object, Object> kafkaTemplate) {
-        var factory = new ConcurrentKafkaListenerContainerFactory<Object, Object>();
-        var recoverer = new DeadLetterPublishingRecoverer(kafkaTemplate);
 
-        factory.setConsumerFactory(consumerFactory());
-        factory.getContainerProperties().setAckMode(AckMode.RECORD);
-        factory.setReplyTemplate(kafkaTemplate);
-        factory.setCommonErrorHandler(new DefaultErrorHandler(recoverer, new FixedBackOff(3000, 4)));
-        return factory;
-    }
+
+
 
 }

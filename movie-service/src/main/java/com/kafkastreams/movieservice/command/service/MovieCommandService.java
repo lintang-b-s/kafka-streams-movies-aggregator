@@ -2,12 +2,11 @@ package com.kafkastreams.movieservice.command.service;
 
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.kafkastreams.movieservice.command.action.MovieOutboxAction;
+import com.kafkastreams.movieservice.command.action.*;
 import com.kafkastreams.movieservice.api.request.AddMovieReq;
 import com.kafkastreams.movieservice.broker.message.AddMovieMessage;
 import com.kafkastreams.movieservice.broker.message.DeleteMovieMessage;
 import com.kafkastreams.movieservice.broker.publisher.NotificationProducer;
-import com.kafkastreams.movieservice.command.action.MovieCommandAction;
 import com.kafkastreams.movieservice.entity.MovieEntity;
 import com.kafkastreams.movieservice.entity.OutboxEntity;
 import com.kafkastreams.movieservice.entity.OutboxEventType;
@@ -25,22 +24,20 @@ import jakarta.validation.Valid;
 public class MovieCommandService {
     private static final Logger LOG = LoggerFactory.getLogger(MovieCommandService.class);
 
-
-    @Autowired
     private MovieCommandAction movieCommandAction;
 
-    @Autowired
     private MovieMessageMapper messageMapper;
-
-    @Autowired
     private MovieOutboxAction outboxAction;
-
-    @Autowired
     private NotificationProducer notificationProducer;
 
-    public MovieCommandService(MovieCommandAction movieCommandAction) {
+    @Autowired
+    public MovieCommandService(MovieCommandAction movieCommandAction, MovieMessageMapper messageMapper, MovieOutboxAction outboxAction, NotificationProducer notificationProducer) {
         this.movieCommandAction = movieCommandAction;
+        this.messageMapper = messageMapper;
+        this.outboxAction = outboxAction;
+        this.notificationProducer = notificationProducer;
     }
+
 
     @Transactional
     public MovieEntity addMovie(@Valid AddMovieReq newMovie) {

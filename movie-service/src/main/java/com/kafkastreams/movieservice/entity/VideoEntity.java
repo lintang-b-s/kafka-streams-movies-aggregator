@@ -1,9 +1,19 @@
 package com.kafkastreams.movieservice.entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.SourceType;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.time.Instant;
 
 @Entity
 @Table(name = "videos")
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class VideoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,6 +31,13 @@ public class VideoEntity {
     @ManyToOne( fetch = FetchType.LAZY)
     @JoinColumn(name = "movie_id", referencedColumnName = "id")
     private MovieEntity movie;
+
+
+    @CreationTimestamp(source = SourceType.DB)
+    private Instant createdOn;
+    @UpdateTimestamp(source = SourceType.DB)
+    private Instant lastUpdatedOn;
+
 
     public int getId() {
         return id;
@@ -78,13 +95,13 @@ public class VideoEntity {
         return this;
     }
 
-    public void addMovie(MovieEntity movie) {
-        this.movie = movie;
-    }
-
-    public void removeMovie() {
-        this.movie = null;
-    }
+//    public void addMovie(MovieEntity movie) {
+//        this.movie = movie;
+//    }
+//
+//    public void removeMovie() {
+//        this.movie = null;
+//    }
 
     public String getPublicId() {
         return publicId;
@@ -95,15 +112,5 @@ public class VideoEntity {
         return this;
     }
 
-    @Override
-    public String toString() {
-        return "VideoEntity{" +
-                "id=" + id +
-                ", url='" + url + '\'' +
-                ", length=" + length +
-                ", title='" + title + '\'' +
-                ", synopsis='" + synopsis + '\'' +
-                ", movie=" + movie +
-                '}';
-    }
+
 }

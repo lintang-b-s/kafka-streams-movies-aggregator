@@ -2,18 +2,37 @@ version: "3.8"
 
 services:
 
+  pg-admin:
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@email.com
+      - PGADMIN_DEFAULT_PASSWORD=admin
+      - PGADMIN_LISTEN_PORT=5050
+    ports:
+      - 5050:5050
+    depends_on:
+      - postgres-movie
+
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
   postgres-movie:
     container_name: postgres-movie
-    image: postgres
+    image: postgres:14
     restart: unless-stopped
     environment:
       POSTGRES_DB: netflik
       POSTGRES_USER: netflik
       POSTGRES_PASSWORD: netflik
     ports:
-      - 5431:5432
-    networks:
-      - net
+      - 5432:5432
+    volumes:
+      - postgres-movie:/var/lib/postgresql/data
+      - ./config/init.sql:/docker-entrypoint-initdb.d/create_tables.sql
 
 
 
@@ -182,3 +201,7 @@ services:
     command: -Dpidfile.path=/dev/null
     healthcheck:
       test: "curl -f http://localhost:9000 || exit 1"
+
+volumes:
+  postgres-movie:
+    driver: local

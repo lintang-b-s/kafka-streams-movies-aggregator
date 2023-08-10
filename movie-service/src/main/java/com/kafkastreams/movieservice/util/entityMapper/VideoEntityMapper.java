@@ -11,7 +11,7 @@ public class VideoEntityMapper {
     public VideoEntity saveEntity(AddVideoReq videoDto) {
         VideoEntity entity = new VideoEntity();
         return entity.setUrl(videoDto.getUrl())
-                .setLength(videoDto.getLength()) .setTitle(videoDto.getTitle()).setSynopsis(videoDto.getSynopsis());
+                .setLength(videoDto.getLength()) .setTitle(videoDto.getTitle()).setSynopsis(videoDto.getSynopsis()).setPublicId(videoDto.getPublicId());
     }
 
     public VideoEntity toEntity(AddVideoReq videoDto, MovieEntity movie) {
@@ -28,18 +28,19 @@ public class VideoEntityMapper {
         return entity
                 .setPublicId(videoDto.getPublicId())
                 .setLength(videoDto.getLength()) .setTitle(videoDto.getTitle()).setSynopsis(videoDto.getSynopsis())
-                .setMovie(movie);
+                .setMovie(movie).setPublicId(videoDto.getPublicId());
     }
 
     public VideoEntity videoDtoToEntity(Video video, MovieEntity movie) {
         VideoEntity entity = new VideoEntity();
         return entity.setId(video.getId()).setSynopsis(video.getSynopsis()).setLength(video.getLength())
-                .setTitle(video.getTitle()).setUrl(video.getUrl());
+                .setTitle(video.getTitle()).setUrl(video.getUrl()).setPublicId(video.getPublicId());
     }
+
     public VideoEntity videoDtoToEntity(Video video) {
         VideoEntity entity = new VideoEntity();
         return entity.setSynopsis(video.getSynopsis()).setLength(video.getLength())
-                .setTitle(video.getTitle()).setUrl(video.getUrl());
+                .setTitle(video.getTitle()).setUrl(video.getUrl()).setPublicId(video.getPublicId());
     }
 
 

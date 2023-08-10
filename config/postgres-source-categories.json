@@ -1,0 +1,31 @@
+{
+  "name": "psql-source-categories",
+  "config": {
+    "connector.class": "io.confluent.connect.jdbc.JdbcSourceConnector",
+    "connection.url": "jdbc:postgresql://postgres-movie:5432/netflik?characterEncoding=UTF-8&serverTimezone=UTC",
+    "connection.user": "netflik",
+    "connection.password": "netflik",
+    "table.whitelist": "categories",
+    "mode": "timestamp",
+    "timestamp.column.name": "last_updated_on",
+    "topic.prefix": "postgresql.tenflix.",
+    "tasks.max": "1",
+
+    "transforms": "setSchemaName, dropFields, createKey, extractId",
+
+    "_comment": "--- Change the schema name ---",
+    "transforms.setSchemaName.type": "org.apache.kafka.connect.transforms.SetSchemaMetadata$Value",
+    "transforms.setSchemaName.schema.name": "com.lintang.commons.tenflix.avro.Categories",
+
+    "transforms.dropFields.type": "org.apache.kafka.connect.transforms.ReplaceField$Value",
+    "transforms.dropFields.blacklist": "last_updated_on",
+
+    "transforms.createKey.type": "org.apache.kafka.connect.transforms.ValueToKey",
+    "transforms.createKey.fields": "id",
+    "transforms.extractId.type": "org.apache.kafka.connect.transforms.ExtractField$Key",
+    "transforms.extractId.field": "id",
+
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "key.converter.schemas.enable": "false"
+  }
+}

@@ -8,6 +8,7 @@ import com.kafkastreams.movieservice.util.DtoMapper.ActorDtoMapper;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,12 +17,18 @@ import static org.springframework.http.ResponseEntity.ok;
 
 @RestController
 @RequestMapping("/api/v1/movie-service/actors")
-@AllArgsConstructor
+
 public class ActorController {
     private static final Logger log = LoggerFactory.getLogger(ActorController.class);
     private ActorCommandService actorService;
     private ActorDtoMapper mapper;
 
+
+    @Autowired
+    public ActorController(ActorCommandService actorService, ActorDtoMapper mapper) {
+        this.actorService = actorService;
+        this.mapper = mapper;
+    }
 
     @PostMapping
     public ResponseEntity<Actor> addActor(@RequestBody AddActorReq newActor) {

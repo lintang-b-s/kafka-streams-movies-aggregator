@@ -3,6 +3,7 @@ package com.kafkastreams.movieservice.command.action;
 
 import com.kafkastreams.movieservice.api.request.AddVideoReq;
 import com.kafkastreams.movieservice.api.request.UpdateVideoReq;
+import com.kafkastreams.movieservice.api.response.Video;
 import com.kafkastreams.movieservice.entity.MovieEntity;
 import com.kafkastreams.movieservice.entity.VideoEntity;
 import com.kafkastreams.movieservice.repository.MovieRepository;
@@ -10,10 +11,11 @@ import com.kafkastreams.movieservice.repository.VideoRepository;
 import com.kafkastreams.movieservice.util.entityMapper.VideoEntityMapper;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 
-@AllArgsConstructor
+
 @NoArgsConstructor
 @Component
 public class VideoCommandAction {
@@ -22,9 +24,24 @@ public class VideoCommandAction {
     private VideoEntityMapper mapper;
     private MovieRepository movieRepository;
 
+    @Autowired
+    public VideoCommandAction(VideoRepository repository, VideoEntityMapper mapper, MovieRepository movieRepository) {
+        this.repository = repository;
+        this.mapper = mapper;
+        this.movieRepository = movieRepository;
+    }
 
-    public VideoEntity save( AddVideoReq newVideo) {
-        return repository.save(mapper.saveEntity(newVideo));
+    public VideoEntity save(Video newVideo) {
+        return repository.save(mapper.videoDtoToEntity(newVideo));
+    }
+
+    public VideoEntity saveReq(AddVideoReq videoReq){
+        return repository.save(mapper.saveEntity(videoReq));
+    }
+
+    public void deleteVideoByMovie(int movieID){
+        repository.deleteByMovieId(movieID);
+
     }
 
     public Iterable<VideoEntity> getVideosByMovieId( int movieId) {

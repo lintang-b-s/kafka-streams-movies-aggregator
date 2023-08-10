@@ -30,27 +30,29 @@ import java.io.IOException;
 import java.util.UUID;
 
 @Slf4j
-@AllArgsConstructor
 @NoArgsConstructor
 @Service
 public class VideoCommandService {
     private static final Logger LOG = LoggerFactory.getLogger(VideoCommandService.class);
 
-
-    @Autowired
     private VideoCommandAction videoCommandAction;
-
-    @Autowired
     private VideoMessageMapper videoMessageMapper;
-
-    @Autowired
     private MovieOutboxAction outboxAction;
-
-    @Autowired
     private MediaPublisher mediaPublisher;
 
-    public VideoEntity save( @Valid AddVideoReq newVideo) {
-        return videoCommandAction.save(newVideo);
+    @Autowired
+    public VideoCommandService(VideoCommandAction videoCommandAction,
+                               VideoMessageMapper videoMessageMapper,
+                               MovieOutboxAction outboxAction,
+                               MediaPublisher mediaPublisher) {
+        this.videoCommandAction = videoCommandAction;
+        this.videoMessageMapper = videoMessageMapper;
+        this.outboxAction = outboxAction;
+        this.mediaPublisher = mediaPublisher;
+    }
+
+    public VideoEntity save(@Valid AddVideoReq newVideo) {
+        return videoCommandAction.saveReq(newVideo);
     }
 
 

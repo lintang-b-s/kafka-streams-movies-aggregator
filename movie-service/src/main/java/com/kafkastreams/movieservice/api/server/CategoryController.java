@@ -13,12 +13,17 @@ import static org.springframework.http.ResponseEntity.ok;
 
 @RestController
 @RequestMapping("/api/v1/movie-service/categories")
-@AllArgsConstructor
 public class CategoryController {
-    private CategoryEntityMapper categoryEntityMapper;
+    private  CategoryEntityMapper categoryEntityMapper;
+
+
+    private CategoryCommandService categoryCommandService;
 
     @Autowired
-    private CategoryCommandService categoryCommandService;
+    public CategoryController(CategoryEntityMapper categoryEntityMapper, CategoryCommandService categoryCommandService) {
+        this.categoryEntityMapper = categoryEntityMapper;
+        this.categoryCommandService = categoryCommandService;
+    }
 
     @PostMapping
     public ResponseEntity<Category> addCategory(@RequestBody AddCategoryReq newCategory) {

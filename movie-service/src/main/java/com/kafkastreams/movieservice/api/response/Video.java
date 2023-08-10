@@ -27,11 +27,12 @@ public class Video {
 
     private int movieId;
 
-    public Video(int id, String url, Integer length, String title, String synopsis) {
+    public Video(int id, String url, String publicId, Integer length, String title, String synopsis) {
         this.id = id;
         this.url = url;
         this.length = length;
         this.title = title;
         this.synopsis = synopsis;
+        this.publicId = publicId;
     }
 }

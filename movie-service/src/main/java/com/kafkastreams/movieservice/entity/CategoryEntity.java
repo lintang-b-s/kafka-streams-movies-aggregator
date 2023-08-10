@@ -1,12 +1,19 @@
 package com.kafkastreams.movieservice.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.SourceType;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,6 +22,9 @@ import java.util.Set;
 @AllArgsConstructor
 @Builder
 @Table(name = "categories")
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class CategoryEntity {
 
     @Id
@@ -23,9 +33,16 @@ public class CategoryEntity {
 
     private String name;
 
-    @ManyToMany(mappedBy = "categories",  fetch = FetchType.EAGER)
-    @JsonIgnore
+    @ManyToMany(mappedBy = "categories",  fetch = FetchType.LAZY)
+//    @JsonIgnore
     private Set<MovieEntity> movies = new HashSet<>();
+
+
+    @CreationTimestamp(source = SourceType.DB)
+    private Instant createdOn;
+    @UpdateTimestamp(source = SourceType.DB)
+    private Instant lastUpdatedOn;
+
 
 
     public int getId() {
@@ -55,21 +72,13 @@ public class CategoryEntity {
         return this;
     }
 
-    public void addMovie(MovieEntity movie) {
-        this.movies.add(movie);
-    }
-
+//    public void addMovie(MovieEntity movie) {
+//        this.movies.add(movie);
+//    }
+//
     public void removeMovie(MovieEntity movie) {
         this.movies.remove(movie);
     }
 
 
-    @Override
-    public String toString() {
-        return "CategoryEntity{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", movies=" + movies +
-                '}';
-    }
 }

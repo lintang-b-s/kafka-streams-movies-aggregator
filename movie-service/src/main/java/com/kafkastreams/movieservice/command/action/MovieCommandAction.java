@@ -5,10 +5,12 @@ import com.kafkastreams.movieservice.api.request.AddMovieReq;
 import com.kafkastreams.movieservice.entity.*;
 import com.kafkastreams.movieservice.exception.ResourceNotFoundException;
 
+import com.kafkastreams.movieservice.query.action.*;
 import com.kafkastreams.movieservice.repository.*;
 import com.kafkastreams.movieservice.util.entityMapper.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,42 +32,64 @@ public class MovieCommandAction {
 
     private MovieRepository repository;
 
-    private CreatorRepository creatorRepository;
-
     private ActorEntityMapper actorEntityMapper;
     private CreatorEntityMapper creatorEntityMapper;
     private MovieEntityMapper movieEntityMapper;
-    private ActorRepository actorRepository;
-    private VideoEntityMapper videoEntityMapper;
-    private VideoRepository videoRepository;
-    private TagEntityMapper tagEntityMapper;
-    private TagRepository tagRepository;
-    private CategoryEntityMapper categoryEntityMapper;
-    private CategoryRepository categoryRepository;
 
-    public MovieCommandAction(MovieRepository repository, ActorRepository actorRepository, CreatorRepository creatorRepository,
-                        ActorEntityMapper actorEntityMapper,
-                        CreatorEntityMapper creatorEntityMapper,
-                        MovieEntityMapper movieEntityMapper,
-                        VideoEntityMapper videoEntityMapper,
-                        VideoRepository videoRepository,
+    private VideoEntityMapper videoEntityMapper;
+
+    private TagEntityMapper tagEntityMapper;
+
+    private CategoryEntityMapper categoryEntityMapper;
+
+    private ActorCommandAction actorCommandAction;
+    private CreatorCommandAction creatorCommandAction;
+    private TagCommandAction tagCommandAction;
+    private CategoryCommandAction categoryCommandAction;
+    private VideoCommandAction videoCommandAction;
+    private ActorQueryAction actorQueryAction;
+    private CreatorQueryAction creatorQueryAction;
+    private TagQueryAction tagQueryAction;
+    private CategoryQueryAction categoryQueryAction;
+    private VideoQueryAction videoQueryAction;
+
+
+    @Autowired
+    public MovieCommandAction(MovieRepository repository,
+                              ActorEntityMapper actorEntityMapper,
+                              CreatorEntityMapper creatorEntityMapper,
+                              MovieEntityMapper movieEntityMapper,
+                              VideoEntityMapper videoEntityMapper,
                               TagEntityMapper tagEntityMapper,
-                              TagRepository tagRepository,
                               CategoryEntityMapper categoryEntityMapper,
-                              CategoryRepository categoryRepository) { this.repository = repository;
-        this.actorRepository = actorRepository;
-        this.creatorRepository= creatorRepository;
-        this.actorEntityMapper =actorEntityMapper;
-        this.creatorEntityMapper= creatorEntityMapper;
+                              ActorCommandAction actorCommandAction,
+                              CreatorCommandAction creatorCommandAction,
+                              TagCommandAction tagCommandAction,
+                              CategoryCommandAction categoryCommandAction,
+                              VideoCommandAction videoCommandAction,
+                              ActorQueryAction actorQueryAction,
+                              CreatorQueryAction creatorQueryAction,
+                              TagQueryAction tagQueryAction,
+                              CategoryQueryAction categoryQueryAction,
+                              VideoQueryAction videoQueryAction) {
+        this.repository = repository;
+        this.actorEntityMapper = actorEntityMapper;
+        this.creatorEntityMapper = creatorEntityMapper;
         this.movieEntityMapper = movieEntityMapper;
         this.videoEntityMapper = videoEntityMapper;
-        this.videoRepository= videoRepository;
         this.tagEntityMapper = tagEntityMapper;
-        this.tagRepository = tagRepository;
         this.categoryEntityMapper = categoryEntityMapper;
-        this.categoryRepository = categoryRepository;
+        this.actorCommandAction = actorCommandAction;
+        this.creatorCommandAction = creatorCommandAction;
+        this.tagCommandAction = tagCommandAction;
+        this.categoryCommandAction = categoryCommandAction;
+        this.videoCommandAction = videoCommandAction;
+        this.actorQueryAction = actorQueryAction;
+        this.creatorQueryAction = creatorQueryAction;
+        this.tagQueryAction = tagQueryAction;
+        this.categoryQueryAction = categoryQueryAction;
+        this.videoQueryAction = videoQueryAction;
     }
-
 
     public MovieEntity addMovie(@Valid AddMovieReq newMovie) {
         MovieEntity newMovieEntity = movieEntityMapper.toEntity(newMovie);
@@ -75,14 +99,12 @@ public class MovieCommandAction {
                     ActorEntity getActor;
                     ActorEntity actorEntities = actorEntityMapper.toActorEntity(actor);
 
-                    actorOptional = actorRepository.findById(actorEntities.getId());
-                    if (!actorOptional.isPresent()) {
-                        getActor=  actorRepository.save(actorEntityMapper.toEntity(actor.getName()));
-                    }else {
-                        getActor = actorOptional.get();
+                    actorOptional = actorQueryAction.findActor(actorEntities.getId());
+                    if (actorOptional.isEmpty()) {
+                        throw new ResourceNotFoundException("actor with id" + actor.getId() + " not found");
                     }
-                    getActor.addMovie(newMovieEntity);
-                    return getActor;
+
+                    return actorEntities;
                 })
                 .collect(Collectors.toSet()));
 
@@ -91,45 +113,28 @@ public class MovieCommandAction {
                     Optional<CreatorEntity> creatorOptional;
                     CreatorEntity getCreator;
                     CreatorEntity creatorEntities = creatorEntityMapper.creatorDtotoCreatorEntity(creator);
-                    creatorOptional = creatorRepository.findById(creatorEntities.getId());
-                    if (!creatorOptional.isPresent() ) {
-                        getCreator = creatorRepository.save(creatorEntityMapper.toEntity(creator.getName()));
+                    creatorOptional = creatorQueryAction.findById(creatorEntities.getId());
+                    if (creatorOptional.isEmpty()) {
+                        throw new ResourceNotFoundException("director with id" + creator.getId() + " not found");
                     }
-                    else {
-                        getCreator = creatorOptional.get();
-                    }
-                    getCreator.addMovie(newMovieEntity);
-                    return getCreator;
+
+                    return creatorEntities;
                 }).collect(Collectors.toSet()));
 
-        newMovieEntity.setTags(newMovie.getTags().stream()
-                .map(tag -> {
-                    Optional<TagEntity> tagOptional;
-                    TagEntity getTag;
-                    TagEntity tagEntity = tagEntityMapper.toEntity(tag);
-                    tagOptional = tagRepository.findById(tagEntity.getId());
-                    if (!tagOptional.isPresent()) {
-                        getTag = tagRepository.save(tagEntityMapper.toEntity(tag.getName()));
-                    }else {
-                        getTag = tagOptional.get();
-                    }
-                    getTag.addMovie(newMovieEntity);
-                    return getTag;
-                }).collect(Collectors.toSet()));
+
+
 
         newMovieEntity.setCategories(newMovie.getCategories().stream()
                 .map(category -> {
                     Optional<CategoryEntity> categoryOptional;
                     CategoryEntity getCategory;
                     CategoryEntity categoryEntity = categoryEntityMapper.toEntity(category);
-                    categoryOptional = categoryRepository.findById(categoryEntity.getId());
-                    if (!categoryOptional.isPresent()) {
-                        getCategory = categoryRepository.save(categoryEntityMapper.toEntity(category.getName()));
-                    }else {
-                        getCategory = categoryOptional.get();
+                    categoryOptional = categoryQueryAction.findById(categoryEntity.getId());
+                    if (categoryOptional.isEmpty()) {
+                        throw new ResourceNotFoundException("category with id" + category.getId() + " not found");
                     }
-                    getCategory.addMovie(newMovieEntity);
-                    return getCategory;
+
+                    return categoryEntity;
                 }).collect(Collectors.toSet()));
 
 
@@ -141,17 +146,13 @@ public class MovieCommandAction {
                                 VideoEntity getVideo;
                                 Optional<VideoEntity> optionalVid;
                                 VideoEntity videoEntity = videoEntityMapper.videoDtoToEntity(video, newMovieEntity);
-                                optionalVid = videoRepository.findById(videoEntity.getId());
-
+                                optionalVid = videoQueryAction.findById(videoEntity.getId());
                                 if (!optionalVid.isPresent()) {
-                                    getVideo = videoRepository.save(videoEntityMapper.videoDtoToEntity(video));
-                                }
-                                else {
-                                    getVideo = optionalVid.get();
+                                    throw new ResourceNotFoundException("video with id " + video.getId() + " is not found!");
                                 }
 
-                                getVideo.addMovie(newMovieEntity);
-                                return getVideo;
+
+                                return videoEntity;
                             }
                     ).collect(Collectors.toSet())
             );
@@ -184,15 +185,14 @@ public class MovieCommandAction {
                     Optional<ActorEntity> actorOptional;
                     ActorEntity getActor;
                     ActorEntity actorEntities = actorEntityMapper.toActorEntity(actor);
-                    actorOptional =actorRepository.findById(actorEntities.getId());
+                    actorOptional = actorQueryAction.findActor(actor.getId());
                     if (!actorOptional.isPresent()) {
-                        getActor = actorRepository.save(actorEntityMapper.toEntity(actor.getName()));
-                    }else {
-                        getActor = actorOptional.get();
+                        throw new ResourceNotFoundException("actor with id" + actor.getId() + " not found");
+
                     }
 
-                    getActor.addMovie(updatedMovie);
-                    return getActor;
+
+                    return actorEntities;
                 })
                 .collect(Collectors.toSet()));
 
@@ -201,45 +201,30 @@ public class MovieCommandAction {
                     Optional<CreatorEntity> creatorOptional;
                     CreatorEntity getCreator;
                     CreatorEntity creatorEntities = creatorEntityMapper.creatorDtotoCreatorEntity(creator);
-                    creatorOptional = creatorRepository.findById(creatorEntities.getId());
+                    creatorOptional = creatorQueryAction.findById(creatorEntities.getId());
                     if (!creatorOptional.isPresent()) {
-                        getCreator = creatorRepository.save(creatorEntityMapper.toEntity(creator.getName()));
+                        throw new ResourceNotFoundException("director with id" + creator.getId() + " not found");
                     }
-                    else {
-                        getCreator = creatorOptional.get();
-                    }
-                    getCreator.addMovie(updatedMovie);
-                    return getCreator;
+
+
+                    return creatorEntities;
                 }).collect(Collectors.toSet()));
 
-        updatedMovie.setTags(newMovie.getTags().stream()
-                .map(tag -> {
-                    Optional<TagEntity> tagOptional;
-                    TagEntity getTag;
-                    TagEntity tagEntity = tagEntityMapper.toEntity(tag);
-                    tagOptional = tagRepository.findById(tagEntity.getId());
-                    if (!tagOptional.isPresent()) {
-                        getTag= tagRepository.save(tagEntityMapper.toEntity(tag.getName()));
-                    } else {
-                        getTag= tagOptional.get();
-                    }
-                    getTag.addMovie(updatedMovie);
-                    return getTag;
-                }).collect(Collectors.toSet()));
+
 
         updatedMovie.setCategories(newMovie.getCategories().stream()
                 .map(category -> {
                     Optional<CategoryEntity> categoryOptional;
                     CategoryEntity getCategory;
                     CategoryEntity categoryEntity = categoryEntityMapper.toEntity(category);
-                    categoryOptional = categoryRepository.findById(categoryEntity.getId());
+                    categoryOptional = categoryQueryAction.findById(categoryEntity.getId());
                     if (!categoryOptional.isPresent()) {
-                        getCategory = categoryRepository.save(categoryEntityMapper.toEntity(category.getName()));
-                    }else {
-                        getCategory = categoryOptional.get();
+
+                        throw new ResourceNotFoundException("category with id" + category.getId() + " not found");
+
                     }
-                    getCategory.addMovie(updatedMovie);
-                    return getCategory;
+
+                    return categoryEntity;
                 }).collect(Collectors.toSet()));
 
         if (newMovie.getVideos() != null) {
@@ -249,17 +234,14 @@ public class MovieCommandAction {
                                 VideoEntity getVideo;
                                 Optional<VideoEntity> optionalVid;
                                 VideoEntity videoEntity = videoEntityMapper.videoDtoToEntity(video, updatedMovie);
-                                optionalVid = videoRepository.findById(videoEntity.getId());
-
+                                optionalVid = videoQueryAction.findById(videoEntity.getId());
                                 if (!optionalVid.isPresent()) {
-                                    getVideo = videoRepository.save(videoEntityMapper.videoDtoToEntity(video));
-                                }
-                                else {
-                                    getVideo = optionalVid.get();
+                                    throw new ResourceNotFoundException("video with id " + video.getId() + " is not found!");
+
                                 }
 
-                                getVideo.addMovie(updatedMovie);
-                                return getVideo;
+
+                                return videoEntity;
                             }
                     ).collect(Collectors.toSet())
             );
@@ -313,17 +295,20 @@ public class MovieCommandAction {
             creator.removeMovie(movieEntity);
             return creator;
         });
-        movieEntity.getTags().stream().map(tag -> {
-            tag.removeMovie(movieEntity);
-            return tag;
-        });
+
+        if (!movieEntity.getTags().isEmpty()){
+            movieEntity.getTags().stream().map(tag -> {
+                tag.removeMovie(movieEntity);
+                return tag;
+            });
+        }
+
         movieEntity.getCategories().stream().map(category -> {
             category.removeMovie(movieEntity);
             return category;
         });
 
-        videoRepository.deleteByMovieId(movieEntity.getId());
-//       movieEntity.removeVideos();
+        videoCommandAction.deleteVideoByMovie(movieEntity.getId() );
 
 
         MovieEntity deletedMovie = repository.save(movieEntity);

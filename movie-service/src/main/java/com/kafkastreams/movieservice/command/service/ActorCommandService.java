@@ -24,17 +24,22 @@ import java.util.Optional;
 
 @Slf4j
 @Service
-@AllArgsConstructor
+
 @NoArgsConstructor
 @Transactional
 public class ActorCommandService {
     private static final Logger LOG = LoggerFactory.getLogger(ActorCommandService.class);
 
-    @Autowired
+
     private ActorCommandAction actorCommandAction;
-    @Autowired
+
     private MovieOutboxAction outboxAction;
 
+    @Autowired
+    public ActorCommandService(ActorCommandAction actorCommandAction, MovieOutboxAction outboxAction) {
+        this.actorCommandAction = actorCommandAction;
+        this.outboxAction = outboxAction;
+    }
 
     public ActorEntity addActor(@Valid AddActorReq newActor) {
         ActorEntity actor=  actorCommandAction.addActor(newActor);

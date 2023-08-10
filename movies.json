@@ -1,0 +1,10 @@
+{
+  "id": "integer",
+  "idmb_rating": "integer",
+  "image": "character_varying",
+  "mpa_rating": "character_varying",
+  "name": "character_varying",
+  "r_year": "timestamp without timezone(6)",
+  "synopsis": "character_varying",
+  "type": "character_varying"
+}

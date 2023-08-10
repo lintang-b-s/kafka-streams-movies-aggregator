@@ -8,22 +8,42 @@ import com.kafkastreams.movieservice.repository.CreatorRepository;
 import com.kafkastreams.movieservice.util.entityMapper.CreatorEntityMapper;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
 @Component
-@AllArgsConstructor
 @NoArgsConstructor
 public class CreatorCommandAction {
 
     private CreatorRepository repository;
+
     private CreatorEntityMapper mapper;
 
 
+    private CreatorEntityMapper creatorEntityMapper;
+
+    @Autowired
+    public CreatorCommandAction(CreatorRepository repository, CreatorEntityMapper mapper, CreatorEntityMapper creatorEntityMapper) {
+        this.repository = repository;
+        this.mapper = mapper;
+        this.creatorEntityMapper = creatorEntityMapper;
+    }
+
+    /** this method is for save director to db
+     * @param newCreator new director
+     * @return
+     *
+     */
     public CreatorEntity addCreator(AddCreatorReq newCreator) {
        CreatorEntity cre =  repository.save(mapper.toEntity(newCreator));
         return cre;
+    }
+
+    public CreatorEntity saveCreator(String name){
+        CreatorEntity creator = repository.save(creatorEntityMapper.toEntity(name));
+        return creator;
     }
 
     public CreatorEntity getCreatorById(int creatorId) {
