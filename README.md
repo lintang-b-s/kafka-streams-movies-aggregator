@@ -1,6 +1,6 @@
 
 # kafka-streams-movies-aggregator
-transform normalized movies data from multiple kafka topics(send by cdc postgres) into denormalized movies data, then send it to movies-output and consumed by es connector. Then the data stored/updarted in elasticsearch index
+transform normalized movies data from multiple kafka topics(send by cdc postgres) into denormalized movies data, then send it to movies-output and consumed by es connector. Then the data stored/updarted in elasticsearch index.
 
 
 1. download postgres-connector-jar java 8 in https://jdbc.postgresql.org/download/
@@ -15,13 +15,13 @@ transform normalized movies data from multiple kafka topics(send by cdc postgres
    copy and paste zip file into docker/kafka-connect directory
 
 
-
-    > docker compose up -d
-    > bash create-topics.sh
-    > bash kafka-connect.sh
-    > bash connect-health.sh
-    > run movie-service application
-    > import postman  & test add actor,category,...,movies
-    > bash check-isi-topics.sh
-
+ ```
+     docker compose up -d
+     bash create-topics.sh
+     bash kafka-connect.sh
+     bash connect-health.sh
+     run movie-service application
+     import postman  & test add actor,category,...,movies
+     bash check-isi-topics.sh
+ ```
 
