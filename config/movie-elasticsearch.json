@@ -1,0 +1,16 @@
+{
+  "name": "elasticsearch-sink-movies",
+  "config": {
+    "connector.class": "io.confluent.connect.elasticsearch.ElasticsearchSinkConnector",
+    "topics": "movie-output",
+    "connection.url": "http://elasticsearch:9200",
+    "type.name": "movie",
+    "tasks.max": "1",
+
+    "_comment": "--- Change Key converter (default is Avro) ---",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "key.converter.schemas.enable": "false",
+    "schema.ignore": "true",
+    "value.converter": "io.confluent.connect.avro.AvroConverter"
+  }
+}

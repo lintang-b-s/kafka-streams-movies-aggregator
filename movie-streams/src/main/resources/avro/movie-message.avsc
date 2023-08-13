@@ -49,15 +49,7 @@
       "name": "notification",
       "type": "boolean"
     },
-    {
-      "name": "last_updated_on",
-      "type": {
-        "type": "long",
-        "connect.version": 1,
-        "connect.name": "org.apache.kafka.connect.data.Timestamp",
-        "logicalType": "timestamp-millis"
-      }
-    },
+
     {
       "name": "idmb_rating",
       "type": "int"

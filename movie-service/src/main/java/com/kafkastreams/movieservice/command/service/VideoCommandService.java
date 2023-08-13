@@ -22,6 +22,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import jakarta.validation.Valid;
@@ -52,6 +53,7 @@ public class VideoCommandService {
     }
 
     public VideoEntity save(@Valid AddVideoReq newVideo) {
+
         return videoCommandAction.saveReq(newVideo);
     }
 
@@ -83,23 +85,6 @@ public class VideoCommandService {
         return video;
     }
 
-    public VideoEntity addVideoByMovieId( @Valid AddVideoReq newVideo) {
-        VideoEntity video =  videoCommandAction.addVideoByMovieId(newVideo);
-        AddVideoMessage videoMessage = videoMessageMapper.videoEntityToMessage(video);
-        OutboxEntity videoOutbox = null;
-        try{
-            videoOutbox = outboxAction.insertOutbox(
-                    "video.request",
-                    String.valueOf(video.getId()),
-                    OutboxEventType.ADD_VIDEO_TO_MOVIE, videoMessage
-            );
-        }catch (JsonProcessingException e) {
-            throw new InternalServerEx("error json processing : " + e.getMessage());
-        }
-        outboxAction.deleteOutbox(videoOutbox);
-        LOG.info("sending add_video_to_movie message with  id +  "+ String.valueOf(video.getId()) + " to movie-query-service!!" );
-        return video;
-    }
 
 
     public VideoEntity getVideoByMovieIdAndId(@NotNull @Valid int movieId,@NotNull @Valid int videoId) {
@@ -109,8 +94,8 @@ public class VideoCommandService {
 
 
     @Transactional
-    public String deleteVideoFromMovie(@NotNull @Valid int movieId, @NotNull @Valid int videoId) {
-        videoCommandAction.deleteVideoFromMovie(movieId, videoId);
+    public String deleteVideo( @NotNull @Valid int videoId) {
+        videoCommandAction.deleteVideoFromMovie( videoId);
         DeleteVideoMessage message = DeleteVideoMessage.builder().id(videoId).build();
         OutboxEntity videoOutbox = null;
         try{
@@ -130,11 +115,11 @@ public class VideoCommandService {
 
 
     @Transactional
-    public VideoEntity updateVideoFromMovie(@NotNull @Valid int videoId,
-                                                      @NotNull @Valid int movieId,
-                                                      @Valid UpdateVideoReq newVideo){
+    public VideoEntity updateVideo(@NotNull @Valid int videoId,
 
-       VideoEntity updatedVideo = videoCommandAction.updateVideoFromMovie(videoId, movieId, newVideo);
+                                                      @Valid  UpdateVideoReq newVideo){
+
+       VideoEntity updatedVideo = videoCommandAction.updateVideo(videoId,  newVideo);
 
         AddVideoMessage videoMessage = videoMessageMapper.videoEntityToMessage(updatedVideo);
         OutboxEntity videoOutbox = null;

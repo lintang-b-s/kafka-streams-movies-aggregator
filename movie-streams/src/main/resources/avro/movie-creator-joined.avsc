@@ -1,0 +1,63 @@
+{
+  "type": "record",
+  "name": "MovieWithCreatorJoined",
+  "namespace": "com.kafkastreams.movie.commons.avro",
+  "fields": [
+
+    {
+      "name": "creatorName",
+      "type": "string"
+    },
+    {
+      "name": "movieId",
+      "type": "int"
+    },
+    {
+      "name": "name",
+      "type": "string"
+    },
+    {
+      "name": "created_on",
+      "type": {
+        "type": "long",
+        "connect.version": 1,
+        "connect.name": "org.apache.kafka.connect.data.Timestamp",
+        "logicalType": "timestamp-millis"
+      }
+    },
+    {
+      "name": "type",
+      "type": "string"
+    },
+    {
+      "name": "synopsis",
+      "type": "string"
+    },
+    {
+      "name": "mpa_rating",
+      "type": "string"
+    },
+    {
+      "name": "image",
+      "type": "string"
+    },
+    {
+      "name": "r_year",
+      "type": {
+        "type": "long",
+        "connect.version": 1,
+        "connect.name": "org.apache.kafka.connect.data.Timestamp",
+        "logicalType": "timestamp-millis"
+      }
+    },
+    {
+      "name": "notification",
+      "type": "boolean"
+    },
+
+    {
+      "name": "idmb_rating",
+      "type": "int"
+    }
+  ]
+}

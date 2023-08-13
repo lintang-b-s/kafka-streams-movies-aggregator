@@ -14,10 +14,10 @@ import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class Movie extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 6522859415763418976L;
+  private static final long serialVersionUID = -4905697135138398986L;
 
 
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Movie\",\"namespace\":\"com.kafkastreams.movie.commons.avro\",\"fields\":[{\"name\":\"id\",\"type\":\"int\"},{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"created_on\",\"type\":{\"type\":\"long\",\"connect.version\":1,\"connect.name\":\"org.apache.kafka.connect.data.Timestamp\",\"logicalType\":\"timestamp-millis\"}},{\"name\":\"type\",\"type\":\"string\"},{\"name\":\"synopsis\",\"type\":\"string\"},{\"name\":\"mpa_rating\",\"type\":\"string\"},{\"name\":\"image\",\"type\":\"string\"},{\"name\":\"r_year\",\"type\":{\"type\":\"long\",\"connect.version\":1,\"connect.name\":\"org.apache.kafka.connect.data.Timestamp\",\"logicalType\":\"timestamp-millis\"}},{\"name\":\"notification\",\"type\":\"boolean\"},{\"name\":\"last_updated_on\",\"type\":{\"type\":\"long\",\"connect.version\":1,\"connect.name\":\"org.apache.kafka.connect.data.Timestamp\",\"logicalType\":\"timestamp-millis\"}},{\"name\":\"idmb_rating\",\"type\":\"int\"}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Movie\",\"namespace\":\"com.kafkastreams.movie.commons.avro\",\"fields\":[{\"name\":\"id\",\"type\":\"int\"},{\"name\":\"name\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"created_on\",\"type\":{\"type\":\"long\",\"connect.version\":1,\"connect.name\":\"org.apache.kafka.connect.data.Timestamp\",\"logicalType\":\"timestamp-millis\"}},{\"name\":\"type\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"synopsis\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"mpa_rating\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"image\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"r_year\",\"type\":{\"type\":\"long\",\"connect.version\":1,\"connect.name\":\"org.apache.kafka.connect.data.Timestamp\",\"logicalType\":\"timestamp-millis\"}},{\"name\":\"notification\",\"type\":\"boolean\"},{\"name\":\"idmb_rating\",\"type\":\"int\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static final SpecificData MODEL$ = new SpecificData();
@@ -77,15 +77,14 @@ public class Movie extends org.apache.avro.specific.SpecificRecordBase implement
   }
 
   private int id;
-  private java.lang.CharSequence name;
+  private java.lang.String name;
   private java.time.Instant created_on;
-  private java.lang.CharSequence type;
-  private java.lang.CharSequence synopsis;
-  private java.lang.CharSequence mpa_rating;
-  private java.lang.CharSequence image;
+  private java.lang.String type;
+  private java.lang.String synopsis;
+  private java.lang.String mpa_rating;
+  private java.lang.String image;
   private java.time.Instant r_year;
   private boolean notification;
-  private java.time.Instant last_updated_on;
   private int idmb_rating;
 
   /**
@@ -106,10 +105,9 @@ public class Movie extends org.apache.avro.specific.SpecificRecordBase implement
    * @param image The new value for image
    * @param r_year The new value for r_year
    * @param notification The new value for notification
-   * @param last_updated_on The new value for last_updated_on
    * @param idmb_rating The new value for idmb_rating
    */
-  public Movie(java.lang.Integer id, java.lang.CharSequence name, java.time.Instant created_on, java.lang.CharSequence type, java.lang.CharSequence synopsis, java.lang.CharSequence mpa_rating, java.lang.CharSequence image, java.time.Instant r_year, java.lang.Boolean notification, java.time.Instant last_updated_on, java.lang.Integer idmb_rating) {
+  public Movie(java.lang.Integer id, java.lang.String name, java.time.Instant created_on, java.lang.String type, java.lang.String synopsis, java.lang.String mpa_rating, java.lang.String image, java.time.Instant r_year, java.lang.Boolean notification, java.lang.Integer idmb_rating) {
     this.id = id;
     this.name = name;
     this.created_on = created_on.truncatedTo(java.time.temporal.ChronoUnit.MILLIS);
@@ -119,7 +117,6 @@ public class Movie extends org.apache.avro.specific.SpecificRecordBase implement
     this.image = image;
     this.r_year = r_year.truncatedTo(java.time.temporal.ChronoUnit.MILLIS);
     this.notification = notification;
-    this.last_updated_on = last_updated_on.truncatedTo(java.time.temporal.ChronoUnit.MILLIS);
     this.idmb_rating = idmb_rating;
   }
 
@@ -142,8 +139,7 @@ public class Movie extends org.apache.avro.specific.SpecificRecordBase implement
     case 6: return image;
     case 7: return r_year;
     case 8: return notification;
-    case 9: return last_updated_on;
-    case 10: return idmb_rating;
+    case 9: return idmb_rating;
     default: throw new IndexOutOfBoundsException("Invalid index: " + field$);
     }
   }
@@ -159,7 +155,6 @@ public class Movie extends org.apache.avro.specific.SpecificRecordBase implement
       null,
       new org.apache.avro.data.TimeConversions.TimestampMillisConversion(),
       null,
-      new org.apache.avro.data.TimeConversions.TimestampMillisConversion(),
       null,
       null
   };
@@ -175,16 +170,15 @@ public class Movie extends org.apache.avro.specific.SpecificRecordBase implement
   public void put(int field$, java.lang.Object value$) {
     switch (field$) {
     case 0: id = (java.lang.Integer)value$; break;
-    case 1: name = (java.lang.CharSequence)value$; break;
+    case 1: name = value$ != null ? value$.toString() : null; break;
     case 2: created_on = (java.time.Instant)value$; break;
-    case 3: type = (java.lang.CharSequence)value$; break;
-    case 4: synopsis = (java.lang.CharSequence)value$; break;
-    case 5: mpa_rating = (java.lang.CharSequence)value$; break;
-    case 6: image = (java.lang.CharSequence)value$; break;
+    case 3: type = value$ != null ? value$.toString() : null; break;
+    case 4: synopsis = value$ != null ? value$.toString() : null; break;
+    case 5: mpa_rating = value$ != null ? value$.toString() : null; break;
+    case 6: image = value$ != null ? value$.toString() : null; break;
     case 7: r_year = (java.time.Instant)value$; break;
     case 8: notification = (java.lang.Boolean)value$; break;
-    case 9: last_updated_on = (java.time.Instant)value$; break;
-    case 10: idmb_rating = (java.lang.Integer)value$; break;
+    case 9: idmb_rating = (java.lang.Integer)value$; break;
     default: throw new IndexOutOfBoundsException("Invalid index: " + field$);
     }
   }
@@ -210,7 +204,7 @@ public class Movie extends org.apache.avro.specific.SpecificRecordBase implement
    * Gets the value of the 'name' field.
    * @return The value of the 'name' field.
    */
-  public java.lang.CharSequence getName() {
+  public java.lang.String getName() {
     return name;
   }
 
@@ -219,7 +213,7 @@ public class Movie extends org.apache.avro.specific.SpecificRecordBase implement
    * Sets the value of the 'name' field.
    * @param value the value to set.
    */
-  public void setName(java.lang.CharSequence value) {
+  public void setName(java.lang.String value) {
     this.name = value;
   }
 
@@ -244,7 +238,7 @@ public class Movie extends org.apache.avro.specific.SpecificRecordBase implement
    * Gets the value of the 'type' field.
    * @return The value of the 'type' field.
    */
-  public java.lang.CharSequence getType() {
+  public java.lang.String getType() {
     return type;
   }
 
@@ -253,7 +247,7 @@ public class Movie extends org.apache.avro.specific.SpecificRecordBase implement
    * Sets the value of the 'type' field.
    * @param value the value to set.
    */
-  public void setType(java.lang.CharSequence value) {
+  public void setType(java.lang.String value) {
     this.type = value;
   }
 
@@ -261,7 +255,7 @@ public class Movie extends org.apache.avro.specific.SpecificRecordBase implement
    * Gets the value of the 'synopsis' field.
    * @return The value of the 'synopsis' field.
    */
-  public java.lang.CharSequence getSynopsis() {
+  public java.lang.String getSynopsis() {
     return synopsis;
   }
 
@@ -270,7 +264,7 @@ public class Movie extends org.apache.avro.specific.SpecificRecordBase implement
    * Sets the value of the 'synopsis' field.
    * @param value the value to set.
    */
-  public void setSynopsis(java.lang.CharSequence value) {
+  public void setSynopsis(java.lang.String value) {
     this.synopsis = value;
   }
 
@@ -278,7 +272,7 @@ public class Movie extends org.apache.avro.specific.SpecificRecordBase implement
    * Gets the value of the 'mpa_rating' field.
    * @return The value of the 'mpa_rating' field.
    */
-  public java.lang.CharSequence getMpaRating() {
+  public java.lang.String getMpaRating() {
     return mpa_rating;
   }
 
@@ -287,7 +281,7 @@ public class Movie extends org.apache.avro.specific.SpecificRecordBase implement
    * Sets the value of the 'mpa_rating' field.
    * @param value the value to set.
    */
-  public void setMpaRating(java.lang.CharSequence value) {
+  public void setMpaRating(java.lang.String value) {
     this.mpa_rating = value;
   }
 
@@ -295,7 +289,7 @@ public class Movie extends org.apache.avro.specific.SpecificRecordBase implement
    * Gets the value of the 'image' field.
    * @return The value of the 'image' field.
    */
-  public java.lang.CharSequence getImage() {
+  public java.lang.String getImage() {
     return image;
   }
 
@@ -304,7 +298,7 @@ public class Movie extends org.apache.avro.specific.SpecificRecordBase implement
    * Sets the value of the 'image' field.
    * @param value the value to set.
    */
-  public void setImage(java.lang.CharSequence value) {
+  public void setImage(java.lang.String value) {
     this.image = value;
   }
 
@@ -340,23 +334,6 @@ public class Movie extends org.apache.avro.specific.SpecificRecordBase implement
    */
   public void setNotification(boolean value) {
     this.notification = value;
-  }
-
-  /**
-   * Gets the value of the 'last_updated_on' field.
-   * @return The value of the 'last_updated_on' field.
-   */
-  public java.time.Instant getLastUpdatedOn() {
-    return last_updated_on;
-  }
-
-
-  /**
-   * Sets the value of the 'last_updated_on' field.
-   * @param value the value to set.
-   */
-  public void setLastUpdatedOn(java.time.Instant value) {
-    this.last_updated_on = value.truncatedTo(java.time.temporal.ChronoUnit.MILLIS);
   }
 
   /**
@@ -418,15 +395,14 @@ public class Movie extends org.apache.avro.specific.SpecificRecordBase implement
     implements org.apache.avro.data.RecordBuilder<Movie> {
 
     private int id;
-    private java.lang.CharSequence name;
+    private java.lang.String name;
     private java.time.Instant created_on;
-    private java.lang.CharSequence type;
-    private java.lang.CharSequence synopsis;
-    private java.lang.CharSequence mpa_rating;
-    private java.lang.CharSequence image;
+    private java.lang.String type;
+    private java.lang.String synopsis;
+    private java.lang.String mpa_rating;
+    private java.lang.String image;
     private java.time.Instant r_year;
     private boolean notification;
-    private java.time.Instant last_updated_on;
     private int idmb_rating;
 
     /** Creates a new Builder */
@@ -476,13 +452,9 @@ public class Movie extends org.apache.avro.specific.SpecificRecordBase implement
         this.notification = data().deepCopy(fields()[8].schema(), other.notification);
         fieldSetFlags()[8] = other.fieldSetFlags()[8];
       }
-      if (isValidValue(fields()[9], other.last_updated_on)) {
-        this.last_updated_on = data().deepCopy(fields()[9].schema(), other.last_updated_on);
+      if (isValidValue(fields()[9], other.idmb_rating)) {
+        this.idmb_rating = data().deepCopy(fields()[9].schema(), other.idmb_rating);
         fieldSetFlags()[9] = other.fieldSetFlags()[9];
-      }
-      if (isValidValue(fields()[10], other.idmb_rating)) {
-        this.idmb_rating = data().deepCopy(fields()[10].schema(), other.idmb_rating);
-        fieldSetFlags()[10] = other.fieldSetFlags()[10];
       }
     }
 
@@ -528,13 +500,9 @@ public class Movie extends org.apache.avro.specific.SpecificRecordBase implement
         this.notification = data().deepCopy(fields()[8].schema(), other.notification);
         fieldSetFlags()[8] = true;
       }
-      if (isValidValue(fields()[9], other.last_updated_on)) {
-        this.last_updated_on = data().deepCopy(fields()[9].schema(), other.last_updated_on);
+      if (isValidValue(fields()[9], other.idmb_rating)) {
+        this.idmb_rating = data().deepCopy(fields()[9].schema(), other.idmb_rating);
         fieldSetFlags()[9] = true;
-      }
-      if (isValidValue(fields()[10], other.idmb_rating)) {
-        this.idmb_rating = data().deepCopy(fields()[10].schema(), other.idmb_rating);
-        fieldSetFlags()[10] = true;
       }
     }
 
@@ -581,7 +549,7 @@ public class Movie extends org.apache.avro.specific.SpecificRecordBase implement
       * Gets the value of the 'name' field.
       * @return The value.
       */
-    public java.lang.CharSequence getName() {
+    public java.lang.String getName() {
       return name;
     }
 
@@ -591,7 +559,7 @@ public class Movie extends org.apache.avro.specific.SpecificRecordBase implement
       * @param value The value of 'name'.
       * @return This builder.
       */
-    public com.kafkastreams.movie.commons.avro.Movie.Builder setName(java.lang.CharSequence value) {
+    public com.kafkastreams.movie.commons.avro.Movie.Builder setName(java.lang.String value) {
       validate(fields()[1], value);
       this.name = value;
       fieldSetFlags()[1] = true;
@@ -660,7 +628,7 @@ public class Movie extends org.apache.avro.specific.SpecificRecordBase implement
       * Gets the value of the 'type' field.
       * @return The value.
       */
-    public java.lang.CharSequence getType() {
+    public java.lang.String getType() {
       return type;
     }
 
@@ -670,7 +638,7 @@ public class Movie extends org.apache.avro.specific.SpecificRecordBase implement
       * @param value The value of 'type'.
       * @return This builder.
       */
-    public com.kafkastreams.movie.commons.avro.Movie.Builder setType(java.lang.CharSequence value) {
+    public com.kafkastreams.movie.commons.avro.Movie.Builder setType(java.lang.String value) {
       validate(fields()[3], value);
       this.type = value;
       fieldSetFlags()[3] = true;
@@ -700,7 +668,7 @@ public class Movie extends org.apache.avro.specific.SpecificRecordBase implement
       * Gets the value of the 'synopsis' field.
       * @return The value.
       */
-    public java.lang.CharSequence getSynopsis() {
+    public java.lang.String getSynopsis() {
       return synopsis;
     }
 
@@ -710,7 +678,7 @@ public class Movie extends org.apache.avro.specific.SpecificRecordBase implement
       * @param value The value of 'synopsis'.
       * @return This builder.
       */
-    public com.kafkastreams.movie.commons.avro.Movie.Builder setSynopsis(java.lang.CharSequence value) {
+    public com.kafkastreams.movie.commons.avro.Movie.Builder setSynopsis(java.lang.String value) {
       validate(fields()[4], value);
       this.synopsis = value;
       fieldSetFlags()[4] = true;
@@ -740,7 +708,7 @@ public class Movie extends org.apache.avro.specific.SpecificRecordBase implement
       * Gets the value of the 'mpa_rating' field.
       * @return The value.
       */
-    public java.lang.CharSequence getMpaRating() {
+    public java.lang.String getMpaRating() {
       return mpa_rating;
     }
 
@@ -750,7 +718,7 @@ public class Movie extends org.apache.avro.specific.SpecificRecordBase implement
       * @param value The value of 'mpa_rating'.
       * @return This builder.
       */
-    public com.kafkastreams.movie.commons.avro.Movie.Builder setMpaRating(java.lang.CharSequence value) {
+    public com.kafkastreams.movie.commons.avro.Movie.Builder setMpaRating(java.lang.String value) {
       validate(fields()[5], value);
       this.mpa_rating = value;
       fieldSetFlags()[5] = true;
@@ -780,7 +748,7 @@ public class Movie extends org.apache.avro.specific.SpecificRecordBase implement
       * Gets the value of the 'image' field.
       * @return The value.
       */
-    public java.lang.CharSequence getImage() {
+    public java.lang.String getImage() {
       return image;
     }
 
@@ -790,7 +758,7 @@ public class Movie extends org.apache.avro.specific.SpecificRecordBase implement
       * @param value The value of 'image'.
       * @return This builder.
       */
-    public com.kafkastreams.movie.commons.avro.Movie.Builder setImage(java.lang.CharSequence value) {
+    public com.kafkastreams.movie.commons.avro.Movie.Builder setImage(java.lang.String value) {
       validate(fields()[6], value);
       this.image = value;
       fieldSetFlags()[6] = true;
@@ -895,45 +863,6 @@ public class Movie extends org.apache.avro.specific.SpecificRecordBase implement
     }
 
     /**
-      * Gets the value of the 'last_updated_on' field.
-      * @return The value.
-      */
-    public java.time.Instant getLastUpdatedOn() {
-      return last_updated_on;
-    }
-
-
-    /**
-      * Sets the value of the 'last_updated_on' field.
-      * @param value The value of 'last_updated_on'.
-      * @return This builder.
-      */
-    public com.kafkastreams.movie.commons.avro.Movie.Builder setLastUpdatedOn(java.time.Instant value) {
-      validate(fields()[9], value);
-      this.last_updated_on = value.truncatedTo(java.time.temporal.ChronoUnit.MILLIS);
-      fieldSetFlags()[9] = true;
-      return this;
-    }
-
-    /**
-      * Checks whether the 'last_updated_on' field has been set.
-      * @return True if the 'last_updated_on' field has been set, false otherwise.
-      */
-    public boolean hasLastUpdatedOn() {
-      return fieldSetFlags()[9];
-    }
-
-
-    /**
-      * Clears the value of the 'last_updated_on' field.
-      * @return This builder.
-      */
-    public com.kafkastreams.movie.commons.avro.Movie.Builder clearLastUpdatedOn() {
-      fieldSetFlags()[9] = false;
-      return this;
-    }
-
-    /**
       * Gets the value of the 'idmb_rating' field.
       * @return The value.
       */
@@ -948,9 +877,9 @@ public class Movie extends org.apache.avro.specific.SpecificRecordBase implement
       * @return This builder.
       */
     public com.kafkastreams.movie.commons.avro.Movie.Builder setIdmbRating(int value) {
-      validate(fields()[10], value);
+      validate(fields()[9], value);
       this.idmb_rating = value;
-      fieldSetFlags()[10] = true;
+      fieldSetFlags()[9] = true;
       return this;
     }
 
@@ -959,7 +888,7 @@ public class Movie extends org.apache.avro.specific.SpecificRecordBase implement
       * @return True if the 'idmb_rating' field has been set, false otherwise.
       */
     public boolean hasIdmbRating() {
-      return fieldSetFlags()[10];
+      return fieldSetFlags()[9];
     }
 
 
@@ -968,7 +897,7 @@ public class Movie extends org.apache.avro.specific.SpecificRecordBase implement
       * @return This builder.
       */
     public com.kafkastreams.movie.commons.avro.Movie.Builder clearIdmbRating() {
-      fieldSetFlags()[10] = false;
+      fieldSetFlags()[9] = false;
       return this;
     }
 
@@ -978,16 +907,15 @@ public class Movie extends org.apache.avro.specific.SpecificRecordBase implement
       try {
         Movie record = new Movie();
         record.id = fieldSetFlags()[0] ? this.id : (java.lang.Integer) defaultValue(fields()[0]);
-        record.name = fieldSetFlags()[1] ? this.name : (java.lang.CharSequence) defaultValue(fields()[1]);
+        record.name = fieldSetFlags()[1] ? this.name : (java.lang.String) defaultValue(fields()[1]);
         record.created_on = fieldSetFlags()[2] ? this.created_on : (java.time.Instant) defaultValue(fields()[2]);
-        record.type = fieldSetFlags()[3] ? this.type : (java.lang.CharSequence) defaultValue(fields()[3]);
-        record.synopsis = fieldSetFlags()[4] ? this.synopsis : (java.lang.CharSequence) defaultValue(fields()[4]);
-        record.mpa_rating = fieldSetFlags()[5] ? this.mpa_rating : (java.lang.CharSequence) defaultValue(fields()[5]);
-        record.image = fieldSetFlags()[6] ? this.image : (java.lang.CharSequence) defaultValue(fields()[6]);
+        record.type = fieldSetFlags()[3] ? this.type : (java.lang.String) defaultValue(fields()[3]);
+        record.synopsis = fieldSetFlags()[4] ? this.synopsis : (java.lang.String) defaultValue(fields()[4]);
+        record.mpa_rating = fieldSetFlags()[5] ? this.mpa_rating : (java.lang.String) defaultValue(fields()[5]);
+        record.image = fieldSetFlags()[6] ? this.image : (java.lang.String) defaultValue(fields()[6]);
         record.r_year = fieldSetFlags()[7] ? this.r_year : (java.time.Instant) defaultValue(fields()[7]);
         record.notification = fieldSetFlags()[8] ? this.notification : (java.lang.Boolean) defaultValue(fields()[8]);
-        record.last_updated_on = fieldSetFlags()[9] ? this.last_updated_on : (java.time.Instant) defaultValue(fields()[9]);
-        record.idmb_rating = fieldSetFlags()[10] ? this.idmb_rating : (java.lang.Integer) defaultValue(fields()[10]);
+        record.idmb_rating = fieldSetFlags()[9] ? this.idmb_rating : (java.lang.Integer) defaultValue(fields()[9]);
         return record;
       } catch (org.apache.avro.AvroMissingFieldException e) {
         throw e;

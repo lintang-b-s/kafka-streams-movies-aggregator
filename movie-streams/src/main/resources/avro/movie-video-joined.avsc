@@ -1,0 +1,64 @@
+{
+  "type": "record",
+  "name": "MovieVideoJoined",
+  "namespace": "com.kafkastreams.movie.commons.avro",
+  "fields": [
+
+    {
+      "name": "videoUrl",
+      "type": "string"
+    },
+    {
+      "name": "movieId",
+      "type": "int"
+    },
+    {
+      "name": "name",
+      "type": "string"
+    },
+
+    {
+      "name": "genre",
+      "type": {
+        "type": "array",
+        "items": "string"
+      }
+    },
+    {
+      "name": "synopsis",
+      "type": "string"
+    },
+    {
+      "name": "releaseYear",
+      "type": {
+        "type": "long",
+        "connect.version": 1,
+        "connect.name": "org.apache.kafka.connect.data.Timestamp",
+        "logicalType": "timestamp-millis"
+      }
+    },
+    {
+      "name": "image",
+      "type": "string"
+    },
+    {
+      "name": "rating",
+      "type": "float"
+    },
+    {
+      "name" : "director",
+      "type": {
+        "type": "array",
+        "items": "string"
+      }
+    },
+    {
+      "name": "cast",
+      "type": {
+        "type": "array",
+        "items": "string"
+      }
+    }
+
+  ]
+}

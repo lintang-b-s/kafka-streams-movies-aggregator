@@ -13,9 +13,15 @@ spring:
     password: netflik
     driver-class-name: org.postgresql.Driver
   jpa:
+    properties:
+      hibernate:
+        jdbc:
+          batch_size: 20
+          order_updates: true
     database: postgresql
     hibernate:
       ddl-auto: update
+
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
   jackson:
@@ -38,10 +44,11 @@ spring:
     listener:
       missing-topics-fatal: false
     producer:
-      bootstrap-servers: kafka:29092
+      bootstrap-servers: kafka:9092
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
     consumer:
+      bootstrap-servers: kafka:9092
       group-id: movie-service-cg
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:

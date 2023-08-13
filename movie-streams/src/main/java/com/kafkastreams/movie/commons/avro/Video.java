@@ -14,10 +14,10 @@ import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class Video extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -7874921885673006852L;
+  private static final long serialVersionUID = 4447468954512144638L;
 
 
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Video\",\"namespace\":\"com.kafkastreams.movie.commons.avro\",\"fields\":[{\"name\":\"id\",\"type\":\"int\"},{\"name\":\"length\",\"type\":\"int\"},{\"name\":\"public_id\",\"type\":\"string\"},{\"name\":\"synopsis\",\"type\":\"string\"},{\"name\":\"title\",\"type\":\"string\"},{\"name\":\"url\",\"type\":\"string\"},{\"name\":\"movie_id\",\"type\":\"int\"},{\"name\":\"created_on\",\"type\":{\"type\":\"long\",\"connect.version\":1,\"connect.name\":\"org.apache.kafka.connect.data.Timestamp\",\"logicalType\":\"timestamp-millis\"}},{\"name\":\"last_updated_on\",\"type\":{\"type\":\"long\",\"connect.version\":1,\"connect.name\":\"org.apache.kafka.connect.data.Timestamp\",\"logicalType\":\"timestamp-millis\"}}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Video\",\"namespace\":\"com.kafkastreams.movie.commons.avro\",\"fields\":[{\"name\":\"id\",\"type\":\"int\"},{\"name\":\"length\",\"type\":\"int\"},{\"name\":\"public_id\",\"type\":\"string\"},{\"name\":\"synopsis\",\"type\":\"string\"},{\"name\":\"title\",\"type\":\"string\"},{\"name\":\"url\",\"type\":\"string\"},{\"name\":\"movie_id\",\"type\":\"int\"},{\"name\":\"created_on\",\"type\":{\"type\":\"long\",\"connect.version\":1,\"connect.name\":\"org.apache.kafka.connect.data.Timestamp\",\"logicalType\":\"timestamp-millis\"}}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static final SpecificData MODEL$ = new SpecificData();
@@ -84,7 +84,6 @@ public class Video extends org.apache.avro.specific.SpecificRecordBase implement
   private java.lang.CharSequence url;
   private int movie_id;
   private java.time.Instant created_on;
-  private java.time.Instant last_updated_on;
 
   /**
    * Default constructor.  Note that this does not initialize fields
@@ -103,9 +102,8 @@ public class Video extends org.apache.avro.specific.SpecificRecordBase implement
    * @param url The new value for url
    * @param movie_id The new value for movie_id
    * @param created_on The new value for created_on
-   * @param last_updated_on The new value for last_updated_on
    */
-  public Video(java.lang.Integer id, java.lang.Integer length, java.lang.CharSequence public_id, java.lang.CharSequence synopsis, java.lang.CharSequence title, java.lang.CharSequence url, java.lang.Integer movie_id, java.time.Instant created_on, java.time.Instant last_updated_on) {
+  public Video(java.lang.Integer id, java.lang.Integer length, java.lang.CharSequence public_id, java.lang.CharSequence synopsis, java.lang.CharSequence title, java.lang.CharSequence url, java.lang.Integer movie_id, java.time.Instant created_on) {
     this.id = id;
     this.length = length;
     this.public_id = public_id;
@@ -114,7 +112,6 @@ public class Video extends org.apache.avro.specific.SpecificRecordBase implement
     this.url = url;
     this.movie_id = movie_id;
     this.created_on = created_on.truncatedTo(java.time.temporal.ChronoUnit.MILLIS);
-    this.last_updated_on = last_updated_on.truncatedTo(java.time.temporal.ChronoUnit.MILLIS);
   }
 
   @Override
@@ -135,7 +132,6 @@ public class Video extends org.apache.avro.specific.SpecificRecordBase implement
     case 5: return url;
     case 6: return movie_id;
     case 7: return created_on;
-    case 8: return last_updated_on;
     default: throw new IndexOutOfBoundsException("Invalid index: " + field$);
     }
   }
@@ -149,7 +145,6 @@ public class Video extends org.apache.avro.specific.SpecificRecordBase implement
       null,
       null,
       null,
-      new org.apache.avro.data.TimeConversions.TimestampMillisConversion(),
       new org.apache.avro.data.TimeConversions.TimestampMillisConversion(),
       null
   };
@@ -172,7 +167,6 @@ public class Video extends org.apache.avro.specific.SpecificRecordBase implement
     case 5: url = (java.lang.CharSequence)value$; break;
     case 6: movie_id = (java.lang.Integer)value$; break;
     case 7: created_on = (java.time.Instant)value$; break;
-    case 8: last_updated_on = (java.time.Instant)value$; break;
     default: throw new IndexOutOfBoundsException("Invalid index: " + field$);
     }
   }
@@ -314,23 +308,6 @@ public class Video extends org.apache.avro.specific.SpecificRecordBase implement
   }
 
   /**
-   * Gets the value of the 'last_updated_on' field.
-   * @return The value of the 'last_updated_on' field.
-   */
-  public java.time.Instant getLastUpdatedOn() {
-    return last_updated_on;
-  }
-
-
-  /**
-   * Sets the value of the 'last_updated_on' field.
-   * @param value the value to set.
-   */
-  public void setLastUpdatedOn(java.time.Instant value) {
-    this.last_updated_on = value.truncatedTo(java.time.temporal.ChronoUnit.MILLIS);
-  }
-
-  /**
    * Creates a new Video RecordBuilder.
    * @return A new Video RecordBuilder
    */
@@ -379,7 +356,6 @@ public class Video extends org.apache.avro.specific.SpecificRecordBase implement
     private java.lang.CharSequence url;
     private int movie_id;
     private java.time.Instant created_on;
-    private java.time.Instant last_updated_on;
 
     /** Creates a new Builder */
     private Builder() {
@@ -424,10 +400,6 @@ public class Video extends org.apache.avro.specific.SpecificRecordBase implement
         this.created_on = data().deepCopy(fields()[7].schema(), other.created_on);
         fieldSetFlags()[7] = other.fieldSetFlags()[7];
       }
-      if (isValidValue(fields()[8], other.last_updated_on)) {
-        this.last_updated_on = data().deepCopy(fields()[8].schema(), other.last_updated_on);
-        fieldSetFlags()[8] = other.fieldSetFlags()[8];
-      }
     }
 
     /**
@@ -467,10 +439,6 @@ public class Video extends org.apache.avro.specific.SpecificRecordBase implement
       if (isValidValue(fields()[7], other.created_on)) {
         this.created_on = data().deepCopy(fields()[7].schema(), other.created_on);
         fieldSetFlags()[7] = true;
-      }
-      if (isValidValue(fields()[8], other.last_updated_on)) {
-        this.last_updated_on = data().deepCopy(fields()[8].schema(), other.last_updated_on);
-        fieldSetFlags()[8] = true;
       }
     }
 
@@ -790,45 +758,6 @@ public class Video extends org.apache.avro.specific.SpecificRecordBase implement
       return this;
     }
 
-    /**
-      * Gets the value of the 'last_updated_on' field.
-      * @return The value.
-      */
-    public java.time.Instant getLastUpdatedOn() {
-      return last_updated_on;
-    }
-
-
-    /**
-      * Sets the value of the 'last_updated_on' field.
-      * @param value The value of 'last_updated_on'.
-      * @return This builder.
-      */
-    public com.kafkastreams.movie.commons.avro.Video.Builder setLastUpdatedOn(java.time.Instant value) {
-      validate(fields()[8], value);
-      this.last_updated_on = value.truncatedTo(java.time.temporal.ChronoUnit.MILLIS);
-      fieldSetFlags()[8] = true;
-      return this;
-    }
-
-    /**
-      * Checks whether the 'last_updated_on' field has been set.
-      * @return True if the 'last_updated_on' field has been set, false otherwise.
-      */
-    public boolean hasLastUpdatedOn() {
-      return fieldSetFlags()[8];
-    }
-
-
-    /**
-      * Clears the value of the 'last_updated_on' field.
-      * @return This builder.
-      */
-    public com.kafkastreams.movie.commons.avro.Video.Builder clearLastUpdatedOn() {
-      fieldSetFlags()[8] = false;
-      return this;
-    }
-
     @Override
     @SuppressWarnings("unchecked")
     public Video build() {
@@ -842,7 +771,6 @@ public class Video extends org.apache.avro.specific.SpecificRecordBase implement
         record.url = fieldSetFlags()[5] ? this.url : (java.lang.CharSequence) defaultValue(fields()[5]);
         record.movie_id = fieldSetFlags()[6] ? this.movie_id : (java.lang.Integer) defaultValue(fields()[6]);
         record.created_on = fieldSetFlags()[7] ? this.created_on : (java.time.Instant) defaultValue(fields()[7]);
-        record.last_updated_on = fieldSetFlags()[8] ? this.last_updated_on : (java.time.Instant) defaultValue(fields()[8]);
         return record;
       } catch (org.apache.avro.AvroMissingFieldException e) {
         throw e;

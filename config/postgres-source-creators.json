@@ -15,7 +15,7 @@
 
     "_comment": "--- Change the schema name ---",
     "transforms.setSchemaName.type": "org.apache.kafka.connect.transforms.SetSchemaMetadata$Value",
-    "transforms.setSchemaName.schema.name": "com.lintang.commons.tenflix.avro.Creators",
+    "transforms.setSchemaName.schema.name": "com.kafkastreams.movie.commons.avro.Creator",
 
     "transforms.dropFields.type": "org.apache.kafka.connect.transforms.ReplaceField$Value",
     "transforms.dropFields.blacklist": "last_updated_on",

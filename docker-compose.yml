@@ -2,6 +2,19 @@ version: "3.8"
 
 services:
 
+#  movie-service:
+#    container_name: movie-service
+#    build: ./movie-service
+#    ports:
+#      - 8200:8200
+#
+#  streams-app:
+#    container_name:  streams-app
+#    build: ./movie-streams
+#    ports:
+#      - 8300:8300
+
+
   pg-admin:
     image: dpage/pgadmin4
     environment:
@@ -37,18 +50,44 @@ services:
 
 
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:8.4.0
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.9.0
     container_name: elasticsearch
-    restart: unless-stopped
+    volumes:
+      - elasticsearch-data:/usr/share/elasticsearch/data
     ports:
-      - "9200:9200"
-      - "9300:9300"
+      - 9200:9200
     environment:
-      discovery.type: single-node
-      xpack.security.enabled: false
-      ES_JAVA_OPTS: "-Xms512m -Xmx512m"
-    healthcheck:
-      test: "curl -f http://localhost:9200 || exit 1"
+      - cluster-name=elastic-cluster
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - node.name=elasticsearch
+      - cluster.initial_master_nodes=elasticsearch-01,elasticsearch
+      - discovery.seed_hosts=elasticsearch-01
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+
+
+
+  elasticsearch-01:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.9.0
+    container_name: elasticsearch-01
+    volumes:
+      - elasticsearch-data-01:/usr/share/elasticsearch/data
+
+    environment:
+      - cluster-name=elastic-cluster
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - node.name=elasticsearch-01
+      - cluster.initial_master_nodes=elasticsearch-01,elasticsearch
+      - discovery.seed_hosts=elasticsearch
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+
 
   zookeeper:
     image: confluentinc/cp-zookeeper:7.2.6
@@ -75,6 +114,7 @@ services:
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+
     healthcheck:
       test: [ "CMD", "nc", "-z", "localhost", "9092" ]
 
@@ -204,4 +244,8 @@ services:
 
 volumes:
   postgres-movie:
+    driver: local
+  elasticsearch-data:
+    driver: local
+  elasticsearch-data-01:
     driver: local

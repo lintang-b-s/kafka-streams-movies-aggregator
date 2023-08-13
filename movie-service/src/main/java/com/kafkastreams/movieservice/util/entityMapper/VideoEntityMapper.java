@@ -8,10 +8,11 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class VideoEntityMapper {
-    public VideoEntity saveEntity(AddVideoReq videoDto) {
+    public VideoEntity saveEntity(AddVideoReq videoDto, MovieEntity movieEntity) {
         VideoEntity entity = new VideoEntity();
         return entity.setUrl(videoDto.getUrl())
-                .setLength(videoDto.getLength()) .setTitle(videoDto.getTitle()).setSynopsis(videoDto.getSynopsis()).setPublicId(videoDto.getPublicId());
+                .setLength(videoDto.getLength()) .setTitle(videoDto.getTitle()).setSynopsis(videoDto.getSynopsis()).setPublicId(videoDto.getPublicId())
+                .setMovie(movieEntity);
     }
 
     public VideoEntity toEntity(AddVideoReq videoDto, MovieEntity movie) {
@@ -24,7 +25,6 @@ public class VideoEntityMapper {
 
     public VideoEntity toEntityBeforeUpload(AddVideoReq videoDto, MovieEntity movie) {
         VideoEntity entity = new VideoEntity();
-        movie.setId(videoDto.getMovieId());
         return entity
                 .setPublicId(videoDto.getPublicId())
                 .setLength(videoDto.getLength()) .setTitle(videoDto.getTitle()).setSynopsis(videoDto.getSynopsis())

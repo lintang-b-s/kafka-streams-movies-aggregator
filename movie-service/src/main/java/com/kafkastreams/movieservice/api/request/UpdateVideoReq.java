@@ -1,5 +1,6 @@
 package com.kafkastreams.movieservice.api.request;
 
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,6 +17,7 @@ public class UpdateVideoReq {
     private String url;
 
 
+    @Valid
     private Integer length;
 
 
@@ -24,7 +26,7 @@ public class UpdateVideoReq {
 
     private String synopsis;
 
-    private String movieId;
+
 
     public UpdateVideoReq setUrl(String url) {
         this.url = url;

@@ -14,10 +14,10 @@ import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class Creator extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 1463233697711758293L;
+  private static final long serialVersionUID = -9017872515853769227L;
 
 
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Creator\",\"namespace\":\"com.kafkastreams.movie.commons.avro\",\"fields\":[{\"name\":\"id\",\"type\":\"int\"},{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"created_on\",\"type\":{\"type\":\"long\",\"connect.version\":1,\"connect.name\":\"org.apache.kafka.connect.data.Timestamp\",\"logicalType\":\"timestamp-millis\"}},{\"name\":\"last_updated_on\",\"type\":{\"type\":\"long\",\"connect.version\":1,\"connect.name\":\"org.apache.kafka.connect.data.Timestamp\",\"logicalType\":\"timestamp-millis\"}}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Creator\",\"namespace\":\"com.kafkastreams.movie.commons.avro\",\"fields\":[{\"name\":\"id\",\"type\":\"int\"},{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"created_on\",\"type\":{\"type\":\"long\",\"connect.version\":1,\"connect.name\":\"org.apache.kafka.connect.data.Timestamp\",\"logicalType\":\"timestamp-millis\"}}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static final SpecificData MODEL$ = new SpecificData();
@@ -79,7 +79,6 @@ public class Creator extends org.apache.avro.specific.SpecificRecordBase impleme
   private int id;
   private java.lang.CharSequence name;
   private java.time.Instant created_on;
-  private java.time.Instant last_updated_on;
 
   /**
    * Default constructor.  Note that this does not initialize fields
@@ -93,13 +92,11 @@ public class Creator extends org.apache.avro.specific.SpecificRecordBase impleme
    * @param id The new value for id
    * @param name The new value for name
    * @param created_on The new value for created_on
-   * @param last_updated_on The new value for last_updated_on
    */
-  public Creator(java.lang.Integer id, java.lang.CharSequence name, java.time.Instant created_on, java.time.Instant last_updated_on) {
+  public Creator(java.lang.Integer id, java.lang.CharSequence name, java.time.Instant created_on) {
     this.id = id;
     this.name = name;
     this.created_on = created_on.truncatedTo(java.time.temporal.ChronoUnit.MILLIS);
-    this.last_updated_on = last_updated_on.truncatedTo(java.time.temporal.ChronoUnit.MILLIS);
   }
 
   @Override
@@ -115,7 +112,6 @@ public class Creator extends org.apache.avro.specific.SpecificRecordBase impleme
     case 0: return id;
     case 1: return name;
     case 2: return created_on;
-    case 3: return last_updated_on;
     default: throw new IndexOutOfBoundsException("Invalid index: " + field$);
     }
   }
@@ -124,7 +120,6 @@ public class Creator extends org.apache.avro.specific.SpecificRecordBase impleme
       new org.apache.avro.Conversion<?>[] {
       null,
       null,
-      new org.apache.avro.data.TimeConversions.TimestampMillisConversion(),
       new org.apache.avro.data.TimeConversions.TimestampMillisConversion(),
       null
   };
@@ -142,7 +137,6 @@ public class Creator extends org.apache.avro.specific.SpecificRecordBase impleme
     case 0: id = (java.lang.Integer)value$; break;
     case 1: name = (java.lang.CharSequence)value$; break;
     case 2: created_on = (java.time.Instant)value$; break;
-    case 3: last_updated_on = (java.time.Instant)value$; break;
     default: throw new IndexOutOfBoundsException("Invalid index: " + field$);
     }
   }
@@ -199,23 +193,6 @@ public class Creator extends org.apache.avro.specific.SpecificRecordBase impleme
   }
 
   /**
-   * Gets the value of the 'last_updated_on' field.
-   * @return The value of the 'last_updated_on' field.
-   */
-  public java.time.Instant getLastUpdatedOn() {
-    return last_updated_on;
-  }
-
-
-  /**
-   * Sets the value of the 'last_updated_on' field.
-   * @param value the value to set.
-   */
-  public void setLastUpdatedOn(java.time.Instant value) {
-    this.last_updated_on = value.truncatedTo(java.time.temporal.ChronoUnit.MILLIS);
-  }
-
-  /**
    * Creates a new Creator RecordBuilder.
    * @return A new Creator RecordBuilder
    */
@@ -259,7 +236,6 @@ public class Creator extends org.apache.avro.specific.SpecificRecordBase impleme
     private int id;
     private java.lang.CharSequence name;
     private java.time.Instant created_on;
-    private java.time.Instant last_updated_on;
 
     /** Creates a new Builder */
     private Builder() {
@@ -284,10 +260,6 @@ public class Creator extends org.apache.avro.specific.SpecificRecordBase impleme
         this.created_on = data().deepCopy(fields()[2].schema(), other.created_on);
         fieldSetFlags()[2] = other.fieldSetFlags()[2];
       }
-      if (isValidValue(fields()[3], other.last_updated_on)) {
-        this.last_updated_on = data().deepCopy(fields()[3].schema(), other.last_updated_on);
-        fieldSetFlags()[3] = other.fieldSetFlags()[3];
-      }
     }
 
     /**
@@ -307,10 +279,6 @@ public class Creator extends org.apache.avro.specific.SpecificRecordBase impleme
       if (isValidValue(fields()[2], other.created_on)) {
         this.created_on = data().deepCopy(fields()[2].schema(), other.created_on);
         fieldSetFlags()[2] = true;
-      }
-      if (isValidValue(fields()[3], other.last_updated_on)) {
-        this.last_updated_on = data().deepCopy(fields()[3].schema(), other.last_updated_on);
-        fieldSetFlags()[3] = true;
       }
     }
 
@@ -432,45 +400,6 @@ public class Creator extends org.apache.avro.specific.SpecificRecordBase impleme
       return this;
     }
 
-    /**
-      * Gets the value of the 'last_updated_on' field.
-      * @return The value.
-      */
-    public java.time.Instant getLastUpdatedOn() {
-      return last_updated_on;
-    }
-
-
-    /**
-      * Sets the value of the 'last_updated_on' field.
-      * @param value The value of 'last_updated_on'.
-      * @return This builder.
-      */
-    public com.kafkastreams.movie.commons.avro.Creator.Builder setLastUpdatedOn(java.time.Instant value) {
-      validate(fields()[3], value);
-      this.last_updated_on = value.truncatedTo(java.time.temporal.ChronoUnit.MILLIS);
-      fieldSetFlags()[3] = true;
-      return this;
-    }
-
-    /**
-      * Checks whether the 'last_updated_on' field has been set.
-      * @return True if the 'last_updated_on' field has been set, false otherwise.
-      */
-    public boolean hasLastUpdatedOn() {
-      return fieldSetFlags()[3];
-    }
-
-
-    /**
-      * Clears the value of the 'last_updated_on' field.
-      * @return This builder.
-      */
-    public com.kafkastreams.movie.commons.avro.Creator.Builder clearLastUpdatedOn() {
-      fieldSetFlags()[3] = false;
-      return this;
-    }
-
     @Override
     @SuppressWarnings("unchecked")
     public Creator build() {
@@ -479,7 +408,6 @@ public class Creator extends org.apache.avro.specific.SpecificRecordBase impleme
         record.id = fieldSetFlags()[0] ? this.id : (java.lang.Integer) defaultValue(fields()[0]);
         record.name = fieldSetFlags()[1] ? this.name : (java.lang.CharSequence) defaultValue(fields()[1]);
         record.created_on = fieldSetFlags()[2] ? this.created_on : (java.time.Instant) defaultValue(fields()[2]);
-        record.last_updated_on = fieldSetFlags()[3] ? this.last_updated_on : (java.time.Instant) defaultValue(fields()[3]);
         return record;
       } catch (org.apache.avro.AvroMissingFieldException e) {
         throw e;

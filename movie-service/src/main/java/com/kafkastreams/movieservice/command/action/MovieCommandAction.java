@@ -17,9 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import java.sql.Timestamp;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
@@ -91,6 +89,9 @@ public class MovieCommandAction {
         this.videoQueryAction = videoQueryAction;
     }
 
+
+
+    @Transactional
     public MovieEntity addMovie(@Valid AddMovieReq newMovie) {
         MovieEntity newMovieEntity = movieEntityMapper.toEntity(newMovie);
         newMovieEntity.setActors(newMovie.getActors().stream()
@@ -138,28 +139,33 @@ public class MovieCommandAction {
                 }).collect(Collectors.toSet()));
 
 
+        Set<VideoEntity> videoToUpdated = new HashSet<>();
 
-        if (newMovie.getVideos() != null) {
-            newMovieEntity.setVideos(
-                    newMovie.getVideos().stream().map(
-                            video -> {
-                                VideoEntity getVideo;
-                                Optional<VideoEntity> optionalVid;
-                                VideoEntity videoEntity = videoEntityMapper.videoDtoToEntity(video, newMovieEntity);
-                                optionalVid = videoQueryAction.findById(videoEntity.getId());
-                                if (!optionalVid.isPresent()) {
-                                    throw new ResourceNotFoundException("video with id " + video.getId() + " is not found!");
-                                }
-
-
-                                return videoEntity;
-                            }
-                    ).collect(Collectors.toSet())
-            );
-        }
-
+//        if (newMovie.getVideos() != null) {
+//            videoToUpdated = newMovie.getVideos().stream().map(
+//                    video -> {
+//                        VideoEntity getVideo;
+//                        Optional<VideoEntity> optionalVid;
+//                        VideoEntity videoEntity = videoEntityMapper.videoDtoToEntity(video, newMovieEntity);
+//                        optionalVid = videoQueryAction.findById(videoEntity.getId());
+//                        if (!optionalVid.isPresent()) {
+//                            throw new ResourceNotFoundException("video with id " + video.getId() + " is not found!");
+//                        }
+//
+//                        videoEntity.setMovie(newMovieEntity);
+//
+//                        return videoEntity;
+//                    }
+//            ).collect(Collectors.toSet());
+//            newMovieEntity.setVideos(
+//                    videoToUpdated
+//            );
+//        }
+//
 
         MovieEntity savedMovie = repository.save(newMovieEntity);
+
+//        videoCommandAction.updateEntityBatch(videoToUpdated);
 
         return savedMovie;
     }
@@ -227,30 +233,51 @@ public class MovieCommandAction {
                     return categoryEntity;
                 }).collect(Collectors.toSet()));
 
-        if (newMovie.getVideos() != null) {
-            updatedMovie.setVideos(
-                    newMovie.getVideos().stream().map(
-                            video -> {
-                                VideoEntity getVideo;
-                                Optional<VideoEntity> optionalVid;
-                                VideoEntity videoEntity = videoEntityMapper.videoDtoToEntity(video, updatedMovie);
-                                optionalVid = videoQueryAction.findById(videoEntity.getId());
-                                if (!optionalVid.isPresent()) {
-                                    throw new ResourceNotFoundException("video with id " + video.getId() + " is not found!");
+        Set<VideoEntity> oldVideoInMovieToDelete = updatedMovie.getVideos();
+        Set<VideoEntity> newVideoInMovie = new HashSet<>();
 
-                                }
-
-
-                                return videoEntity;
-                            }
-                    ).collect(Collectors.toSet())
-            );
-        }
+//        if (newMovie.getVideos() != null) {
+//
+//            updatedMovie.setVideos(
+//                    newMovie.getVideos().stream().map(
+//                            video -> {
+//                                VideoEntity getVideo;
+//                                Optional<VideoEntity> optionalVid;
+//                                VideoEntity videoEntity = videoEntityMapper.videoDtoToEntity(video, updatedMovie);
+//                                optionalVid = videoQueryAction.findById(videoEntity.getId());
+//                                if (!optionalVid.isPresent()) {
+//                                    throw new ResourceNotFoundException("video with id " + video.getId() + " is not found!");
+//
+//                                }
+//
+//                                //                        delete video if not in request
+//                                if (oldVideoInMovieToDelete.contains(videoEntity)){
+////                            video already in movie
+//                                    oldVideoInMovieToDelete.remove(videoEntity);
+//                                } else {
+////                            video not in movie
+//                                    videoEntity.setMovie(updatedMovie);
+//                                    newVideoInMovie.add(videoEntity);
+//
+//                                }
+//
+//                                return videoEntity;
+//                            }
+//                    ).collect(Collectors.toSet())
+//            );
+//            oldVideoInMovieToDelete.forEach(video ->{
+//                video.removeMovie();
+//                videoCommandAction.delteVideoEntity(video);
+//            } );
+//
+//        } else{
+//            updatedMovie.setVideos(Set.of());
+//        }
 
         updatedMovie.setId(movieId);
 
         MovieEntity savedUpdatedMovie = saveMovie(updatedMovie);
-
+//        videoCommandAction.updateEntityBatch(newVideoInMovie);
 
         return savedUpdatedMovie;
     }

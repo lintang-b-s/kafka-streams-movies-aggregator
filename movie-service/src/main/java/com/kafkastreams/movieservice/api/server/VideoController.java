@@ -28,17 +28,21 @@ public class VideoController {
     }
 
 
+    /** save video and add movie video
+     * @param newVideo
+     * @return
+     */
     @PostMapping
     public ResponseEntity<Video> save(@RequestBody AddVideoReq newVideo) {
         return ok(mapper.videoEntitySavetoVideoDto(videoService.save(newVideo)));
     }
 
-    @PostMapping("/add")
-    public ResponseEntity<Video> addVideoByMovie(@RequestBody AddVideoReq newVideo) {
-        return ok(mapper.videoEntityToVideoDto(videoService.addVideoByMovieId(newVideo)));
 
-    }
-
+    /** add video and upload
+     * @param file
+     * @param newVideo
+     * @return
+     */
     @PostMapping("/addUpload")
     public ResponseEntity<Video> addVideoAndUpload(@RequestParam("file") MultipartFile file,
             @RequestBody AddVideoReq newVideo) {
@@ -46,18 +50,29 @@ public class VideoController {
     }
 
 
-
-    @DeleteMapping("/{movieId}/{videoId}")
-    public ResponseEntity<String> deleteVideoFromMovie(@PathVariable(value = "movieId") int movieId,
+    /** delete video
+     *
+     * @param videoId
+     * @return string
+     * author: lintangbs
+     */
+    @DeleteMapping("/{videoId}")
+    public ResponseEntity<String> deletevideo(
                                                       @PathVariable(value = "videoId") int videoId){
-        return ok(videoService.deleteVideoFromMovie(movieId,videoId));
+        return ok(videoService.deleteVideo(videoId));
     }
 
-    @PutMapping("/{movieId}/{videoId}")
-    public ResponseEntity<Video> updateVideoFromMovie(@PathVariable(value = "movieId") int movieId,
+
+    /** update video
+     * @param videoId
+     * @param newVideo
+     * @return
+     */
+    @PutMapping("/{videoId}")
+    public ResponseEntity<Video> updateVideo(
                                                       @PathVariable(value = "videoId") int videoId,
-                                                      UpdateVideoReq newVideo) {
-        return ok(mapper.videoEntityToVideoDto(videoService.updateVideoFromMovie(movieId, videoId, newVideo)));
+                                                    @RequestBody  UpdateVideoReq newVideo) {
+        return ok(mapper.videoEntityToVideoDto(videoService.updateVideo( videoId, newVideo)));
     }
 
 }

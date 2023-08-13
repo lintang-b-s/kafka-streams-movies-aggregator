@@ -66,6 +66,7 @@ public class MovieEntity {
     private Set<CreatorEntity> creators= new HashSet<>() ;
 
 
+//    , cascade = CascadeType.PERSIST
     @OneToMany(mappedBy = "movie",  fetch = FetchType.LAZY)
 //    @JsonIgnore
     private Set<VideoEntity> videos = new HashSet<>();

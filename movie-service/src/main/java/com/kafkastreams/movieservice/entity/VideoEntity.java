@@ -95,13 +95,15 @@ public class VideoEntity {
         return this;
     }
 
+
+
 //    public void addMovie(MovieEntity movie) {
 //        this.movie = movie;
 //    }
 //
-//    public void removeMovie() {
-//        this.movie = null;
-//    }
+    public void removeMovie() {
+        this.movie = null;
+    }
 
     public String getPublicId() {
         return publicId;
