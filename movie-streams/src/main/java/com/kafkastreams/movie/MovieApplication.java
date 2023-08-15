@@ -60,7 +60,7 @@ public class MovieApplication {
 
 //    public static String MOVIE_TAG_INPUT= "postgresql.public.movie_tag";
 
-    public static String MOVIES_OUTPUT="movies-output";
+    public static String MOVIES_OUTPUT="movieswiki";
     public static final String SCHEMA_REGISTRY_URL = "http://127.0.0.1:8081";
 
 
@@ -159,8 +159,8 @@ public class MovieApplication {
         if (isDeleted[0] == true){
 
             movieTable.mapValues(
-                  val-> new Movie()
-            ).toStream().to(MOVIES_OUTPUT);
+                  val-> new MovieElasticSearch(null, null, null, null, null,null, null, null, null, null)
+            ).toStream().map((key,value) -> KeyValue.pair(String.valueOf(key), value)).to(MOVIES_OUTPUT);
         }
 //		var movieWithCategoryIdSerde = new SpecificAvroSerde<MovieWithCategoryId>();
 //		var movieCategoryJoinedSerde = new SpecificAvroSerde< MovieCategoryJoined>();
@@ -189,12 +189,12 @@ public class MovieApplication {
                         System.out.println("(movieWithCategoryJoined) record: "+ key+ " value: " + value ));
 
 
-        var movieCategoryEs = movieWithCategoryJoined.groupBy((key, value) -> KeyValue.pair(Integer.valueOf(key.getMovieid()), value))
+        var movieCategoryEs = movieWithCategoryJoined.groupBy((key, value) -> KeyValue.pair(String.valueOf(key.getMovieid()), value))
                 .aggregate(
                         ()-> new MovieElasticSearch("", new ArrayList<>(), "", Instant.now(), "", (float) 0, new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), 0),
                         (key, newVal, aggVal) -> addCategory(newVal, aggVal),
                         (key, newVal, aggVal) -> aggVal,
-                        Materialized.<Integer, MovieElasticSearch, KeyValueStore<Bytes, byte[]>>as("category-movie") /* state store name */
+                        Materialized.<String, MovieElasticSearch, KeyValueStore<Bytes, byte[]>>as("category-movie") /* state store name */
                                 .withValueSerde(movieEsSerde)
                 );
 
@@ -219,7 +219,7 @@ public class MovieApplication {
 
         var movieCreatorIdWithoutVideo = movieCreatorTable.join(
                 movieWithoutVideo,
-                (movieCreatorVal) -> movieCreatorVal.getMovieId(),
+                (movieCreatorVal) -> String.valueOf( movieCreatorVal.getMovieId()),
                 this::toMovieWithCreatorId
         );
 
@@ -237,14 +237,14 @@ public class MovieApplication {
 
 
 // key = movieId
-        var movieCreatorEsWithoutVideo = movieCreatorWithoutVideo.groupBy((key, value) -> KeyValue.pair( key.getMovieid(), value)
+        var movieCreatorEsWithoutVideo = movieCreatorWithoutVideo.groupBy((key, value) -> KeyValue.pair( String.valueOf(key.getMovieid()), value)
 //                        , Grouped.with(defaultIdSerde, movieCreatorJ)
                 )
                 .aggregate(
                         ()-> new MovieElasticSearch("", new ArrayList<>(), "", Instant.now(), "", (float) 0, new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), 0),
                         (key, newVal, aggVal) -> addCreator(newVal, aggVal),
                         (key, newVal, aggVal) -> aggVal,
-                        Materialized.<Integer, MovieElasticSearch, KeyValueStore<Bytes, byte[]>>as("movie-creator-without-video") /* state store name */
+                        Materialized.<String, MovieElasticSearch, KeyValueStore<Bytes, byte[]>>as("movie-creator-without-video") /* state store name */
                                 .withValueSerde(movieEsSerde)
                 );
 
@@ -253,7 +253,7 @@ public class MovieApplication {
 
         var movieActorIdWithoutVideo = movieActorTable.join(
                 movieCreatorEsWithoutVideo,
-                (movieActorVal) -> Integer.valueOf( movieActorVal.getMovieId()),
+                (movieActorVal) -> String.valueOf( movieActorVal.getMovieId()),
                 this::toMovieWithActor
 
         );
@@ -272,12 +272,12 @@ public class MovieApplication {
                         System.out.println("(movieActorJoinedWithoutVideo) key: "+ key+ " value: " + value ));
 
 
-        var movieActorWithoutVideo = movieActorJoinedWithoutVideo.groupBy((key, value) -> KeyValue.pair( Integer.valueOf(key.getMovieid()),value))
+        var movieActorWithoutVideo = movieActorJoinedWithoutVideo.groupBy((key, value) -> KeyValue.pair( String.valueOf(key.getMovieid()),value))
                 .aggregate(
                         ()-> new MovieElasticSearch("", new ArrayList<>(), "", Instant.now(), "", (float) 0, new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), 0),
                         (key, newVal, aggVal) -> addCast(newVal, aggVal),
                         (key, newVal, aggVal) -> aggVal,
-                        Materialized.<Integer, MovieElasticSearch, KeyValueStore<Bytes, byte[]>>as("movie-actor-without-video") /* state store name */
+                        Materialized.<String, MovieElasticSearch, KeyValueStore<Bytes, byte[]>>as("movie-actor-without-video") /* state store name */
                                 .withValueSerde(movieEsSerde)
                 );
         movieActorWithoutVideo.toStream().peek((key, value)->
@@ -289,7 +289,7 @@ public class MovieApplication {
 //                val.getCast(), val.getUrl()
 //        )).toStream().to(MOVIES_OUTPUT);
 
-        movieActorWithoutVideo.toStream().to(MOVIES_OUTPUT, Produced.with(Serdes.Integer(), movieEsSerde));
+        movieActorWithoutVideo.toStream().to(MOVIES_OUTPUT, Produced.with(stringSerde, movieEsSerde));
 //        .to("final_ddd_aggregates",
 //                Produced.with(defaultIdSerde,(Serde)aggregateSerde));
 
@@ -297,34 +297,33 @@ public class MovieApplication {
 //        movie yang ada video (key = videoId)
         var movieVideoJoined = videoTable.join(
                 movieCategoryEs,
-                (videoVal) -> videoVal.getMovieId(),
+                (videoVal) -> String.valueOf(videoVal.getMovieId()),
                 this::toMovieVideo
         );
 
         movieVideoJoined.toStream().peek((key, value)->
-				System.out.println("(movieVideoJoined) key: "+ key+ " value: " + value ));
+                System.out.println("(movieVideoJoined) key: "+ key+ " value: " + value ));
 
 
-
-		var movieVideo = movieVideoJoined.groupBy(((key, value) -> KeyValue.pair(Integer.valueOf( value.getMovieId()), value)))
-				.aggregate(
-						()-> new MovieElasticSearch("", new ArrayList<>(), "", Instant.now(), "", (float) 0, new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), 0),
-						(key, newVal, aggVal) -> addVideo(newVal, aggVal),
-						(key, newVal, aggVal) -> aggVal,
-                        Materialized.<Integer, MovieElasticSearch, KeyValueStore<Bytes, byte[]>>as("movie-video") /* state store name */
+        var movieVideo = movieVideoJoined.groupBy(((key, value) -> KeyValue.pair(String.valueOf( value.getMovieId()), value)))
+                .aggregate(
+                        ()-> new MovieElasticSearch("", new ArrayList<>(), "", Instant.now(), "", (float) 0, new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), 0),
+                        (key, newVal, aggVal) -> addVideo(newVal, aggVal),
+                        (key, newVal, aggVal) -> aggVal,
+                        Materialized.<String, MovieElasticSearch, KeyValueStore<Bytes, byte[]>>as("movie-video") /* state store name */
                                 .withValueSerde(movieEsSerde)
-				);
+                );
 
 
-		movieVideo.toStream().peek((key, value)->
-				System.out.println("(movieVideo) key: "+ key+ " value: " + value ));
+        movieVideo.toStream().peek((key, value)->
+                System.out.println("(movieVideo) key: "+ key+ " value: " + value ));
 
 
 //		join creator/director - movieElasticsearch
 
         var movieCreatorId = movieCreatorTable.join(
                 movieVideo,
-                (movieCreatorVal) -> movieCreatorVal.getMovieId(),
+                (movieCreatorVal) -> String.valueOf( movieCreatorVal.getMovieId()),
                 this::toMovieWithCreatorId
         );
 
@@ -343,12 +342,12 @@ public class MovieApplication {
 
 // key = movieId
         var movieCreatorEs = movieCreator
-                .groupBy(((key, value) -> KeyValue.pair( Integer.valueOf(key.getMovieid()), value)))
+                .groupBy(((key, value) -> KeyValue.pair( String.valueOf(key.getMovieid()), value)))
                 .aggregate(
                         ()-> new MovieElasticSearch("", new ArrayList<>(), "", Instant.now(), "", (float) 0, new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), 0),
                         (key, newVal, aggVal) -> addCreator(newVal, aggVal),
                         (key, newVal, aggVal) -> aggVal,
-                        Materialized.<Integer, MovieElasticSearch, KeyValueStore<Bytes, byte[]>>as("movie-creator") /* state store name */
+                        Materialized.<String, MovieElasticSearch, KeyValueStore<Bytes, byte[]>>as("movie-creator") /* state store name */
                                 .withValueSerde(movieEsSerde)
                 );
 
@@ -358,7 +357,7 @@ public class MovieApplication {
 
         var movieActorId = movieActorTable.join(
                 movieCreatorEs,
-                (movieActorVal) ->  movieActorVal.getMovieId(),
+                (movieActorVal) -> String.valueOf(movieActorVal.getMovieId()),
                 this::toMovieWithActor
 
         );
@@ -376,16 +375,16 @@ public class MovieApplication {
                         System.out.println("(movieActorJoined) key: "+ key+ " value: " + value ));
 
 
-        var movieActor = movieActorJoined.groupBy((key, value) -> KeyValue.pair(Integer.valueOf(key.getMovieid()),value))
+        var movieActor = movieActorJoined.groupBy((key, value) -> KeyValue.pair(String.valueOf(key.getMovieid()),value))
                 .aggregate(
                         ()-> new MovieElasticSearch("", new ArrayList<>(), "", Instant.now(), "", (float) 0, new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), 0),
                         (key, newVal, aggVal) -> addCast(newVal, aggVal),
                         (key, newVal, aggVal) -> aggVal,
-                        Materialized.<Integer, MovieElasticSearch, KeyValueStore<Bytes, byte[]>>as("movie-actor") /* state store name */
+                        Materialized.<String, MovieElasticSearch, KeyValueStore<Bytes, byte[]>>as("movie-actor") /* state store name */
                                 .withValueSerde(movieEsSerde)
                 );
         movieActor.toStream().peek((key, value)->
-                System.out.println("(movieActor) key: "+ key+ " value: " + value ));
+                System.out.println("(movieActorOutput) key: "+ key+ " value: " + value ));
 
 
 //        movieActor.mapValues(val-> new com.kafkastreams.movie.model.MovieElasticSearch(
@@ -393,7 +392,7 @@ public class MovieApplication {
 //                Date.from( val.getReleaseYear()), val.getImage(), val.getRating(), val.getDirector(),
 //                val.getCast(), val.getUrl()
 //        )).toStream().to(MOVIES_OUTPUT);
-        movieActor.toStream().to(MOVIES_OUTPUT, Produced.with(Serdes.Integer(), movieEsSerde));
+        movieActor.toStream().to(MOVIES_OUTPUT, Produced.with(stringSerde, movieEsSerde));
 
 //		movieTable.toStream().to(MOVIES_OUTPUT);
 
@@ -427,35 +426,35 @@ public class MovieApplication {
         return m;
     }
 //
-	private MovieWithActorId toMovieWithActor(MovieActor movieActor, MovieElasticSearch movie){
-		MovieWithActorId m =MovieWithActorId.newBuilder()
-				.setActorId(movieActor.getActorId())
-				.setTitle(movie.getTitle())
+private MovieWithActorId toMovieWithActor(MovieActor movieActor, MovieElasticSearch movie){
+    MovieWithActorId m =MovieWithActorId.newBuilder()
+            .setActorId(movieActor.getActorId())
+            .setTitle(movie.getTitle())
                 .setImage(movie.getImage())
-				.setSynopsis(movie.getSynopsis()).setReleaseYear(movie.getReleaseYear())
+            .setSynopsis(movie.getSynopsis()).setReleaseYear(movie.getReleaseYear())
                 .setGenre(movie.getGenre().stream().map(CharSequence::toString).collect(Collectors.toList()))
-				.setRating(movie.getRating()).setDirector(movie.getDirector().stream().map(CharSequence::toString).collect(Collectors.toList()))
-				.setMovieId(movie.getMovieId())
-				.setCast(new ArrayList<>())
+            .setRating(movie.getRating()).setDirector(movie.getDirector().stream().map(CharSequence::toString).collect(Collectors.toList()))
+            .setMovieId(movie.getMovieId())
+            .setCast(new ArrayList<>())
                 .setUrl(movie.getUrl().stream().map(CharSequence::toString).collect(Collectors.toList()))
-				.build();
+            .build();
         return m;
-	}
+}
 //
     private MovieElasticSearch  addCreator(MovieWithCreatorJoined movie, MovieElasticSearch movieElasticSearch){
         List<String> creators = movieElasticSearch.getDirector();
-		creators.add(movie.getCreatorName());
-		MovieElasticSearch m = MovieElasticSearch.newBuilder()
-				.setTitle(movie.getTitle()).setImage(movie.getImage())
-				.setSynopsis(movie.getSynopsis()).setReleaseYear(movie.getReleaseYear())
-				.setGenre(movie.getGenre().stream().map(String::toString).collect(Collectors.toList()))
-				.setRating(movie.getRating())
-				.setMovieId(movie.getMovieId())
-				.setCast(new ArrayList<>())
-				.setUrl(movie.getUrl().stream().map(String::toString).collect(Collectors.toList()))
+        creators.add(movie.getCreatorName());
+        MovieElasticSearch m = MovieElasticSearch.newBuilder()
+                .setTitle(movie.getTitle()).setImage(movie.getImage())
+                .setSynopsis(movie.getSynopsis()).setReleaseYear(movie.getReleaseYear())
+                .setGenre(movie.getGenre().stream().map(String::toString).collect(Collectors.toList()))
+                .setRating(movie.getRating())
+                .setMovieId(movie.getMovieId())
+                .setCast(new ArrayList<>())
+                .setUrl(movie.getUrl().stream().map(String::toString).collect(Collectors.toList()))
                 .setDirector(creators)
-				.build();
-		return m;
+                .build();
+        return m;
     }
 //
     private MovieWithCreatorJoined toMovieCreator( MovieWithCreatorId movieWithCreatorId, Creator creator){
@@ -486,17 +485,17 @@ public class MovieApplication {
 
 
 //
-	private MovieElasticSearch addVideo(MovieVideoJoined movieVideoJoined, MovieElasticSearch movie){
+private MovieElasticSearch addVideo(MovieVideoJoined movieVideoJoined, MovieElasticSearch movie){
 
-		List<String> videoUrl = movie.getUrl();
-		videoUrl.add(movieVideoJoined.getVideoUrl());
-		movie.setTitle(movieVideoJoined.getName());movie.setGenre(movieVideoJoined.getGenre().stream().map(String::toString).collect(Collectors.toList()));
-		movie.setSynopsis(movieVideoJoined.getSynopsis());movie.setReleaseYear(movieVideoJoined.getReleaseYear());
-		movie.setImage(movieVideoJoined.getImage());movie.setRating(movieVideoJoined.getRating());
-		movie.setMovieId(movieVideoJoined.getMovieId());
-		movie.setUrl(videoUrl);
-		return movie;
-	}
+    List<String> videoUrl = movie.getUrl();
+    videoUrl.add(movieVideoJoined.getVideoUrl());
+    movie.setTitle(movieVideoJoined.getName());movie.setGenre(movieVideoJoined.getGenre().stream().map(String::toString).collect(Collectors.toList()));
+    movie.setSynopsis(movieVideoJoined.getSynopsis());movie.setReleaseYear(movieVideoJoined.getReleaseYear());
+    movie.setImage(movieVideoJoined.getImage());movie.setRating(movieVideoJoined.getRating());
+    movie.setMovieId(movieVideoJoined.getMovieId());
+    movie.setUrl(videoUrl);
+    return movie;
+}
 
 
 
@@ -587,7 +586,9 @@ private MovieCategoryJoined toMovieCategoryJoined(
 //            final Serde<DefaultId> defaultIdSerde = SerdeFactory.createDbzEventJsonPojoSerdeFor(DefaultId.class,true);
 //            config.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, defaultIdSerde.getClass().getName());
 
-            config.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.Integer().getClass().getName());
+//            config.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.Integer().getClass().getName());
+            config.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
+
 //            config.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, CustomIdSerde.class);
 //            config.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, "com.kafkastreams.movie.serdes.CustomIdSerde");
 

@@ -10,7 +10,7 @@ curl -i -X PUT http://localhost:9200/movies \
   -d @config/movie-mapping.json
 
 echo
-curl -i -X PUT http://localhost:9200/movies-output \
+curl -i -X PUT http://localhost:9200/movieswiki \
   -H 'Content-Type: application/json' \
     -H 'Accept: application/json' \
   -d @config/movie-mapping.json

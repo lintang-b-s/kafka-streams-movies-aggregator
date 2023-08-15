@@ -2,7 +2,7 @@
 {
   "mappings": {
     "properties": {
-      "releaseYear": { "type": "integer"},
+      "releaseYear": { "type": "date"},
       "title": {
         "type": "text",
         "fields": {
@@ -23,9 +23,10 @@
       },
       "genre": { "type": "keyword"},
       "synopsis": {"type": "text"},
-      "rating": {"type":  "double"},
+      "rating": {"type":  "float"},
       "image": {"type":  "keyword"},
-      "url": {"type": "keyword"}
+      "url": { "type": "keyword"},
+      "movieId": {"type":  "integer"}
     }
   }
 }

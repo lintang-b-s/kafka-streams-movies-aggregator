@@ -11,12 +11,15 @@ transform normalized movies data from multiple kafka topics(send by cdc postgres
 
 
  ```
-     docker compose up -d
-     bash create-topics-2.sh
-     bash kafka-connect-2.sh
-     bash connect-health-2.sh
-     run movie-service application
-     import postman  & test add actor,category,...,movies
-     bash check-isi-topic-2.sh
+     1. docker compose up -d
+     2. bash create-topics-2.sh
+     wait for kafka-connect loaded all plugin
+     3. bash kafka-connect-2.sh
+     4. bash connect-health-2.sh
+     5. run movie-service application
+     6. import postman  & test add actor,category,...,movies
+     7. run movie-streams application
+     8.  go to localhost:9001 to see message in each topic
+     9. test query with elasticserach index "movieswiki" in localhost:9200
  ```
 

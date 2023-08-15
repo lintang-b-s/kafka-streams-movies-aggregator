@@ -33,13 +33,14 @@ echo
 
 
 
-docker exec -t zookeeper kafka-topics --create --bootstrap-server kafka:9092 --replication-factor 1 --partitions 2  --topic movies-output
-echo
-
-
 #video-with-key-movieId
 docker exec -t zookeeper kafka-topics --create --bootstrap-server kafka:9092 --replication-factor 1 --partitions 2  --topic video-with-key-movieId
 echo
 
+docker exec -t zookeeper kafka-topics --create --bootstrap-server kafka:9092 --replication-factor 1 --partitions 2  --topic movieswiki
+echo
+
 docker exec -t zookeeper kafka-topics --create --bootstrap-server kafka:9092 --replication-factor 1 --partitions 2  --topic movie-category-es
 echo
+
+
