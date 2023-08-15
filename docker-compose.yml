@@ -35,7 +35,7 @@ services:
 
   postgres-movie:
     container_name: postgres-movie
-    image: postgres:14
+    image: debezium/postgres:14-alpine
     restart: unless-stopped
     environment:
       POSTGRES_DB: netflik
@@ -46,6 +46,25 @@ services:
     volumes:
       - postgres-movie:/var/lib/postgresql/data
       - ./config/init.sql:/docker-entrypoint-initdb.d/create_tables.sql
+    command:
+      - "postgres"
+      - "-c"
+      - "wal_level=logical"
+
+
+  #    postgres-movie:
+#    container_name: postgres-movie
+#    image: postgres:14
+#    restart: unless-stopped
+#    environment:
+#      POSTGRES_DB: netflik
+#      POSTGRES_USER: netflik
+#      POSTGRES_PASSWORD: netflik
+#    ports:
+#      - 5432:5432
+#    volumes:
+#      - postgres-movie:/var/lib/postgresql/data
+#      - ./config/init.sql:/docker-entrypoint-initdb.d/create_tables.sql
 
 
 
@@ -166,19 +185,6 @@ services:
     healthcheck:
       test: "curl -f http://localhost:8082 || exit 1"
 
-  kafka-topics-ui:
-    image: landoop/kafka-topics-ui:0.9.4
-    container_name: kafka-topics-ui
-    restart: unless-stopped
-    depends_on:
-      - kafka-rest-proxy
-    ports:
-      - "8085:8000"
-    environment:
-      KAFKA_REST_PROXY_URL: http://kafka-rest-proxy:8082
-      PROXY: "true"
-    healthcheck:
-      test: "wget --quiet --tries=1 --spider http://localhost:8000 || exit 1"
 
   kafka-connect:
     build: docker/kafka-connect
@@ -200,9 +206,9 @@ services:
       CONNECT_STATUS_STORAGE_TOPIC: docker-connect-status
       CONNECT_STATUS_STORAGE_PARTITIONS: 3
       CONNECT_STATUS_STORAGE_REPLICATION_FACTOR: 1
-      CONNECT_KEY_CONVERTER: io.confluent.connect.avro.AvroConverter
+      CONNECT_KEY_CONVERTER: org.apache.kafka.connect.json.JsonConverter
       CONNECT_KEY_CONVERTER_SCHEMA_REGISTRY_URL: http://schema-registry:8081
-      CONNECT_VALUE_CONVERTER: io.confluent.connect.avro.AvroConverter
+      CONNECT_VALUE_CONVERTER: org.apache.kafka.connect.json.JsonConverter
       CONNECT_VALUE_CONVERTER_SCHEMA_REGISTRY_URL: http://schema-registry:8081
       CONNECT_INTERNAL_KEY_CONVERTER: org.apache.kafka.connect.json.JsonConverter
       CONNECT_INTERNAL_VALUE_CONVERTER: org.apache.kafka.connect.json.JsonConverter
@@ -241,6 +247,21 @@ services:
     command: -Dpidfile.path=/dev/null
     healthcheck:
       test: "curl -f http://localhost:9000 || exit 1"
+
+  kafdrop:
+    image: obsidiandynamics/kafdrop
+    container_name: kafdrop
+    restart: "no"
+    ports:
+      - "9001:9000"
+    environment:
+      KAFKA_BROKERCONNECT: "kafka:9092"
+      JVM_OPTS: "-Xms16M -Xmx48M -Xss180K -XX:-TieredCompilation -XX:+UseStringDeduplication -noverify"
+      CMD_ARGS: "--message.format=AVRO --schemaregistry.connect=http://schema-registry:8081"
+    depends_on:
+      - kafka
+
+
 
 volumes:
   postgres-movie:

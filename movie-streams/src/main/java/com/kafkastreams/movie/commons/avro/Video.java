@@ -17,7 +17,7 @@ public class Video extends org.apache.avro.specific.SpecificRecordBase implement
   private static final long serialVersionUID = 4447468954512144638L;
 
 
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Video\",\"namespace\":\"com.kafkastreams.movie.commons.avro\",\"fields\":[{\"name\":\"id\",\"type\":\"int\"},{\"name\":\"length\",\"type\":\"int\"},{\"name\":\"public_id\",\"type\":\"string\"},{\"name\":\"synopsis\",\"type\":\"string\"},{\"name\":\"title\",\"type\":\"string\"},{\"name\":\"url\",\"type\":\"string\"},{\"name\":\"movie_id\",\"type\":\"int\"},{\"name\":\"created_on\",\"type\":{\"type\":\"long\",\"connect.version\":1,\"connect.name\":\"org.apache.kafka.connect.data.Timestamp\",\"logicalType\":\"timestamp-millis\"}}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Video\",\"namespace\":\"com.kafkastreams.movie.commons.avro\",\"fields\":[{\"name\":\"id\",\"type\":\"int\"},{\"name\":\"length\",\"type\":\"int\"},{\"name\":\"public_id\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"synopsis\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"title\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"url\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"movie_id\",\"type\":\"int\"},{\"name\":\"created_on\",\"type\":{\"type\":\"long\",\"connect.version\":1,\"connect.name\":\"org.apache.kafka.connect.data.Timestamp\",\"logicalType\":\"timestamp-millis\"}}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static final SpecificData MODEL$ = new SpecificData();
@@ -78,10 +78,10 @@ public class Video extends org.apache.avro.specific.SpecificRecordBase implement
 
   private int id;
   private int length;
-  private java.lang.CharSequence public_id;
-  private java.lang.CharSequence synopsis;
-  private java.lang.CharSequence title;
-  private java.lang.CharSequence url;
+  private java.lang.String public_id;
+  private java.lang.String synopsis;
+  private java.lang.String title;
+  private java.lang.String url;
   private int movie_id;
   private java.time.Instant created_on;
 
@@ -103,7 +103,7 @@ public class Video extends org.apache.avro.specific.SpecificRecordBase implement
    * @param movie_id The new value for movie_id
    * @param created_on The new value for created_on
    */
-  public Video(java.lang.Integer id, java.lang.Integer length, java.lang.CharSequence public_id, java.lang.CharSequence synopsis, java.lang.CharSequence title, java.lang.CharSequence url, java.lang.Integer movie_id, java.time.Instant created_on) {
+  public Video(java.lang.Integer id, java.lang.Integer length, java.lang.String public_id, java.lang.String synopsis, java.lang.String title, java.lang.String url, java.lang.Integer movie_id, java.time.Instant created_on) {
     this.id = id;
     this.length = length;
     this.public_id = public_id;
@@ -161,10 +161,10 @@ public class Video extends org.apache.avro.specific.SpecificRecordBase implement
     switch (field$) {
     case 0: id = (java.lang.Integer)value$; break;
     case 1: length = (java.lang.Integer)value$; break;
-    case 2: public_id = (java.lang.CharSequence)value$; break;
-    case 3: synopsis = (java.lang.CharSequence)value$; break;
-    case 4: title = (java.lang.CharSequence)value$; break;
-    case 5: url = (java.lang.CharSequence)value$; break;
+    case 2: public_id = value$ != null ? value$.toString() : null; break;
+    case 3: synopsis = value$ != null ? value$.toString() : null; break;
+    case 4: title = value$ != null ? value$.toString() : null; break;
+    case 5: url = value$ != null ? value$.toString() : null; break;
     case 6: movie_id = (java.lang.Integer)value$; break;
     case 7: created_on = (java.time.Instant)value$; break;
     default: throw new IndexOutOfBoundsException("Invalid index: " + field$);
@@ -209,7 +209,7 @@ public class Video extends org.apache.avro.specific.SpecificRecordBase implement
    * Gets the value of the 'public_id' field.
    * @return The value of the 'public_id' field.
    */
-  public java.lang.CharSequence getPublicId() {
+  public java.lang.String getPublicId() {
     return public_id;
   }
 
@@ -218,7 +218,7 @@ public class Video extends org.apache.avro.specific.SpecificRecordBase implement
    * Sets the value of the 'public_id' field.
    * @param value the value to set.
    */
-  public void setPublicId(java.lang.CharSequence value) {
+  public void setPublicId(java.lang.String value) {
     this.public_id = value;
   }
 
@@ -226,7 +226,7 @@ public class Video extends org.apache.avro.specific.SpecificRecordBase implement
    * Gets the value of the 'synopsis' field.
    * @return The value of the 'synopsis' field.
    */
-  public java.lang.CharSequence getSynopsis() {
+  public java.lang.String getSynopsis() {
     return synopsis;
   }
 
@@ -235,7 +235,7 @@ public class Video extends org.apache.avro.specific.SpecificRecordBase implement
    * Sets the value of the 'synopsis' field.
    * @param value the value to set.
    */
-  public void setSynopsis(java.lang.CharSequence value) {
+  public void setSynopsis(java.lang.String value) {
     this.synopsis = value;
   }
 
@@ -243,7 +243,7 @@ public class Video extends org.apache.avro.specific.SpecificRecordBase implement
    * Gets the value of the 'title' field.
    * @return The value of the 'title' field.
    */
-  public java.lang.CharSequence getTitle() {
+  public java.lang.String getTitle() {
     return title;
   }
 
@@ -252,7 +252,7 @@ public class Video extends org.apache.avro.specific.SpecificRecordBase implement
    * Sets the value of the 'title' field.
    * @param value the value to set.
    */
-  public void setTitle(java.lang.CharSequence value) {
+  public void setTitle(java.lang.String value) {
     this.title = value;
   }
 
@@ -260,7 +260,7 @@ public class Video extends org.apache.avro.specific.SpecificRecordBase implement
    * Gets the value of the 'url' field.
    * @return The value of the 'url' field.
    */
-  public java.lang.CharSequence getUrl() {
+  public java.lang.String getUrl() {
     return url;
   }
 
@@ -269,7 +269,7 @@ public class Video extends org.apache.avro.specific.SpecificRecordBase implement
    * Sets the value of the 'url' field.
    * @param value the value to set.
    */
-  public void setUrl(java.lang.CharSequence value) {
+  public void setUrl(java.lang.String value) {
     this.url = value;
   }
 
@@ -350,10 +350,10 @@ public class Video extends org.apache.avro.specific.SpecificRecordBase implement
 
     private int id;
     private int length;
-    private java.lang.CharSequence public_id;
-    private java.lang.CharSequence synopsis;
-    private java.lang.CharSequence title;
-    private java.lang.CharSequence url;
+    private java.lang.String public_id;
+    private java.lang.String synopsis;
+    private java.lang.String title;
+    private java.lang.String url;
     private int movie_id;
     private java.time.Instant created_on;
 
@@ -524,7 +524,7 @@ public class Video extends org.apache.avro.specific.SpecificRecordBase implement
       * Gets the value of the 'public_id' field.
       * @return The value.
       */
-    public java.lang.CharSequence getPublicId() {
+    public java.lang.String getPublicId() {
       return public_id;
     }
 
@@ -534,7 +534,7 @@ public class Video extends org.apache.avro.specific.SpecificRecordBase implement
       * @param value The value of 'public_id'.
       * @return This builder.
       */
-    public com.kafkastreams.movie.commons.avro.Video.Builder setPublicId(java.lang.CharSequence value) {
+    public com.kafkastreams.movie.commons.avro.Video.Builder setPublicId(java.lang.String value) {
       validate(fields()[2], value);
       this.public_id = value;
       fieldSetFlags()[2] = true;
@@ -564,7 +564,7 @@ public class Video extends org.apache.avro.specific.SpecificRecordBase implement
       * Gets the value of the 'synopsis' field.
       * @return The value.
       */
-    public java.lang.CharSequence getSynopsis() {
+    public java.lang.String getSynopsis() {
       return synopsis;
     }
 
@@ -574,7 +574,7 @@ public class Video extends org.apache.avro.specific.SpecificRecordBase implement
       * @param value The value of 'synopsis'.
       * @return This builder.
       */
-    public com.kafkastreams.movie.commons.avro.Video.Builder setSynopsis(java.lang.CharSequence value) {
+    public com.kafkastreams.movie.commons.avro.Video.Builder setSynopsis(java.lang.String value) {
       validate(fields()[3], value);
       this.synopsis = value;
       fieldSetFlags()[3] = true;
@@ -604,7 +604,7 @@ public class Video extends org.apache.avro.specific.SpecificRecordBase implement
       * Gets the value of the 'title' field.
       * @return The value.
       */
-    public java.lang.CharSequence getTitle() {
+    public java.lang.String getTitle() {
       return title;
     }
 
@@ -614,7 +614,7 @@ public class Video extends org.apache.avro.specific.SpecificRecordBase implement
       * @param value The value of 'title'.
       * @return This builder.
       */
-    public com.kafkastreams.movie.commons.avro.Video.Builder setTitle(java.lang.CharSequence value) {
+    public com.kafkastreams.movie.commons.avro.Video.Builder setTitle(java.lang.String value) {
       validate(fields()[4], value);
       this.title = value;
       fieldSetFlags()[4] = true;
@@ -644,7 +644,7 @@ public class Video extends org.apache.avro.specific.SpecificRecordBase implement
       * Gets the value of the 'url' field.
       * @return The value.
       */
-    public java.lang.CharSequence getUrl() {
+    public java.lang.String getUrl() {
       return url;
     }
 
@@ -654,7 +654,7 @@ public class Video extends org.apache.avro.specific.SpecificRecordBase implement
       * @param value The value of 'url'.
       * @return This builder.
       */
-    public com.kafkastreams.movie.commons.avro.Video.Builder setUrl(java.lang.CharSequence value) {
+    public com.kafkastreams.movie.commons.avro.Video.Builder setUrl(java.lang.String value) {
       validate(fields()[5], value);
       this.url = value;
       fieldSetFlags()[5] = true;
@@ -765,10 +765,10 @@ public class Video extends org.apache.avro.specific.SpecificRecordBase implement
         Video record = new Video();
         record.id = fieldSetFlags()[0] ? this.id : (java.lang.Integer) defaultValue(fields()[0]);
         record.length = fieldSetFlags()[1] ? this.length : (java.lang.Integer) defaultValue(fields()[1]);
-        record.public_id = fieldSetFlags()[2] ? this.public_id : (java.lang.CharSequence) defaultValue(fields()[2]);
-        record.synopsis = fieldSetFlags()[3] ? this.synopsis : (java.lang.CharSequence) defaultValue(fields()[3]);
-        record.title = fieldSetFlags()[4] ? this.title : (java.lang.CharSequence) defaultValue(fields()[4]);
-        record.url = fieldSetFlags()[5] ? this.url : (java.lang.CharSequence) defaultValue(fields()[5]);
+        record.public_id = fieldSetFlags()[2] ? this.public_id : (java.lang.String) defaultValue(fields()[2]);
+        record.synopsis = fieldSetFlags()[3] ? this.synopsis : (java.lang.String) defaultValue(fields()[3]);
+        record.title = fieldSetFlags()[4] ? this.title : (java.lang.String) defaultValue(fields()[4]);
+        record.url = fieldSetFlags()[5] ? this.url : (java.lang.String) defaultValue(fields()[5]);
         record.movie_id = fieldSetFlags()[6] ? this.movie_id : (java.lang.Integer) defaultValue(fields()[6]);
         record.created_on = fieldSetFlags()[7] ? this.created_on : (java.time.Instant) defaultValue(fields()[7]);
         return record;

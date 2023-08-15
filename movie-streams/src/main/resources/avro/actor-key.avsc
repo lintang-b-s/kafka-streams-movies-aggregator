@@ -1,0 +1,15 @@
+{
+  "type": "record",
+  "name": "MovieActorKey",
+  "namespace": "com.kafkastreams.movie.commons.avro",
+  "fields": [
+    {
+      "name": "movie_id",
+      "type": "int"
+    },
+    {
+      "name": "actor_id",
+      "type": "int"
+    }
+  ]
+}

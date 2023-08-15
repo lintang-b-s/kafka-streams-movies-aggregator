@@ -1,4 +1,1 @@
-tes
-test
-tes
-halo world
+curl -X GET http://localhost:8083/connector-plugins/psql-source-debezium/config/validate

@@ -1,3 +1,8 @@
+
+echo
+curl -i -X DELETE http://localhost:8083/connectors/psql-source-debezium
+
+echo
 curl -i -X DELETE http://localhost:8083/connectors/psql-source-actors
 
 echo
@@ -17,6 +22,9 @@ curl -i -X DELETE http://localhost:8083/connectors/psql-source-movie_category
 echo
 curl -i -X DELETE http://localhost:8083/connectors/psql-source-movie_creator
 
+
+
+
 echo
 curl -i -X DELETE http://localhost:8083/connectors/psql-source-movie_tag
 
@@ -28,3 +36,6 @@ curl -i -X DELETE http://localhost:8083/connectors/psql-source-tags
 
 echo
 curl -i -X DELETE http://localhost:8083/connectors/psql-source-videos
+
+echo
+curl -i -X DELETE http://localhost:8083/connectors/elasticsearch-sink-movies

@@ -17,7 +17,7 @@ public class Actor extends org.apache.avro.specific.SpecificRecordBase implement
   private static final long serialVersionUID = 295268378614673996L;
 
 
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Actor\",\"namespace\":\"com.kafkastreams.movie.commons.avro\",\"fields\":[{\"name\":\"id\",\"type\":\"int\"},{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"created_on\",\"type\":{\"type\":\"long\",\"connect.version\":1,\"connect.name\":\"org.apache.kafka.connect.data.Timestamp\",\"logicalType\":\"timestamp-millis\"}}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Actor\",\"namespace\":\"com.kafkastreams.movie.commons.avro\",\"fields\":[{\"name\":\"id\",\"type\":\"int\"},{\"name\":\"name\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"created_on\",\"type\":{\"type\":\"long\",\"connect.version\":1,\"connect.name\":\"org.apache.kafka.connect.data.Timestamp\",\"logicalType\":\"timestamp-millis\"}}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static final SpecificData MODEL$ = new SpecificData();
@@ -77,7 +77,7 @@ public class Actor extends org.apache.avro.specific.SpecificRecordBase implement
   }
 
   private int id;
-  private java.lang.CharSequence name;
+  private java.lang.String name;
   private java.time.Instant created_on;
 
   /**
@@ -93,7 +93,7 @@ public class Actor extends org.apache.avro.specific.SpecificRecordBase implement
    * @param name The new value for name
    * @param created_on The new value for created_on
    */
-  public Actor(java.lang.Integer id, java.lang.CharSequence name, java.time.Instant created_on) {
+  public Actor(java.lang.Integer id, java.lang.String name, java.time.Instant created_on) {
     this.id = id;
     this.name = name;
     this.created_on = created_on.truncatedTo(java.time.temporal.ChronoUnit.MILLIS);
@@ -135,7 +135,7 @@ public class Actor extends org.apache.avro.specific.SpecificRecordBase implement
   public void put(int field$, java.lang.Object value$) {
     switch (field$) {
     case 0: id = (java.lang.Integer)value$; break;
-    case 1: name = (java.lang.CharSequence)value$; break;
+    case 1: name = value$ != null ? value$.toString() : null; break;
     case 2: created_on = (java.time.Instant)value$; break;
     default: throw new IndexOutOfBoundsException("Invalid index: " + field$);
     }
@@ -162,7 +162,7 @@ public class Actor extends org.apache.avro.specific.SpecificRecordBase implement
    * Gets the value of the 'name' field.
    * @return The value of the 'name' field.
    */
-  public java.lang.CharSequence getName() {
+  public java.lang.String getName() {
     return name;
   }
 
@@ -171,7 +171,7 @@ public class Actor extends org.apache.avro.specific.SpecificRecordBase implement
    * Sets the value of the 'name' field.
    * @param value the value to set.
    */
-  public void setName(java.lang.CharSequence value) {
+  public void setName(java.lang.String value) {
     this.name = value;
   }
 
@@ -234,7 +234,7 @@ public class Actor extends org.apache.avro.specific.SpecificRecordBase implement
     implements org.apache.avro.data.RecordBuilder<Actor> {
 
     private int id;
-    private java.lang.CharSequence name;
+    private java.lang.String name;
     private java.time.Instant created_on;
 
     /** Creates a new Builder */
@@ -325,7 +325,7 @@ public class Actor extends org.apache.avro.specific.SpecificRecordBase implement
       * Gets the value of the 'name' field.
       * @return The value.
       */
-    public java.lang.CharSequence getName() {
+    public java.lang.String getName() {
       return name;
     }
 
@@ -335,7 +335,7 @@ public class Actor extends org.apache.avro.specific.SpecificRecordBase implement
       * @param value The value of 'name'.
       * @return This builder.
       */
-    public com.kafkastreams.movie.commons.avro.Actor.Builder setName(java.lang.CharSequence value) {
+    public com.kafkastreams.movie.commons.avro.Actor.Builder setName(java.lang.String value) {
       validate(fields()[1], value);
       this.name = value;
       fieldSetFlags()[1] = true;
@@ -406,7 +406,7 @@ public class Actor extends org.apache.avro.specific.SpecificRecordBase implement
       try {
         Actor record = new Actor();
         record.id = fieldSetFlags()[0] ? this.id : (java.lang.Integer) defaultValue(fields()[0]);
-        record.name = fieldSetFlags()[1] ? this.name : (java.lang.CharSequence) defaultValue(fields()[1]);
+        record.name = fieldSetFlags()[1] ? this.name : (java.lang.String) defaultValue(fields()[1]);
         record.created_on = fieldSetFlags()[2] ? this.created_on : (java.time.Instant) defaultValue(fields()[2]);
         return record;
       } catch (org.apache.avro.AvroMissingFieldException e) {

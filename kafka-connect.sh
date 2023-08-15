@@ -3,6 +3,11 @@
 curl -i -X POST http://localhost:8083/connectors \
   -H 'Content-Type: application/json' \
   -H 'Accept: application/json' \
+  -d @config/debezium-postgres.json
+
+curl -i -X POST http://localhost:8083/connectors \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json' \
   -d @config/postgres-source-actors.json
 
 echo

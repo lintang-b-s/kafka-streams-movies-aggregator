@@ -1,4 +1,7 @@
 
+curl localhost:8083/connectors/psql-source-debezium/status
+
+echo
 
 curl localhost:8083/connectors/psql-source-movie_tag/status
 
@@ -30,3 +33,7 @@ curl localhost:8083/connectors/psql-source-tags/status
 
 echo
 curl localhost:8083/connectors/psql-source-videos/status
+
+
+echo
+curl localhost:8083/connectors/elasticsearch-sink-movies/status

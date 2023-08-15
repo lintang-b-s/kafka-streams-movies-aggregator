@@ -9,40 +9,22 @@
     },
 
     {
-      "name": "movieId",
-      "type": "int"
-    },
-    {
-      "name": "name",
+      "name": "title",
       "type": "string"
     },
     {
-      "name": "created_on",
+      "name": "genre",
       "type": {
-        "type": "long",
-        "connect.version": 1,
-        "connect.name": "org.apache.kafka.connect.data.Timestamp",
-        "logicalType": "timestamp-millis"
+        "type": "array",
+        "items": "string"
       }
-    },
-    {
-      "name": "type",
-      "type": "string"
     },
     {
       "name": "synopsis",
       "type": "string"
     },
     {
-      "name": "mpa_rating",
-      "type": "string"
-    },
-    {
-      "name": "image",
-      "type": "string"
-    },
-    {
-      "name": "r_year",
+      "name": "releaseYear",
       "type": {
         "type": "long",
         "connect.version": 1,
@@ -51,12 +33,36 @@
       }
     },
     {
-      "name": "notification",
-      "type": "boolean"
+      "name": "image",
+      "type": "string"
     },
-
     {
-      "name": "idmb_rating",
+      "name": "rating",
+      "type": "float"
+    },
+    {
+      "name" : "director",
+      "type": {
+        "type": "array",
+        "items": "string"
+      }
+    },
+    {
+      "name": "cast",
+      "type": {
+        "type": "array",
+        "items": "string"
+      }
+    },
+    {
+      "name": "url",
+      "type": {
+        "type": "array",
+        "items": "string"
+      }
+    },
+    {
+      "name": "movieId",
       "type": "int"
     }
   ]

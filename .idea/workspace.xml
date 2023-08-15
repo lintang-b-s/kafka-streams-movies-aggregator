@@ -4,35 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6d1f0110-162b-45d1-8b74-d3d821cc1ccf" name="Changes" comment="add compose file">
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+    <list default="true" id="6d1f0110-162b-45d1-8b74-d3d821cc1ccf" name="Changes" comment="add streams topology (join movie record with category &amp;video&quot;)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/check-isi-topics.sh" beforeDir="false" afterPath="$PROJECT_DIR$/check-isi-topics.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/postgres-source-actors.json" beforeDir="false" afterPath="$PROJECT_DIR$/config/postgres-source-actors.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/postgres-source-categories.json" beforeDir="false" afterPath="$PROJECT_DIR$/config/postgres-source-categories.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/postgres-source-creators.json" beforeDir="false" afterPath="$PROJECT_DIR$/config/postgres-source-creators.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/movie-elasticsearch.json" beforeDir="false" afterPath="$PROJECT_DIR$/config/movie-elasticsearch.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/postgres-source-movie_actor.json" beforeDir="false" afterPath="$PROJECT_DIR$/config/postgres-source-movie_actor.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/postgres-source-movie_category.json" beforeDir="false" afterPath="$PROJECT_DIR$/config/postgres-source-movie_category.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/postgres-source-movie_creator.json" beforeDir="false" afterPath="$PROJECT_DIR$/config/postgres-source-movie_creator.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/postgres-source-movie_tag.json" beforeDir="false" afterPath="$PROJECT_DIR$/config/postgres-source-movie_tag.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/postgres-source-movies.json" beforeDir="false" afterPath="$PROJECT_DIR$/config/postgres-source-movies.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/postgres-source-tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/config/postgres-source-tags.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/postgres-source-videos.json" beforeDir="false" afterPath="$PROJECT_DIR$/config/postgres-source-videos.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/create-topics.sh" beforeDir="false" afterPath="$PROJECT_DIR$/create-topics.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/connect-health.sh" beforeDir="false" afterPath="$PROJECT_DIR$/connect-health.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/delete-connector.sh" beforeDir="false" afterPath="$PROJECT_DIR$/delete-connector.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/kafka-connect/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/docker/kafka-connect/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/kafka-connect.sh" beforeDir="false" afterPath="$PROJECT_DIR$/kafka-connect.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-module/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/movie-module/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-service/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/api/request/UpdateVideoReq.java" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/api/request/UpdateVideoReq.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/api/server/VideoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/api/server/VideoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/api/response/Video.java" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/api/response/Video.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/command/action/MovieCommandAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/command/action/MovieCommandAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/command/action/VideoCommandAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/command/action/VideoCommandAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/command/service/VideoCommandService.java" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/command/service/VideoCommandService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/entity/MovieEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/entity/MovieEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/entity/VideoEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/entity/VideoEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/util/entityMapper/VideoEntityMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/util/entityMapper/VideoEntityMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/util/DtoMapper/VideoDtoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/util/DtoMapper/VideoDtoMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/movie-streams/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/movie-streams/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/movie-streams/src/main/java/com/kafkastreams/movie/MovieApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/movie-streams/src/main/java/com/kafkastreams/movie/MovieApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/movie-streams/src/main/java/com/kafkastreams/movie/commons/avro/Actor.java" beforeDir="false" />
@@ -41,30 +29,29 @@
       <change beforePath="$PROJECT_DIR$/movie-streams/src/main/java/com/kafkastreams/movie/commons/avro/Movie.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/movie-streams/src/main/java/com/kafkastreams/movie/commons/avro/MovieActor.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/movie-streams/src/main/java/com/kafkastreams/movie/commons/avro/MovieCategory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/java/com/kafkastreams/movie/commons/avro/MovieCategoryJoined.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/movie-streams/src/main/java/com/kafkastreams/movie/commons/avro/MovieCreator.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/movie-streams/src/main/java/com/kafkastreams/movie/commons/avro/MovieElasticSearch.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/movie-streams/src/main/java/com/kafkastreams/movie/commons/avro/MovieTag.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/java/com/kafkastreams/movie/commons/avro/MovieVideoJoined.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/java/com/kafkastreams/movie/commons/avro/MovieWithActorId.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/java/com/kafkastreams/movie/commons/avro/MovieWithActorJoined.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/java/com/kafkastreams/movie/commons/avro/MovieWithCategoryId.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/java/com/kafkastreams/movie/commons/avro/MovieWithCreatorId.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/java/com/kafkastreams/movie/commons/avro/MovieWithCreatorJoined.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/movie-streams/src/main/java/com/kafkastreams/movie/commons/avro/Tag.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/movie-streams/src/main/java/com/kafkastreams/movie/commons/avro/Video.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/java/com/kafkastreams/movie/config/MoviesStreamsConfiguration.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/java/com/kafkastreams/movie/exceptionhandler/StreamsDeserializationErrorHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/java/com/kafkastreams/movie/exceptionhandler/StreamsProcessorCustomErrorHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/java/com/kafkastreams/movie/exceptionhandler/StreamsSerializationExceptionHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/java/com/kafkastreams/movie/topology/MoviesStreamsTopology.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/movie-streams/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/resources/avro/actor-message.avsc" beforeDir="false" afterPath="$PROJECT_DIR$/movie-streams/src/main/resources/avro/actor-message.avsc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/resources/avro/category-message.avsc" beforeDir="false" afterPath="$PROJECT_DIR$/movie-streams/src/main/resources/avro/category-message.avsc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/resources/avro/creator-mesage.avsc" beforeDir="false" afterPath="$PROJECT_DIR$/movie-streams/src/main/resources/avro/creator-mesage.avsc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/resources/avro/movie-actor-message.avsc" beforeDir="false" afterPath="$PROJECT_DIR$/movie-streams/src/main/resources/avro/movie-actor-message.avsc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/resources/avro/movie-category.avsc" beforeDir="false" afterPath="$PROJECT_DIR$/movie-streams/src/main/resources/avro/movie-category.avsc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/resources/avro/movie-creator-message.avsc" beforeDir="false" afterPath="$PROJECT_DIR$/movie-streams/src/main/resources/avro/movie-creator-message.avsc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/resources/avro/movie-es-message.avsc" beforeDir="false" afterPath="$PROJECT_DIR$/movie-streams/src/main/resources/avro/movie-elasticsearch-message.avsc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/resources/avro/movie-message.avsc" beforeDir="false" afterPath="$PROJECT_DIR$/movie-streams/src/main/resources/avro/movie-message.avsc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/resources/avro/movie-tag-message.avsc" beforeDir="false" afterPath="$PROJECT_DIR$/movie-streams/src/main/resources/avro/movie-tag-message.avsc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/resources/avro/tag.avsc" beforeDir="false" afterPath="$PROJECT_DIR$/movie-streams/src/main/resources/avro/tag.avsc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/resources/avro/video-message.avsc" beforeDir="false" afterPath="$PROJECT_DIR$/movie-streams/src/main/resources/avro/video-message.avsc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-streams/src/test/java/com/kafkastreams/movie/MovieApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/java/com/kafkastreams/movie/config/KafkaStreamConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/resources/avro/movie-category-joined.avsc" beforeDir="false" afterPath="$PROJECT_DIR$/movie-streams/src/main/resources/avro/movie-category-joined.avsc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/resources/avro/movie-creator-joined.avsc" beforeDir="false" afterPath="$PROJECT_DIR$/movie-streams/src/main/resources/avro/movie-creator-joined.avsc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/resources/avro/movie-elasticsearch-message.avsc" beforeDir="false" afterPath="$PROJECT_DIR$/movie-streams/src/main/resources/avro/movie-elasticsearch-message.avsc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/resources/avro/movie-video-joined.avsc" beforeDir="false" afterPath="$PROJECT_DIR$/movie-streams/src/main/resources/avro/movie-video-joined.avsc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/resources/avro/movie-with-actor-id.avsc" beforeDir="false" afterPath="$PROJECT_DIR$/movie-streams/src/main/resources/avro/movie-with-actor-id.avsc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/resources/avro/movie-with-actor-joined.avsc" beforeDir="false" afterPath="$PROJECT_DIR$/movie-streams/src/main/resources/avro/movie-with-actor-joined.avsc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/resources/avro/movie-with-category-id.avsc" beforeDir="false" afterPath="$PROJECT_DIR$/movie-streams/src/main/resources/avro/movie-with-category-id.avsc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/resources/avro/movie-with-creator-id.avsc" beforeDir="false" afterPath="$PROJECT_DIR$/movie-streams/src/main/resources/avro/movie-with-creator-id.avsc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/msg.txt" beforeDir="false" afterPath="$PROJECT_DIR$/msg.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reset-topics.sh" beforeDir="false" afterPath="$PROJECT_DIR$/reset-topics.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,7 +108,7 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "project.propCompiler",
+    "settings.editor.selected.configurable": "advanced.settings",
     "spring.configuration.checksum": "1ab4046a2c7346a0dc24e0fdc4cc31dc",
     "vue.rearranger.settings.migration": "true"
   }
@@ -141,6 +128,9 @@
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/movie-service/src/main/resources/db/changelog" />
       <recent name="$PROJECT_DIR$/movie-service/src/main/resources/db/migration" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.kafkastreams.movie.serdes" />
     </key>
   </component>
   <component name="RunManager" selected="Application.MovieApplication">
@@ -196,7 +186,9 @@
       <workItem from="1691722609275" duration="32054000" />
       <workItem from="1691762544555" duration="4898000" />
       <workItem from="1691805125899" duration="42422000" />
-      <workItem from="1691897782251" duration="11201000" />
+      <workItem from="1691897782251" duration="34343000" />
+      <workItem from="1691970628276" duration="2165000" />
+      <workItem from="1691997278474" duration="30621000" />
     </task>
     <task id="LOCAL-00001" summary="add docker files and how-to.txt">
       <created>1691571102223</created>
@@ -212,7 +204,14 @@
       <option name="project" value="LOCAL" />
       <updated>1691571355009</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="add streams topology (join movie record with category &amp;video&quot;)">
+      <created>1691909585710</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1691909585710</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -221,7 +220,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add docker files and how-to.txt" />
     <MESSAGE value="add compose file" />
-    <option name="LAST_COMMIT_MESSAGE" value="add compose file" />
+    <MESSAGE value="add streams topology (join movie record with category &amp;video&quot;)" />
+    <option name="LAST_COMMIT_MESSAGE" value="add streams topology (join movie record with category &amp;video&quot;)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -258,13 +258,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/command/action/MovieCommandAction.java</url>
-          <line>278</line>
+          <line>220</line>
           <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/command/action/MovieCommandAction.java</url>
-          <line>238</line>
-          <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/util/DtoMapper/VideoDtoMapper.java</url>
@@ -287,23 +282,14 @@
           <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/movie-streams/src/main/java/com/kafkastreams/movie/MovieApplication.java</url>
-          <line>48</line>
-          <option name="timeStamp" value="24" />
+          <url>file://$PROJECT_DIR$/movie-streams/src/main/java/com/kafkastreams/movie/serdes/JsonHybridDeserializer.java</url>
+          <line>39</line>
+          <option name="timeStamp" value="30" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/movie-streams/src/main/java/com/kafkastreams/movie/MovieApplication.java</url>
-          <line>160</line>
-          <option name="timeStamp" value="26" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/movie-streams/src/main/java/com/kafkastreams/movie/MovieApplication.java</url>
-          <line>279</line>
-          <properties class="com.kafkastreams.movie.MovieApplication" method="main">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="23" />
+          <url>file://$PROJECT_DIR$/movie-streams/src/main/java/com/kafkastreams/movie/serdes/JsonHybridDeserializer.java</url>
+          <line>47</line>
+          <option name="timeStamp" value="31" />
         </line-breakpoint>
         <breakpoint enabled="true" type="java-exception">
           <properties class="java.lang.IllegalStateException" package="java.lang" />

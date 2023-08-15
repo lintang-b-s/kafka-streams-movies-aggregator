@@ -141,31 +141,10 @@ public class MovieCommandAction {
 
         Set<VideoEntity> videoToUpdated = new HashSet<>();
 
-//        if (newMovie.getVideos() != null) {
-//            videoToUpdated = newMovie.getVideos().stream().map(
-//                    video -> {
-//                        VideoEntity getVideo;
-//                        Optional<VideoEntity> optionalVid;
-//                        VideoEntity videoEntity = videoEntityMapper.videoDtoToEntity(video, newMovieEntity);
-//                        optionalVid = videoQueryAction.findById(videoEntity.getId());
-//                        if (!optionalVid.isPresent()) {
-//                            throw new ResourceNotFoundException("video with id " + video.getId() + " is not found!");
-//                        }
-//
-//                        videoEntity.setMovie(newMovieEntity);
-//
-//                        return videoEntity;
-//                    }
-//            ).collect(Collectors.toSet());
-//            newMovieEntity.setVideos(
-//                    videoToUpdated
-//            );
-//        }
-//
+
 
         MovieEntity savedMovie = repository.save(newMovieEntity);
 
-//        videoCommandAction.updateEntityBatch(videoToUpdated);
 
         return savedMovie;
     }
@@ -236,48 +215,10 @@ public class MovieCommandAction {
         Set<VideoEntity> oldVideoInMovieToDelete = updatedMovie.getVideos();
         Set<VideoEntity> newVideoInMovie = new HashSet<>();
 
-//        if (newMovie.getVideos() != null) {
-//
-//            updatedMovie.setVideos(
-//                    newMovie.getVideos().stream().map(
-//                            video -> {
-//                                VideoEntity getVideo;
-//                                Optional<VideoEntity> optionalVid;
-//                                VideoEntity videoEntity = videoEntityMapper.videoDtoToEntity(video, updatedMovie);
-//                                optionalVid = videoQueryAction.findById(videoEntity.getId());
-//                                if (!optionalVid.isPresent()) {
-//                                    throw new ResourceNotFoundException("video with id " + video.getId() + " is not found!");
-//
-//                                }
-//
-//                                //                        delete video if not in request
-//                                if (oldVideoInMovieToDelete.contains(videoEntity)){
-////                            video already in movie
-//                                    oldVideoInMovieToDelete.remove(videoEntity);
-//                                } else {
-////                            video not in movie
-//                                    videoEntity.setMovie(updatedMovie);
-//                                    newVideoInMovie.add(videoEntity);
-//
-//                                }
-//
-//                                return videoEntity;
-//                            }
-//                    ).collect(Collectors.toSet())
-//            );
-//            oldVideoInMovieToDelete.forEach(video ->{
-//                video.removeMovie();
-//                videoCommandAction.delteVideoEntity(video);
-//            } );
-//
-//        } else{
-//            updatedMovie.setVideos(Set.of());
-//        }
 
         updatedMovie.setId(movieId);
 
         MovieEntity savedUpdatedMovie = saveMovie(updatedMovie);
-//        videoCommandAction.updateEntityBatch(newVideoInMovie);
 
         return savedUpdatedMovie;
     }
@@ -301,7 +242,7 @@ public class MovieCommandAction {
     public String deleteMovie(@NotNull @Valid int movieId) {
         Optional<MovieEntity> movie = repository.findById(movieId);
         if (!movie.isPresent()) {
-            throw new ResourceNotFoundException("movie with id: " + movie.get().getId() + " not found");
+            throw new ResourceNotFoundException("movie with id: " + movieId + " not found");
         }
         MovieEntity movieEntity = movie.get();
         Set<ActorEntity> emptyActor = new HashSet<>();

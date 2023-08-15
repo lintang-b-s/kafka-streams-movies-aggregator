@@ -1,0 +1,11 @@
+{
+  "type": "record",
+  "name": "IdAvro",
+  "namespace": "com.kafkastreams.movie.commons.avro",
+  "fields": [
+    {
+      "name": "id",
+      "type": "int"
+    }
+  ]
+}

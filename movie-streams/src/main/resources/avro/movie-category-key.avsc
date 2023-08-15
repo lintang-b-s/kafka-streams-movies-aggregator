@@ -1,0 +1,15 @@
+{
+  "type": "record",
+  "name": "MovieCategoryKey",
+  "namespace": "com.kafkastreams.movie.commons.avro",
+  "fields": [
+    {
+      "name": "movie_id",
+      "type": "int"
+    },
+    {
+      "name": "category_id",
+      "type": "int"
+    }
+  ]
+}

@@ -14,10 +14,10 @@ import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class MovieWithCategoryId extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -5042275648941371918L;
+  private static final long serialVersionUID = -775471774878199040L;
 
 
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"MovieWithCategoryId\",\"namespace\":\"com.kafkastreams.movie.commons.avro\",\"fields\":[{\"name\":\"categoryId\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"movieid\",\"type\":\"int\"},{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"created_on\",\"type\":{\"type\":\"long\",\"connect.version\":1,\"connect.name\":\"org.apache.kafka.connect.data.Timestamp\",\"logicalType\":\"timestamp-millis\"}},{\"name\":\"type\",\"type\":\"string\"},{\"name\":\"synopsis\",\"type\":\"string\"},{\"name\":\"mpa_rating\",\"type\":\"string\"},{\"name\":\"image\",\"type\":\"string\"},{\"name\":\"r_year\",\"type\":{\"type\":\"long\",\"connect.version\":1,\"connect.name\":\"org.apache.kafka.connect.data.Timestamp\",\"logicalType\":\"timestamp-millis\"}},{\"name\":\"notification\",\"type\":\"boolean\"},{\"name\":\"idmb_rating\",\"type\":\"int\"}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"MovieWithCategoryId\",\"namespace\":\"com.kafkastreams.movie.commons.avro\",\"fields\":[{\"name\":\"categoryId\",\"type\":{\"type\":\"int\",\"avro.java.string\":\"String\"}},{\"name\":\"title\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"genre\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"string\",\"avro.java.string\":\"String\"}}},{\"name\":\"synopsis\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"releaseYear\",\"type\":{\"type\":\"long\",\"connect.version\":1,\"connect.name\":\"org.apache.kafka.connect.data.Timestamp\",\"logicalType\":\"timestamp-millis\"}},{\"name\":\"image\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"rating\",\"type\":\"float\"},{\"name\":\"director\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"string\",\"avro.java.string\":\"String\"}}},{\"name\":\"cast\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"string\",\"avro.java.string\":\"String\"}}},{\"name\":\"url\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"string\",\"avro.java.string\":\"String\"}}},{\"name\":\"movieId\",\"type\":\"int\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static final SpecificData MODEL$ = new SpecificData();
@@ -76,17 +76,17 @@ public class MovieWithCategoryId extends org.apache.avro.specific.SpecificRecord
     return DECODER.decode(b);
   }
 
-  private java.lang.CharSequence categoryId;
-  private int movieid;
-  private java.lang.CharSequence name;
-  private java.time.Instant created_on;
-  private java.lang.CharSequence type;
-  private java.lang.CharSequence synopsis;
-  private java.lang.CharSequence mpa_rating;
-  private java.lang.CharSequence image;
-  private java.time.Instant r_year;
-  private boolean notification;
-  private int idmb_rating;
+  private int categoryId;
+  private java.lang.String title;
+  private java.util.List<java.lang.String> genre;
+  private java.lang.String synopsis;
+  private java.time.Instant releaseYear;
+  private java.lang.String image;
+  private float rating;
+  private java.util.List<java.lang.String> director;
+  private java.util.List<java.lang.String> cast;
+  private java.util.List<java.lang.String> url;
+  private int movieId;
 
   /**
    * Default constructor.  Note that this does not initialize fields
@@ -98,29 +98,29 @@ public class MovieWithCategoryId extends org.apache.avro.specific.SpecificRecord
   /**
    * All-args constructor.
    * @param categoryId The new value for categoryId
-   * @param movieid The new value for movieid
-   * @param name The new value for name
-   * @param created_on The new value for created_on
-   * @param type The new value for type
+   * @param title The new value for title
+   * @param genre The new value for genre
    * @param synopsis The new value for synopsis
-   * @param mpa_rating The new value for mpa_rating
+   * @param releaseYear The new value for releaseYear
    * @param image The new value for image
-   * @param r_year The new value for r_year
-   * @param notification The new value for notification
-   * @param idmb_rating The new value for idmb_rating
+   * @param rating The new value for rating
+   * @param director The new value for director
+   * @param cast The new value for cast
+   * @param url The new value for url
+   * @param movieId The new value for movieId
    */
-  public MovieWithCategoryId(java.lang.CharSequence categoryId, java.lang.Integer movieid, java.lang.CharSequence name, java.time.Instant created_on, java.lang.CharSequence type, java.lang.CharSequence synopsis, java.lang.CharSequence mpa_rating, java.lang.CharSequence image, java.time.Instant r_year, java.lang.Boolean notification, java.lang.Integer idmb_rating) {
+  public MovieWithCategoryId(java.lang.Integer categoryId, java.lang.String title, java.util.List<java.lang.String> genre, java.lang.String synopsis, java.time.Instant releaseYear, java.lang.String image, java.lang.Float rating, java.util.List<java.lang.String> director, java.util.List<java.lang.String> cast, java.util.List<java.lang.String> url, java.lang.Integer movieId) {
     this.categoryId = categoryId;
-    this.movieid = movieid;
-    this.name = name;
-    this.created_on = created_on.truncatedTo(java.time.temporal.ChronoUnit.MILLIS);
-    this.type = type;
+    this.title = title;
+    this.genre = genre;
     this.synopsis = synopsis;
-    this.mpa_rating = mpa_rating;
+    this.releaseYear = releaseYear.truncatedTo(java.time.temporal.ChronoUnit.MILLIS);
     this.image = image;
-    this.r_year = r_year.truncatedTo(java.time.temporal.ChronoUnit.MILLIS);
-    this.notification = notification;
-    this.idmb_rating = idmb_rating;
+    this.rating = rating;
+    this.director = director;
+    this.cast = cast;
+    this.url = url;
+    this.movieId = movieId;
   }
 
   @Override
@@ -134,16 +134,16 @@ public class MovieWithCategoryId extends org.apache.avro.specific.SpecificRecord
   public java.lang.Object get(int field$) {
     switch (field$) {
     case 0: return categoryId;
-    case 1: return movieid;
-    case 2: return name;
-    case 3: return created_on;
-    case 4: return type;
-    case 5: return synopsis;
-    case 6: return mpa_rating;
-    case 7: return image;
-    case 8: return r_year;
-    case 9: return notification;
-    case 10: return idmb_rating;
+    case 1: return title;
+    case 2: return genre;
+    case 3: return synopsis;
+    case 4: return releaseYear;
+    case 5: return image;
+    case 6: return rating;
+    case 7: return director;
+    case 8: return cast;
+    case 9: return url;
+    case 10: return movieId;
     default: throw new IndexOutOfBoundsException("Invalid index: " + field$);
     }
   }
@@ -153,12 +153,12 @@ public class MovieWithCategoryId extends org.apache.avro.specific.SpecificRecord
       null,
       null,
       null,
-      new org.apache.avro.data.TimeConversions.TimestampMillisConversion(),
-      null,
-      null,
-      null,
       null,
       new org.apache.avro.data.TimeConversions.TimestampMillisConversion(),
+      null,
+      null,
+      null,
+      null,
       null,
       null,
       null
@@ -174,17 +174,17 @@ public class MovieWithCategoryId extends org.apache.avro.specific.SpecificRecord
   @SuppressWarnings(value="unchecked")
   public void put(int field$, java.lang.Object value$) {
     switch (field$) {
-    case 0: categoryId = (java.lang.CharSequence)value$; break;
-    case 1: movieid = (java.lang.Integer)value$; break;
-    case 2: name = (java.lang.CharSequence)value$; break;
-    case 3: created_on = (java.time.Instant)value$; break;
-    case 4: type = (java.lang.CharSequence)value$; break;
-    case 5: synopsis = (java.lang.CharSequence)value$; break;
-    case 6: mpa_rating = (java.lang.CharSequence)value$; break;
-    case 7: image = (java.lang.CharSequence)value$; break;
-    case 8: r_year = (java.time.Instant)value$; break;
-    case 9: notification = (java.lang.Boolean)value$; break;
-    case 10: idmb_rating = (java.lang.Integer)value$; break;
+    case 0: categoryId = (java.lang.Integer)value$; break;
+    case 1: title = value$ != null ? value$.toString() : null; break;
+    case 2: genre = (java.util.List<java.lang.String>)value$; break;
+    case 3: synopsis = value$ != null ? value$.toString() : null; break;
+    case 4: releaseYear = (java.time.Instant)value$; break;
+    case 5: image = value$ != null ? value$.toString() : null; break;
+    case 6: rating = (java.lang.Float)value$; break;
+    case 7: director = (java.util.List<java.lang.String>)value$; break;
+    case 8: cast = (java.util.List<java.lang.String>)value$; break;
+    case 9: url = (java.util.List<java.lang.String>)value$; break;
+    case 10: movieId = (java.lang.Integer)value$; break;
     default: throw new IndexOutOfBoundsException("Invalid index: " + field$);
     }
   }
@@ -193,7 +193,7 @@ public class MovieWithCategoryId extends org.apache.avro.specific.SpecificRecord
    * Gets the value of the 'categoryId' field.
    * @return The value of the 'categoryId' field.
    */
-  public java.lang.CharSequence getCategoryId() {
+  public int getCategoryId() {
     return categoryId;
   }
 
@@ -202,83 +202,49 @@ public class MovieWithCategoryId extends org.apache.avro.specific.SpecificRecord
    * Sets the value of the 'categoryId' field.
    * @param value the value to set.
    */
-  public void setCategoryId(java.lang.CharSequence value) {
+  public void setCategoryId(int value) {
     this.categoryId = value;
   }
 
   /**
-   * Gets the value of the 'movieid' field.
-   * @return The value of the 'movieid' field.
+   * Gets the value of the 'title' field.
+   * @return The value of the 'title' field.
    */
-  public int getMovieid() {
-    return movieid;
+  public java.lang.String getTitle() {
+    return title;
   }
 
 
   /**
-   * Sets the value of the 'movieid' field.
+   * Sets the value of the 'title' field.
    * @param value the value to set.
    */
-  public void setMovieid(int value) {
-    this.movieid = value;
+  public void setTitle(java.lang.String value) {
+    this.title = value;
   }
 
   /**
-   * Gets the value of the 'name' field.
-   * @return The value of the 'name' field.
+   * Gets the value of the 'genre' field.
+   * @return The value of the 'genre' field.
    */
-  public java.lang.CharSequence getName() {
-    return name;
+  public java.util.List<java.lang.String> getGenre() {
+    return genre;
   }
 
 
   /**
-   * Sets the value of the 'name' field.
+   * Sets the value of the 'genre' field.
    * @param value the value to set.
    */
-  public void setName(java.lang.CharSequence value) {
-    this.name = value;
-  }
-
-  /**
-   * Gets the value of the 'created_on' field.
-   * @return The value of the 'created_on' field.
-   */
-  public java.time.Instant getCreatedOn() {
-    return created_on;
-  }
-
-
-  /**
-   * Sets the value of the 'created_on' field.
-   * @param value the value to set.
-   */
-  public void setCreatedOn(java.time.Instant value) {
-    this.created_on = value.truncatedTo(java.time.temporal.ChronoUnit.MILLIS);
-  }
-
-  /**
-   * Gets the value of the 'type' field.
-   * @return The value of the 'type' field.
-   */
-  public java.lang.CharSequence getType() {
-    return type;
-  }
-
-
-  /**
-   * Sets the value of the 'type' field.
-   * @param value the value to set.
-   */
-  public void setType(java.lang.CharSequence value) {
-    this.type = value;
+  public void setGenre(java.util.List<java.lang.String> value) {
+    this.genre = value;
   }
 
   /**
    * Gets the value of the 'synopsis' field.
    * @return The value of the 'synopsis' field.
    */
-  public java.lang.CharSequence getSynopsis() {
+  public java.lang.String getSynopsis() {
     return synopsis;
   }
 
@@ -287,32 +253,32 @@ public class MovieWithCategoryId extends org.apache.avro.specific.SpecificRecord
    * Sets the value of the 'synopsis' field.
    * @param value the value to set.
    */
-  public void setSynopsis(java.lang.CharSequence value) {
+  public void setSynopsis(java.lang.String value) {
     this.synopsis = value;
   }
 
   /**
-   * Gets the value of the 'mpa_rating' field.
-   * @return The value of the 'mpa_rating' field.
+   * Gets the value of the 'releaseYear' field.
+   * @return The value of the 'releaseYear' field.
    */
-  public java.lang.CharSequence getMpaRating() {
-    return mpa_rating;
+  public java.time.Instant getReleaseYear() {
+    return releaseYear;
   }
 
 
   /**
-   * Sets the value of the 'mpa_rating' field.
+   * Sets the value of the 'releaseYear' field.
    * @param value the value to set.
    */
-  public void setMpaRating(java.lang.CharSequence value) {
-    this.mpa_rating = value;
+  public void setReleaseYear(java.time.Instant value) {
+    this.releaseYear = value.truncatedTo(java.time.temporal.ChronoUnit.MILLIS);
   }
 
   /**
    * Gets the value of the 'image' field.
    * @return The value of the 'image' field.
    */
-  public java.lang.CharSequence getImage() {
+  public java.lang.String getImage() {
     return image;
   }
 
@@ -321,59 +287,93 @@ public class MovieWithCategoryId extends org.apache.avro.specific.SpecificRecord
    * Sets the value of the 'image' field.
    * @param value the value to set.
    */
-  public void setImage(java.lang.CharSequence value) {
+  public void setImage(java.lang.String value) {
     this.image = value;
   }
 
   /**
-   * Gets the value of the 'r_year' field.
-   * @return The value of the 'r_year' field.
+   * Gets the value of the 'rating' field.
+   * @return The value of the 'rating' field.
    */
-  public java.time.Instant getRYear() {
-    return r_year;
+  public float getRating() {
+    return rating;
   }
 
 
   /**
-   * Sets the value of the 'r_year' field.
+   * Sets the value of the 'rating' field.
    * @param value the value to set.
    */
-  public void setRYear(java.time.Instant value) {
-    this.r_year = value.truncatedTo(java.time.temporal.ChronoUnit.MILLIS);
+  public void setRating(float value) {
+    this.rating = value;
   }
 
   /**
-   * Gets the value of the 'notification' field.
-   * @return The value of the 'notification' field.
+   * Gets the value of the 'director' field.
+   * @return The value of the 'director' field.
    */
-  public boolean getNotification() {
-    return notification;
+  public java.util.List<java.lang.String> getDirector() {
+    return director;
   }
 
 
   /**
-   * Sets the value of the 'notification' field.
+   * Sets the value of the 'director' field.
    * @param value the value to set.
    */
-  public void setNotification(boolean value) {
-    this.notification = value;
+  public void setDirector(java.util.List<java.lang.String> value) {
+    this.director = value;
   }
 
   /**
-   * Gets the value of the 'idmb_rating' field.
-   * @return The value of the 'idmb_rating' field.
+   * Gets the value of the 'cast' field.
+   * @return The value of the 'cast' field.
    */
-  public int getIdmbRating() {
-    return idmb_rating;
+  public java.util.List<java.lang.String> getCast() {
+    return cast;
   }
 
 
   /**
-   * Sets the value of the 'idmb_rating' field.
+   * Sets the value of the 'cast' field.
    * @param value the value to set.
    */
-  public void setIdmbRating(int value) {
-    this.idmb_rating = value;
+  public void setCast(java.util.List<java.lang.String> value) {
+    this.cast = value;
+  }
+
+  /**
+   * Gets the value of the 'url' field.
+   * @return The value of the 'url' field.
+   */
+  public java.util.List<java.lang.String> getUrl() {
+    return url;
+  }
+
+
+  /**
+   * Sets the value of the 'url' field.
+   * @param value the value to set.
+   */
+  public void setUrl(java.util.List<java.lang.String> value) {
+    this.url = value;
+  }
+
+  /**
+   * Gets the value of the 'movieId' field.
+   * @return The value of the 'movieId' field.
+   */
+  public int getMovieId() {
+    return movieId;
+  }
+
+
+  /**
+   * Sets the value of the 'movieId' field.
+   * @param value the value to set.
+   */
+  public void setMovieId(int value) {
+    this.movieId = value;
   }
 
   /**
@@ -417,17 +417,17 @@ public class MovieWithCategoryId extends org.apache.avro.specific.SpecificRecord
   public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<MovieWithCategoryId>
     implements org.apache.avro.data.RecordBuilder<MovieWithCategoryId> {
 
-    private java.lang.CharSequence categoryId;
-    private int movieid;
-    private java.lang.CharSequence name;
-    private java.time.Instant created_on;
-    private java.lang.CharSequence type;
-    private java.lang.CharSequence synopsis;
-    private java.lang.CharSequence mpa_rating;
-    private java.lang.CharSequence image;
-    private java.time.Instant r_year;
-    private boolean notification;
-    private int idmb_rating;
+    private int categoryId;
+    private java.lang.String title;
+    private java.util.List<java.lang.String> genre;
+    private java.lang.String synopsis;
+    private java.time.Instant releaseYear;
+    private java.lang.String image;
+    private float rating;
+    private java.util.List<java.lang.String> director;
+    private java.util.List<java.lang.String> cast;
+    private java.util.List<java.lang.String> url;
+    private int movieId;
 
     /** Creates a new Builder */
     private Builder() {
@@ -444,44 +444,44 @@ public class MovieWithCategoryId extends org.apache.avro.specific.SpecificRecord
         this.categoryId = data().deepCopy(fields()[0].schema(), other.categoryId);
         fieldSetFlags()[0] = other.fieldSetFlags()[0];
       }
-      if (isValidValue(fields()[1], other.movieid)) {
-        this.movieid = data().deepCopy(fields()[1].schema(), other.movieid);
+      if (isValidValue(fields()[1], other.title)) {
+        this.title = data().deepCopy(fields()[1].schema(), other.title);
         fieldSetFlags()[1] = other.fieldSetFlags()[1];
       }
-      if (isValidValue(fields()[2], other.name)) {
-        this.name = data().deepCopy(fields()[2].schema(), other.name);
+      if (isValidValue(fields()[2], other.genre)) {
+        this.genre = data().deepCopy(fields()[2].schema(), other.genre);
         fieldSetFlags()[2] = other.fieldSetFlags()[2];
       }
-      if (isValidValue(fields()[3], other.created_on)) {
-        this.created_on = data().deepCopy(fields()[3].schema(), other.created_on);
+      if (isValidValue(fields()[3], other.synopsis)) {
+        this.synopsis = data().deepCopy(fields()[3].schema(), other.synopsis);
         fieldSetFlags()[3] = other.fieldSetFlags()[3];
       }
-      if (isValidValue(fields()[4], other.type)) {
-        this.type = data().deepCopy(fields()[4].schema(), other.type);
+      if (isValidValue(fields()[4], other.releaseYear)) {
+        this.releaseYear = data().deepCopy(fields()[4].schema(), other.releaseYear);
         fieldSetFlags()[4] = other.fieldSetFlags()[4];
       }
-      if (isValidValue(fields()[5], other.synopsis)) {
-        this.synopsis = data().deepCopy(fields()[5].schema(), other.synopsis);
+      if (isValidValue(fields()[5], other.image)) {
+        this.image = data().deepCopy(fields()[5].schema(), other.image);
         fieldSetFlags()[5] = other.fieldSetFlags()[5];
       }
-      if (isValidValue(fields()[6], other.mpa_rating)) {
-        this.mpa_rating = data().deepCopy(fields()[6].schema(), other.mpa_rating);
+      if (isValidValue(fields()[6], other.rating)) {
+        this.rating = data().deepCopy(fields()[6].schema(), other.rating);
         fieldSetFlags()[6] = other.fieldSetFlags()[6];
       }
-      if (isValidValue(fields()[7], other.image)) {
-        this.image = data().deepCopy(fields()[7].schema(), other.image);
+      if (isValidValue(fields()[7], other.director)) {
+        this.director = data().deepCopy(fields()[7].schema(), other.director);
         fieldSetFlags()[7] = other.fieldSetFlags()[7];
       }
-      if (isValidValue(fields()[8], other.r_year)) {
-        this.r_year = data().deepCopy(fields()[8].schema(), other.r_year);
+      if (isValidValue(fields()[8], other.cast)) {
+        this.cast = data().deepCopy(fields()[8].schema(), other.cast);
         fieldSetFlags()[8] = other.fieldSetFlags()[8];
       }
-      if (isValidValue(fields()[9], other.notification)) {
-        this.notification = data().deepCopy(fields()[9].schema(), other.notification);
+      if (isValidValue(fields()[9], other.url)) {
+        this.url = data().deepCopy(fields()[9].schema(), other.url);
         fieldSetFlags()[9] = other.fieldSetFlags()[9];
       }
-      if (isValidValue(fields()[10], other.idmb_rating)) {
-        this.idmb_rating = data().deepCopy(fields()[10].schema(), other.idmb_rating);
+      if (isValidValue(fields()[10], other.movieId)) {
+        this.movieId = data().deepCopy(fields()[10].schema(), other.movieId);
         fieldSetFlags()[10] = other.fieldSetFlags()[10];
       }
     }
@@ -496,44 +496,44 @@ public class MovieWithCategoryId extends org.apache.avro.specific.SpecificRecord
         this.categoryId = data().deepCopy(fields()[0].schema(), other.categoryId);
         fieldSetFlags()[0] = true;
       }
-      if (isValidValue(fields()[1], other.movieid)) {
-        this.movieid = data().deepCopy(fields()[1].schema(), other.movieid);
+      if (isValidValue(fields()[1], other.title)) {
+        this.title = data().deepCopy(fields()[1].schema(), other.title);
         fieldSetFlags()[1] = true;
       }
-      if (isValidValue(fields()[2], other.name)) {
-        this.name = data().deepCopy(fields()[2].schema(), other.name);
+      if (isValidValue(fields()[2], other.genre)) {
+        this.genre = data().deepCopy(fields()[2].schema(), other.genre);
         fieldSetFlags()[2] = true;
       }
-      if (isValidValue(fields()[3], other.created_on)) {
-        this.created_on = data().deepCopy(fields()[3].schema(), other.created_on);
+      if (isValidValue(fields()[3], other.synopsis)) {
+        this.synopsis = data().deepCopy(fields()[3].schema(), other.synopsis);
         fieldSetFlags()[3] = true;
       }
-      if (isValidValue(fields()[4], other.type)) {
-        this.type = data().deepCopy(fields()[4].schema(), other.type);
+      if (isValidValue(fields()[4], other.releaseYear)) {
+        this.releaseYear = data().deepCopy(fields()[4].schema(), other.releaseYear);
         fieldSetFlags()[4] = true;
       }
-      if (isValidValue(fields()[5], other.synopsis)) {
-        this.synopsis = data().deepCopy(fields()[5].schema(), other.synopsis);
+      if (isValidValue(fields()[5], other.image)) {
+        this.image = data().deepCopy(fields()[5].schema(), other.image);
         fieldSetFlags()[5] = true;
       }
-      if (isValidValue(fields()[6], other.mpa_rating)) {
-        this.mpa_rating = data().deepCopy(fields()[6].schema(), other.mpa_rating);
+      if (isValidValue(fields()[6], other.rating)) {
+        this.rating = data().deepCopy(fields()[6].schema(), other.rating);
         fieldSetFlags()[6] = true;
       }
-      if (isValidValue(fields()[7], other.image)) {
-        this.image = data().deepCopy(fields()[7].schema(), other.image);
+      if (isValidValue(fields()[7], other.director)) {
+        this.director = data().deepCopy(fields()[7].schema(), other.director);
         fieldSetFlags()[7] = true;
       }
-      if (isValidValue(fields()[8], other.r_year)) {
-        this.r_year = data().deepCopy(fields()[8].schema(), other.r_year);
+      if (isValidValue(fields()[8], other.cast)) {
+        this.cast = data().deepCopy(fields()[8].schema(), other.cast);
         fieldSetFlags()[8] = true;
       }
-      if (isValidValue(fields()[9], other.notification)) {
-        this.notification = data().deepCopy(fields()[9].schema(), other.notification);
+      if (isValidValue(fields()[9], other.url)) {
+        this.url = data().deepCopy(fields()[9].schema(), other.url);
         fieldSetFlags()[9] = true;
       }
-      if (isValidValue(fields()[10], other.idmb_rating)) {
-        this.idmb_rating = data().deepCopy(fields()[10].schema(), other.idmb_rating);
+      if (isValidValue(fields()[10], other.movieId)) {
+        this.movieId = data().deepCopy(fields()[10].schema(), other.movieId);
         fieldSetFlags()[10] = true;
       }
     }
@@ -542,7 +542,7 @@ public class MovieWithCategoryId extends org.apache.avro.specific.SpecificRecord
       * Gets the value of the 'categoryId' field.
       * @return The value.
       */
-    public java.lang.CharSequence getCategoryId() {
+    public int getCategoryId() {
       return categoryId;
     }
 
@@ -552,7 +552,7 @@ public class MovieWithCategoryId extends org.apache.avro.specific.SpecificRecord
       * @param value The value of 'categoryId'.
       * @return This builder.
       */
-    public com.kafkastreams.movie.commons.avro.MovieWithCategoryId.Builder setCategoryId(java.lang.CharSequence value) {
+    public com.kafkastreams.movie.commons.avro.MovieWithCategoryId.Builder setCategoryId(int value) {
       validate(fields()[0], value);
       this.categoryId = value;
       fieldSetFlags()[0] = true;
@@ -573,166 +573,87 @@ public class MovieWithCategoryId extends org.apache.avro.specific.SpecificRecord
       * @return This builder.
       */
     public com.kafkastreams.movie.commons.avro.MovieWithCategoryId.Builder clearCategoryId() {
-      categoryId = null;
       fieldSetFlags()[0] = false;
       return this;
     }
 
     /**
-      * Gets the value of the 'movieid' field.
+      * Gets the value of the 'title' field.
       * @return The value.
       */
-    public int getMovieid() {
-      return movieid;
+    public java.lang.String getTitle() {
+      return title;
     }
 
 
     /**
-      * Sets the value of the 'movieid' field.
-      * @param value The value of 'movieid'.
+      * Sets the value of the 'title' field.
+      * @param value The value of 'title'.
       * @return This builder.
       */
-    public com.kafkastreams.movie.commons.avro.MovieWithCategoryId.Builder setMovieid(int value) {
+    public com.kafkastreams.movie.commons.avro.MovieWithCategoryId.Builder setTitle(java.lang.String value) {
       validate(fields()[1], value);
-      this.movieid = value;
+      this.title = value;
       fieldSetFlags()[1] = true;
       return this;
     }
 
     /**
-      * Checks whether the 'movieid' field has been set.
-      * @return True if the 'movieid' field has been set, false otherwise.
+      * Checks whether the 'title' field has been set.
+      * @return True if the 'title' field has been set, false otherwise.
       */
-    public boolean hasMovieid() {
+    public boolean hasTitle() {
       return fieldSetFlags()[1];
     }
 
 
     /**
-      * Clears the value of the 'movieid' field.
+      * Clears the value of the 'title' field.
       * @return This builder.
       */
-    public com.kafkastreams.movie.commons.avro.MovieWithCategoryId.Builder clearMovieid() {
+    public com.kafkastreams.movie.commons.avro.MovieWithCategoryId.Builder clearTitle() {
+      title = null;
       fieldSetFlags()[1] = false;
       return this;
     }
 
     /**
-      * Gets the value of the 'name' field.
+      * Gets the value of the 'genre' field.
       * @return The value.
       */
-    public java.lang.CharSequence getName() {
-      return name;
+    public java.util.List<java.lang.String> getGenre() {
+      return genre;
     }
 
 
     /**
-      * Sets the value of the 'name' field.
-      * @param value The value of 'name'.
+      * Sets the value of the 'genre' field.
+      * @param value The value of 'genre'.
       * @return This builder.
       */
-    public com.kafkastreams.movie.commons.avro.MovieWithCategoryId.Builder setName(java.lang.CharSequence value) {
+    public com.kafkastreams.movie.commons.avro.MovieWithCategoryId.Builder setGenre(java.util.List<java.lang.String> value) {
       validate(fields()[2], value);
-      this.name = value;
+      this.genre = value;
       fieldSetFlags()[2] = true;
       return this;
     }
 
     /**
-      * Checks whether the 'name' field has been set.
-      * @return True if the 'name' field has been set, false otherwise.
+      * Checks whether the 'genre' field has been set.
+      * @return True if the 'genre' field has been set, false otherwise.
       */
-    public boolean hasName() {
+    public boolean hasGenre() {
       return fieldSetFlags()[2];
     }
 
 
     /**
-      * Clears the value of the 'name' field.
+      * Clears the value of the 'genre' field.
       * @return This builder.
       */
-    public com.kafkastreams.movie.commons.avro.MovieWithCategoryId.Builder clearName() {
-      name = null;
+    public com.kafkastreams.movie.commons.avro.MovieWithCategoryId.Builder clearGenre() {
+      genre = null;
       fieldSetFlags()[2] = false;
-      return this;
-    }
-
-    /**
-      * Gets the value of the 'created_on' field.
-      * @return The value.
-      */
-    public java.time.Instant getCreatedOn() {
-      return created_on;
-    }
-
-
-    /**
-      * Sets the value of the 'created_on' field.
-      * @param value The value of 'created_on'.
-      * @return This builder.
-      */
-    public com.kafkastreams.movie.commons.avro.MovieWithCategoryId.Builder setCreatedOn(java.time.Instant value) {
-      validate(fields()[3], value);
-      this.created_on = value.truncatedTo(java.time.temporal.ChronoUnit.MILLIS);
-      fieldSetFlags()[3] = true;
-      return this;
-    }
-
-    /**
-      * Checks whether the 'created_on' field has been set.
-      * @return True if the 'created_on' field has been set, false otherwise.
-      */
-    public boolean hasCreatedOn() {
-      return fieldSetFlags()[3];
-    }
-
-
-    /**
-      * Clears the value of the 'created_on' field.
-      * @return This builder.
-      */
-    public com.kafkastreams.movie.commons.avro.MovieWithCategoryId.Builder clearCreatedOn() {
-      fieldSetFlags()[3] = false;
-      return this;
-    }
-
-    /**
-      * Gets the value of the 'type' field.
-      * @return The value.
-      */
-    public java.lang.CharSequence getType() {
-      return type;
-    }
-
-
-    /**
-      * Sets the value of the 'type' field.
-      * @param value The value of 'type'.
-      * @return This builder.
-      */
-    public com.kafkastreams.movie.commons.avro.MovieWithCategoryId.Builder setType(java.lang.CharSequence value) {
-      validate(fields()[4], value);
-      this.type = value;
-      fieldSetFlags()[4] = true;
-      return this;
-    }
-
-    /**
-      * Checks whether the 'type' field has been set.
-      * @return True if the 'type' field has been set, false otherwise.
-      */
-    public boolean hasType() {
-      return fieldSetFlags()[4];
-    }
-
-
-    /**
-      * Clears the value of the 'type' field.
-      * @return This builder.
-      */
-    public com.kafkastreams.movie.commons.avro.MovieWithCategoryId.Builder clearType() {
-      type = null;
-      fieldSetFlags()[4] = false;
       return this;
     }
 
@@ -740,7 +661,7 @@ public class MovieWithCategoryId extends org.apache.avro.specific.SpecificRecord
       * Gets the value of the 'synopsis' field.
       * @return The value.
       */
-    public java.lang.CharSequence getSynopsis() {
+    public java.lang.String getSynopsis() {
       return synopsis;
     }
 
@@ -750,10 +671,10 @@ public class MovieWithCategoryId extends org.apache.avro.specific.SpecificRecord
       * @param value The value of 'synopsis'.
       * @return This builder.
       */
-    public com.kafkastreams.movie.commons.avro.MovieWithCategoryId.Builder setSynopsis(java.lang.CharSequence value) {
-      validate(fields()[5], value);
+    public com.kafkastreams.movie.commons.avro.MovieWithCategoryId.Builder setSynopsis(java.lang.String value) {
+      validate(fields()[3], value);
       this.synopsis = value;
-      fieldSetFlags()[5] = true;
+      fieldSetFlags()[3] = true;
       return this;
     }
 
@@ -762,7 +683,7 @@ public class MovieWithCategoryId extends org.apache.avro.specific.SpecificRecord
       * @return True if the 'synopsis' field has been set, false otherwise.
       */
     public boolean hasSynopsis() {
-      return fieldSetFlags()[5];
+      return fieldSetFlags()[3];
     }
 
 
@@ -772,47 +693,46 @@ public class MovieWithCategoryId extends org.apache.avro.specific.SpecificRecord
       */
     public com.kafkastreams.movie.commons.avro.MovieWithCategoryId.Builder clearSynopsis() {
       synopsis = null;
-      fieldSetFlags()[5] = false;
+      fieldSetFlags()[3] = false;
       return this;
     }
 
     /**
-      * Gets the value of the 'mpa_rating' field.
+      * Gets the value of the 'releaseYear' field.
       * @return The value.
       */
-    public java.lang.CharSequence getMpaRating() {
-      return mpa_rating;
+    public java.time.Instant getReleaseYear() {
+      return releaseYear;
     }
 
 
     /**
-      * Sets the value of the 'mpa_rating' field.
-      * @param value The value of 'mpa_rating'.
+      * Sets the value of the 'releaseYear' field.
+      * @param value The value of 'releaseYear'.
       * @return This builder.
       */
-    public com.kafkastreams.movie.commons.avro.MovieWithCategoryId.Builder setMpaRating(java.lang.CharSequence value) {
-      validate(fields()[6], value);
-      this.mpa_rating = value;
-      fieldSetFlags()[6] = true;
+    public com.kafkastreams.movie.commons.avro.MovieWithCategoryId.Builder setReleaseYear(java.time.Instant value) {
+      validate(fields()[4], value);
+      this.releaseYear = value.truncatedTo(java.time.temporal.ChronoUnit.MILLIS);
+      fieldSetFlags()[4] = true;
       return this;
     }
 
     /**
-      * Checks whether the 'mpa_rating' field has been set.
-      * @return True if the 'mpa_rating' field has been set, false otherwise.
+      * Checks whether the 'releaseYear' field has been set.
+      * @return True if the 'releaseYear' field has been set, false otherwise.
       */
-    public boolean hasMpaRating() {
-      return fieldSetFlags()[6];
+    public boolean hasReleaseYear() {
+      return fieldSetFlags()[4];
     }
 
 
     /**
-      * Clears the value of the 'mpa_rating' field.
+      * Clears the value of the 'releaseYear' field.
       * @return This builder.
       */
-    public com.kafkastreams.movie.commons.avro.MovieWithCategoryId.Builder clearMpaRating() {
-      mpa_rating = null;
-      fieldSetFlags()[6] = false;
+    public com.kafkastreams.movie.commons.avro.MovieWithCategoryId.Builder clearReleaseYear() {
+      fieldSetFlags()[4] = false;
       return this;
     }
 
@@ -820,7 +740,7 @@ public class MovieWithCategoryId extends org.apache.avro.specific.SpecificRecord
       * Gets the value of the 'image' field.
       * @return The value.
       */
-    public java.lang.CharSequence getImage() {
+    public java.lang.String getImage() {
       return image;
     }
 
@@ -830,10 +750,10 @@ public class MovieWithCategoryId extends org.apache.avro.specific.SpecificRecord
       * @param value The value of 'image'.
       * @return This builder.
       */
-    public com.kafkastreams.movie.commons.avro.MovieWithCategoryId.Builder setImage(java.lang.CharSequence value) {
-      validate(fields()[7], value);
+    public com.kafkastreams.movie.commons.avro.MovieWithCategoryId.Builder setImage(java.lang.String value) {
+      validate(fields()[5], value);
       this.image = value;
-      fieldSetFlags()[7] = true;
+      fieldSetFlags()[5] = true;
       return this;
     }
 
@@ -842,7 +762,7 @@ public class MovieWithCategoryId extends org.apache.avro.specific.SpecificRecord
       * @return True if the 'image' field has been set, false otherwise.
       */
     public boolean hasImage() {
-      return fieldSetFlags()[7];
+      return fieldSetFlags()[5];
     }
 
 
@@ -852,123 +772,204 @@ public class MovieWithCategoryId extends org.apache.avro.specific.SpecificRecord
       */
     public com.kafkastreams.movie.commons.avro.MovieWithCategoryId.Builder clearImage() {
       image = null;
+      fieldSetFlags()[5] = false;
+      return this;
+    }
+
+    /**
+      * Gets the value of the 'rating' field.
+      * @return The value.
+      */
+    public float getRating() {
+      return rating;
+    }
+
+
+    /**
+      * Sets the value of the 'rating' field.
+      * @param value The value of 'rating'.
+      * @return This builder.
+      */
+    public com.kafkastreams.movie.commons.avro.MovieWithCategoryId.Builder setRating(float value) {
+      validate(fields()[6], value);
+      this.rating = value;
+      fieldSetFlags()[6] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'rating' field has been set.
+      * @return True if the 'rating' field has been set, false otherwise.
+      */
+    public boolean hasRating() {
+      return fieldSetFlags()[6];
+    }
+
+
+    /**
+      * Clears the value of the 'rating' field.
+      * @return This builder.
+      */
+    public com.kafkastreams.movie.commons.avro.MovieWithCategoryId.Builder clearRating() {
+      fieldSetFlags()[6] = false;
+      return this;
+    }
+
+    /**
+      * Gets the value of the 'director' field.
+      * @return The value.
+      */
+    public java.util.List<java.lang.String> getDirector() {
+      return director;
+    }
+
+
+    /**
+      * Sets the value of the 'director' field.
+      * @param value The value of 'director'.
+      * @return This builder.
+      */
+    public com.kafkastreams.movie.commons.avro.MovieWithCategoryId.Builder setDirector(java.util.List<java.lang.String> value) {
+      validate(fields()[7], value);
+      this.director = value;
+      fieldSetFlags()[7] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'director' field has been set.
+      * @return True if the 'director' field has been set, false otherwise.
+      */
+    public boolean hasDirector() {
+      return fieldSetFlags()[7];
+    }
+
+
+    /**
+      * Clears the value of the 'director' field.
+      * @return This builder.
+      */
+    public com.kafkastreams.movie.commons.avro.MovieWithCategoryId.Builder clearDirector() {
+      director = null;
       fieldSetFlags()[7] = false;
       return this;
     }
 
     /**
-      * Gets the value of the 'r_year' field.
+      * Gets the value of the 'cast' field.
       * @return The value.
       */
-    public java.time.Instant getRYear() {
-      return r_year;
+    public java.util.List<java.lang.String> getCast() {
+      return cast;
     }
 
 
     /**
-      * Sets the value of the 'r_year' field.
-      * @param value The value of 'r_year'.
+      * Sets the value of the 'cast' field.
+      * @param value The value of 'cast'.
       * @return This builder.
       */
-    public com.kafkastreams.movie.commons.avro.MovieWithCategoryId.Builder setRYear(java.time.Instant value) {
+    public com.kafkastreams.movie.commons.avro.MovieWithCategoryId.Builder setCast(java.util.List<java.lang.String> value) {
       validate(fields()[8], value);
-      this.r_year = value.truncatedTo(java.time.temporal.ChronoUnit.MILLIS);
+      this.cast = value;
       fieldSetFlags()[8] = true;
       return this;
     }
 
     /**
-      * Checks whether the 'r_year' field has been set.
-      * @return True if the 'r_year' field has been set, false otherwise.
+      * Checks whether the 'cast' field has been set.
+      * @return True if the 'cast' field has been set, false otherwise.
       */
-    public boolean hasRYear() {
+    public boolean hasCast() {
       return fieldSetFlags()[8];
     }
 
 
     /**
-      * Clears the value of the 'r_year' field.
+      * Clears the value of the 'cast' field.
       * @return This builder.
       */
-    public com.kafkastreams.movie.commons.avro.MovieWithCategoryId.Builder clearRYear() {
+    public com.kafkastreams.movie.commons.avro.MovieWithCategoryId.Builder clearCast() {
+      cast = null;
       fieldSetFlags()[8] = false;
       return this;
     }
 
     /**
-      * Gets the value of the 'notification' field.
+      * Gets the value of the 'url' field.
       * @return The value.
       */
-    public boolean getNotification() {
-      return notification;
+    public java.util.List<java.lang.String> getUrl() {
+      return url;
     }
 
 
     /**
-      * Sets the value of the 'notification' field.
-      * @param value The value of 'notification'.
+      * Sets the value of the 'url' field.
+      * @param value The value of 'url'.
       * @return This builder.
       */
-    public com.kafkastreams.movie.commons.avro.MovieWithCategoryId.Builder setNotification(boolean value) {
+    public com.kafkastreams.movie.commons.avro.MovieWithCategoryId.Builder setUrl(java.util.List<java.lang.String> value) {
       validate(fields()[9], value);
-      this.notification = value;
+      this.url = value;
       fieldSetFlags()[9] = true;
       return this;
     }
 
     /**
-      * Checks whether the 'notification' field has been set.
-      * @return True if the 'notification' field has been set, false otherwise.
+      * Checks whether the 'url' field has been set.
+      * @return True if the 'url' field has been set, false otherwise.
       */
-    public boolean hasNotification() {
+    public boolean hasUrl() {
       return fieldSetFlags()[9];
     }
 
 
     /**
-      * Clears the value of the 'notification' field.
+      * Clears the value of the 'url' field.
       * @return This builder.
       */
-    public com.kafkastreams.movie.commons.avro.MovieWithCategoryId.Builder clearNotification() {
+    public com.kafkastreams.movie.commons.avro.MovieWithCategoryId.Builder clearUrl() {
+      url = null;
       fieldSetFlags()[9] = false;
       return this;
     }
 
     /**
-      * Gets the value of the 'idmb_rating' field.
+      * Gets the value of the 'movieId' field.
       * @return The value.
       */
-    public int getIdmbRating() {
-      return idmb_rating;
+    public int getMovieId() {
+      return movieId;
     }
 
 
     /**
-      * Sets the value of the 'idmb_rating' field.
-      * @param value The value of 'idmb_rating'.
+      * Sets the value of the 'movieId' field.
+      * @param value The value of 'movieId'.
       * @return This builder.
       */
-    public com.kafkastreams.movie.commons.avro.MovieWithCategoryId.Builder setIdmbRating(int value) {
+    public com.kafkastreams.movie.commons.avro.MovieWithCategoryId.Builder setMovieId(int value) {
       validate(fields()[10], value);
-      this.idmb_rating = value;
+      this.movieId = value;
       fieldSetFlags()[10] = true;
       return this;
     }
 
     /**
-      * Checks whether the 'idmb_rating' field has been set.
-      * @return True if the 'idmb_rating' field has been set, false otherwise.
+      * Checks whether the 'movieId' field has been set.
+      * @return True if the 'movieId' field has been set, false otherwise.
       */
-    public boolean hasIdmbRating() {
+    public boolean hasMovieId() {
       return fieldSetFlags()[10];
     }
 
 
     /**
-      * Clears the value of the 'idmb_rating' field.
+      * Clears the value of the 'movieId' field.
       * @return This builder.
       */
-    public com.kafkastreams.movie.commons.avro.MovieWithCategoryId.Builder clearIdmbRating() {
+    public com.kafkastreams.movie.commons.avro.MovieWithCategoryId.Builder clearMovieId() {
       fieldSetFlags()[10] = false;
       return this;
     }
@@ -978,17 +979,17 @@ public class MovieWithCategoryId extends org.apache.avro.specific.SpecificRecord
     public MovieWithCategoryId build() {
       try {
         MovieWithCategoryId record = new MovieWithCategoryId();
-        record.categoryId = fieldSetFlags()[0] ? this.categoryId : (java.lang.CharSequence) defaultValue(fields()[0]);
-        record.movieid = fieldSetFlags()[1] ? this.movieid : (java.lang.Integer) defaultValue(fields()[1]);
-        record.name = fieldSetFlags()[2] ? this.name : (java.lang.CharSequence) defaultValue(fields()[2]);
-        record.created_on = fieldSetFlags()[3] ? this.created_on : (java.time.Instant) defaultValue(fields()[3]);
-        record.type = fieldSetFlags()[4] ? this.type : (java.lang.CharSequence) defaultValue(fields()[4]);
-        record.synopsis = fieldSetFlags()[5] ? this.synopsis : (java.lang.CharSequence) defaultValue(fields()[5]);
-        record.mpa_rating = fieldSetFlags()[6] ? this.mpa_rating : (java.lang.CharSequence) defaultValue(fields()[6]);
-        record.image = fieldSetFlags()[7] ? this.image : (java.lang.CharSequence) defaultValue(fields()[7]);
-        record.r_year = fieldSetFlags()[8] ? this.r_year : (java.time.Instant) defaultValue(fields()[8]);
-        record.notification = fieldSetFlags()[9] ? this.notification : (java.lang.Boolean) defaultValue(fields()[9]);
-        record.idmb_rating = fieldSetFlags()[10] ? this.idmb_rating : (java.lang.Integer) defaultValue(fields()[10]);
+        record.categoryId = fieldSetFlags()[0] ? this.categoryId : (java.lang.Integer) defaultValue(fields()[0]);
+        record.title = fieldSetFlags()[1] ? this.title : (java.lang.String) defaultValue(fields()[1]);
+        record.genre = fieldSetFlags()[2] ? this.genre : (java.util.List<java.lang.String>) defaultValue(fields()[2]);
+        record.synopsis = fieldSetFlags()[3] ? this.synopsis : (java.lang.String) defaultValue(fields()[3]);
+        record.releaseYear = fieldSetFlags()[4] ? this.releaseYear : (java.time.Instant) defaultValue(fields()[4]);
+        record.image = fieldSetFlags()[5] ? this.image : (java.lang.String) defaultValue(fields()[5]);
+        record.rating = fieldSetFlags()[6] ? this.rating : (java.lang.Float) defaultValue(fields()[6]);
+        record.director = fieldSetFlags()[7] ? this.director : (java.util.List<java.lang.String>) defaultValue(fields()[7]);
+        record.cast = fieldSetFlags()[8] ? this.cast : (java.util.List<java.lang.String>) defaultValue(fields()[8]);
+        record.url = fieldSetFlags()[9] ? this.url : (java.util.List<java.lang.String>) defaultValue(fields()[9]);
+        record.movieId = fieldSetFlags()[10] ? this.movieId : (java.lang.Integer) defaultValue(fields()[10]);
         return record;
       } catch (org.apache.avro.AvroMissingFieldException e) {
         throw e;

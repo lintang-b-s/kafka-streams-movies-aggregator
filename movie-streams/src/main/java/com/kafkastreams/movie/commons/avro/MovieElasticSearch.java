@@ -14,10 +14,10 @@ import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class MovieElasticSearch extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 8997250998527266017L;
+  private static final long serialVersionUID = -6109498890441128431L;
 
 
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"MovieElasticSearch\",\"namespace\":\"com.kafkastreams.movie.commons.avro\",\"fields\":[{\"name\":\"title\",\"type\":\"string\"},{\"name\":\"genre\",\"type\":{\"type\":\"array\",\"items\":\"string\"}},{\"name\":\"synopsis\",\"type\":\"string\"},{\"name\":\"releaseYear\",\"type\":{\"type\":\"long\",\"connect.version\":1,\"connect.name\":\"org.apache.kafka.connect.data.Timestamp\",\"logicalType\":\"timestamp-millis\"}},{\"name\":\"image\",\"type\":\"string\"},{\"name\":\"rating\",\"type\":\"float\"},{\"name\":\"director\",\"type\":{\"type\":\"array\",\"items\":\"string\"}},{\"name\":\"cast\",\"type\":{\"type\":\"array\",\"items\":\"string\"}},{\"name\":\"url\",\"type\":{\"type\":\"array\",\"items\":\"string\"}},{\"name\":\"movieId\",\"type\":\"string\"}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"MovieElasticSearch\",\"namespace\":\"com.kafkastreams.movie.commons.avro\",\"fields\":[{\"name\":\"title\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"genre\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"string\",\"avro.java.string\":\"String\"}}},{\"name\":\"synopsis\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"releaseYear\",\"type\":{\"type\":\"long\",\"connect.version\":1,\"connect.name\":\"org.apache.kafka.connect.data.Timestamp\",\"logicalType\":\"timestamp-millis\"}},{\"name\":\"image\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"rating\",\"type\":\"float\"},{\"name\":\"director\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"string\",\"avro.java.string\":\"String\"}}},{\"name\":\"cast\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"string\",\"avro.java.string\":\"String\"}}},{\"name\":\"url\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"string\",\"avro.java.string\":\"String\"}}},{\"name\":\"movieId\",\"type\":\"int\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static final SpecificData MODEL$ = new SpecificData();
@@ -76,16 +76,16 @@ public class MovieElasticSearch extends org.apache.avro.specific.SpecificRecordB
     return DECODER.decode(b);
   }
 
-  private java.lang.CharSequence title;
-  private java.util.List<java.lang.CharSequence> genre;
-  private java.lang.CharSequence synopsis;
+  private java.lang.String title;
+  private java.util.List<java.lang.String> genre;
+  private java.lang.String synopsis;
   private java.time.Instant releaseYear;
-  private java.lang.CharSequence image;
+  private java.lang.String image;
   private float rating;
-  private java.util.List<java.lang.CharSequence> director;
-  private java.util.List<java.lang.CharSequence> cast;
-  private java.util.List<java.lang.CharSequence> url;
-  private java.lang.CharSequence movieId;
+  private java.util.List<java.lang.String> director;
+  private java.util.List<java.lang.String> cast;
+  private java.util.List<java.lang.String> url;
+  private int movieId;
 
   /**
    * Default constructor.  Note that this does not initialize fields
@@ -107,7 +107,7 @@ public class MovieElasticSearch extends org.apache.avro.specific.SpecificRecordB
    * @param url The new value for url
    * @param movieId The new value for movieId
    */
-  public MovieElasticSearch(java.lang.CharSequence title, java.util.List<java.lang.CharSequence> genre, java.lang.CharSequence synopsis, java.time.Instant releaseYear, java.lang.CharSequence image, java.lang.Float rating, java.util.List<java.lang.CharSequence> director, java.util.List<java.lang.CharSequence> cast, java.util.List<java.lang.CharSequence> url, java.lang.CharSequence movieId) {
+  public MovieElasticSearch(java.lang.String title, java.util.List<java.lang.String> genre, java.lang.String synopsis, java.time.Instant releaseYear, java.lang.String image, java.lang.Float rating, java.util.List<java.lang.String> director, java.util.List<java.lang.String> cast, java.util.List<java.lang.String> url, java.lang.Integer movieId) {
     this.title = title;
     this.genre = genre;
     this.synopsis = synopsis;
@@ -169,16 +169,16 @@ public class MovieElasticSearch extends org.apache.avro.specific.SpecificRecordB
   @SuppressWarnings(value="unchecked")
   public void put(int field$, java.lang.Object value$) {
     switch (field$) {
-    case 0: title = (java.lang.CharSequence)value$; break;
-    case 1: genre = (java.util.List<java.lang.CharSequence>)value$; break;
-    case 2: synopsis = (java.lang.CharSequence)value$; break;
+    case 0: title = value$ != null ? value$.toString() : null; break;
+    case 1: genre = (java.util.List<java.lang.String>)value$; break;
+    case 2: synopsis = value$ != null ? value$.toString() : null; break;
     case 3: releaseYear = (java.time.Instant)value$; break;
-    case 4: image = (java.lang.CharSequence)value$; break;
+    case 4: image = value$ != null ? value$.toString() : null; break;
     case 5: rating = (java.lang.Float)value$; break;
-    case 6: director = (java.util.List<java.lang.CharSequence>)value$; break;
-    case 7: cast = (java.util.List<java.lang.CharSequence>)value$; break;
-    case 8: url = (java.util.List<java.lang.CharSequence>)value$; break;
-    case 9: movieId = (java.lang.CharSequence)value$; break;
+    case 6: director = (java.util.List<java.lang.String>)value$; break;
+    case 7: cast = (java.util.List<java.lang.String>)value$; break;
+    case 8: url = (java.util.List<java.lang.String>)value$; break;
+    case 9: movieId = (java.lang.Integer)value$; break;
     default: throw new IndexOutOfBoundsException("Invalid index: " + field$);
     }
   }
@@ -187,7 +187,7 @@ public class MovieElasticSearch extends org.apache.avro.specific.SpecificRecordB
    * Gets the value of the 'title' field.
    * @return The value of the 'title' field.
    */
-  public java.lang.CharSequence getTitle() {
+  public java.lang.String getTitle() {
     return title;
   }
 
@@ -196,7 +196,7 @@ public class MovieElasticSearch extends org.apache.avro.specific.SpecificRecordB
    * Sets the value of the 'title' field.
    * @param value the value to set.
    */
-  public void setTitle(java.lang.CharSequence value) {
+  public void setTitle(java.lang.String value) {
     this.title = value;
   }
 
@@ -204,7 +204,7 @@ public class MovieElasticSearch extends org.apache.avro.specific.SpecificRecordB
    * Gets the value of the 'genre' field.
    * @return The value of the 'genre' field.
    */
-  public java.util.List<java.lang.CharSequence> getGenre() {
+  public java.util.List<java.lang.String> getGenre() {
     return genre;
   }
 
@@ -213,7 +213,7 @@ public class MovieElasticSearch extends org.apache.avro.specific.SpecificRecordB
    * Sets the value of the 'genre' field.
    * @param value the value to set.
    */
-  public void setGenre(java.util.List<java.lang.CharSequence> value) {
+  public void setGenre(java.util.List<java.lang.String> value) {
     this.genre = value;
   }
 
@@ -221,7 +221,7 @@ public class MovieElasticSearch extends org.apache.avro.specific.SpecificRecordB
    * Gets the value of the 'synopsis' field.
    * @return The value of the 'synopsis' field.
    */
-  public java.lang.CharSequence getSynopsis() {
+  public java.lang.String getSynopsis() {
     return synopsis;
   }
 
@@ -230,7 +230,7 @@ public class MovieElasticSearch extends org.apache.avro.specific.SpecificRecordB
    * Sets the value of the 'synopsis' field.
    * @param value the value to set.
    */
-  public void setSynopsis(java.lang.CharSequence value) {
+  public void setSynopsis(java.lang.String value) {
     this.synopsis = value;
   }
 
@@ -255,7 +255,7 @@ public class MovieElasticSearch extends org.apache.avro.specific.SpecificRecordB
    * Gets the value of the 'image' field.
    * @return The value of the 'image' field.
    */
-  public java.lang.CharSequence getImage() {
+  public java.lang.String getImage() {
     return image;
   }
 
@@ -264,7 +264,7 @@ public class MovieElasticSearch extends org.apache.avro.specific.SpecificRecordB
    * Sets the value of the 'image' field.
    * @param value the value to set.
    */
-  public void setImage(java.lang.CharSequence value) {
+  public void setImage(java.lang.String value) {
     this.image = value;
   }
 
@@ -289,7 +289,7 @@ public class MovieElasticSearch extends org.apache.avro.specific.SpecificRecordB
    * Gets the value of the 'director' field.
    * @return The value of the 'director' field.
    */
-  public java.util.List<java.lang.CharSequence> getDirector() {
+  public java.util.List<java.lang.String> getDirector() {
     return director;
   }
 
@@ -298,7 +298,7 @@ public class MovieElasticSearch extends org.apache.avro.specific.SpecificRecordB
    * Sets the value of the 'director' field.
    * @param value the value to set.
    */
-  public void setDirector(java.util.List<java.lang.CharSequence> value) {
+  public void setDirector(java.util.List<java.lang.String> value) {
     this.director = value;
   }
 
@@ -306,7 +306,7 @@ public class MovieElasticSearch extends org.apache.avro.specific.SpecificRecordB
    * Gets the value of the 'cast' field.
    * @return The value of the 'cast' field.
    */
-  public java.util.List<java.lang.CharSequence> getCast() {
+  public java.util.List<java.lang.String> getCast() {
     return cast;
   }
 
@@ -315,7 +315,7 @@ public class MovieElasticSearch extends org.apache.avro.specific.SpecificRecordB
    * Sets the value of the 'cast' field.
    * @param value the value to set.
    */
-  public void setCast(java.util.List<java.lang.CharSequence> value) {
+  public void setCast(java.util.List<java.lang.String> value) {
     this.cast = value;
   }
 
@@ -323,7 +323,7 @@ public class MovieElasticSearch extends org.apache.avro.specific.SpecificRecordB
    * Gets the value of the 'url' field.
    * @return The value of the 'url' field.
    */
-  public java.util.List<java.lang.CharSequence> getUrl() {
+  public java.util.List<java.lang.String> getUrl() {
     return url;
   }
 
@@ -332,7 +332,7 @@ public class MovieElasticSearch extends org.apache.avro.specific.SpecificRecordB
    * Sets the value of the 'url' field.
    * @param value the value to set.
    */
-  public void setUrl(java.util.List<java.lang.CharSequence> value) {
+  public void setUrl(java.util.List<java.lang.String> value) {
     this.url = value;
   }
 
@@ -340,7 +340,7 @@ public class MovieElasticSearch extends org.apache.avro.specific.SpecificRecordB
    * Gets the value of the 'movieId' field.
    * @return The value of the 'movieId' field.
    */
-  public java.lang.CharSequence getMovieId() {
+  public int getMovieId() {
     return movieId;
   }
 
@@ -349,7 +349,7 @@ public class MovieElasticSearch extends org.apache.avro.specific.SpecificRecordB
    * Sets the value of the 'movieId' field.
    * @param value the value to set.
    */
-  public void setMovieId(java.lang.CharSequence value) {
+  public void setMovieId(int value) {
     this.movieId = value;
   }
 
@@ -394,16 +394,16 @@ public class MovieElasticSearch extends org.apache.avro.specific.SpecificRecordB
   public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<MovieElasticSearch>
     implements org.apache.avro.data.RecordBuilder<MovieElasticSearch> {
 
-    private java.lang.CharSequence title;
-    private java.util.List<java.lang.CharSequence> genre;
-    private java.lang.CharSequence synopsis;
+    private java.lang.String title;
+    private java.util.List<java.lang.String> genre;
+    private java.lang.String synopsis;
     private java.time.Instant releaseYear;
-    private java.lang.CharSequence image;
+    private java.lang.String image;
     private float rating;
-    private java.util.List<java.lang.CharSequence> director;
-    private java.util.List<java.lang.CharSequence> cast;
-    private java.util.List<java.lang.CharSequence> url;
-    private java.lang.CharSequence movieId;
+    private java.util.List<java.lang.String> director;
+    private java.util.List<java.lang.String> cast;
+    private java.util.List<java.lang.String> url;
+    private int movieId;
 
     /** Creates a new Builder */
     private Builder() {
@@ -510,7 +510,7 @@ public class MovieElasticSearch extends org.apache.avro.specific.SpecificRecordB
       * Gets the value of the 'title' field.
       * @return The value.
       */
-    public java.lang.CharSequence getTitle() {
+    public java.lang.String getTitle() {
       return title;
     }
 
@@ -520,7 +520,7 @@ public class MovieElasticSearch extends org.apache.avro.specific.SpecificRecordB
       * @param value The value of 'title'.
       * @return This builder.
       */
-    public com.kafkastreams.movie.commons.avro.MovieElasticSearch.Builder setTitle(java.lang.CharSequence value) {
+    public com.kafkastreams.movie.commons.avro.MovieElasticSearch.Builder setTitle(java.lang.String value) {
       validate(fields()[0], value);
       this.title = value;
       fieldSetFlags()[0] = true;
@@ -550,7 +550,7 @@ public class MovieElasticSearch extends org.apache.avro.specific.SpecificRecordB
       * Gets the value of the 'genre' field.
       * @return The value.
       */
-    public java.util.List<java.lang.CharSequence> getGenre() {
+    public java.util.List<java.lang.String> getGenre() {
       return genre;
     }
 
@@ -560,7 +560,7 @@ public class MovieElasticSearch extends org.apache.avro.specific.SpecificRecordB
       * @param value The value of 'genre'.
       * @return This builder.
       */
-    public com.kafkastreams.movie.commons.avro.MovieElasticSearch.Builder setGenre(java.util.List<java.lang.CharSequence> value) {
+    public com.kafkastreams.movie.commons.avro.MovieElasticSearch.Builder setGenre(java.util.List<java.lang.String> value) {
       validate(fields()[1], value);
       this.genre = value;
       fieldSetFlags()[1] = true;
@@ -590,7 +590,7 @@ public class MovieElasticSearch extends org.apache.avro.specific.SpecificRecordB
       * Gets the value of the 'synopsis' field.
       * @return The value.
       */
-    public java.lang.CharSequence getSynopsis() {
+    public java.lang.String getSynopsis() {
       return synopsis;
     }
 
@@ -600,7 +600,7 @@ public class MovieElasticSearch extends org.apache.avro.specific.SpecificRecordB
       * @param value The value of 'synopsis'.
       * @return This builder.
       */
-    public com.kafkastreams.movie.commons.avro.MovieElasticSearch.Builder setSynopsis(java.lang.CharSequence value) {
+    public com.kafkastreams.movie.commons.avro.MovieElasticSearch.Builder setSynopsis(java.lang.String value) {
       validate(fields()[2], value);
       this.synopsis = value;
       fieldSetFlags()[2] = true;
@@ -669,7 +669,7 @@ public class MovieElasticSearch extends org.apache.avro.specific.SpecificRecordB
       * Gets the value of the 'image' field.
       * @return The value.
       */
-    public java.lang.CharSequence getImage() {
+    public java.lang.String getImage() {
       return image;
     }
 
@@ -679,7 +679,7 @@ public class MovieElasticSearch extends org.apache.avro.specific.SpecificRecordB
       * @param value The value of 'image'.
       * @return This builder.
       */
-    public com.kafkastreams.movie.commons.avro.MovieElasticSearch.Builder setImage(java.lang.CharSequence value) {
+    public com.kafkastreams.movie.commons.avro.MovieElasticSearch.Builder setImage(java.lang.String value) {
       validate(fields()[4], value);
       this.image = value;
       fieldSetFlags()[4] = true;
@@ -748,7 +748,7 @@ public class MovieElasticSearch extends org.apache.avro.specific.SpecificRecordB
       * Gets the value of the 'director' field.
       * @return The value.
       */
-    public java.util.List<java.lang.CharSequence> getDirector() {
+    public java.util.List<java.lang.String> getDirector() {
       return director;
     }
 
@@ -758,7 +758,7 @@ public class MovieElasticSearch extends org.apache.avro.specific.SpecificRecordB
       * @param value The value of 'director'.
       * @return This builder.
       */
-    public com.kafkastreams.movie.commons.avro.MovieElasticSearch.Builder setDirector(java.util.List<java.lang.CharSequence> value) {
+    public com.kafkastreams.movie.commons.avro.MovieElasticSearch.Builder setDirector(java.util.List<java.lang.String> value) {
       validate(fields()[6], value);
       this.director = value;
       fieldSetFlags()[6] = true;
@@ -788,7 +788,7 @@ public class MovieElasticSearch extends org.apache.avro.specific.SpecificRecordB
       * Gets the value of the 'cast' field.
       * @return The value.
       */
-    public java.util.List<java.lang.CharSequence> getCast() {
+    public java.util.List<java.lang.String> getCast() {
       return cast;
     }
 
@@ -798,7 +798,7 @@ public class MovieElasticSearch extends org.apache.avro.specific.SpecificRecordB
       * @param value The value of 'cast'.
       * @return This builder.
       */
-    public com.kafkastreams.movie.commons.avro.MovieElasticSearch.Builder setCast(java.util.List<java.lang.CharSequence> value) {
+    public com.kafkastreams.movie.commons.avro.MovieElasticSearch.Builder setCast(java.util.List<java.lang.String> value) {
       validate(fields()[7], value);
       this.cast = value;
       fieldSetFlags()[7] = true;
@@ -828,7 +828,7 @@ public class MovieElasticSearch extends org.apache.avro.specific.SpecificRecordB
       * Gets the value of the 'url' field.
       * @return The value.
       */
-    public java.util.List<java.lang.CharSequence> getUrl() {
+    public java.util.List<java.lang.String> getUrl() {
       return url;
     }
 
@@ -838,7 +838,7 @@ public class MovieElasticSearch extends org.apache.avro.specific.SpecificRecordB
       * @param value The value of 'url'.
       * @return This builder.
       */
-    public com.kafkastreams.movie.commons.avro.MovieElasticSearch.Builder setUrl(java.util.List<java.lang.CharSequence> value) {
+    public com.kafkastreams.movie.commons.avro.MovieElasticSearch.Builder setUrl(java.util.List<java.lang.String> value) {
       validate(fields()[8], value);
       this.url = value;
       fieldSetFlags()[8] = true;
@@ -868,7 +868,7 @@ public class MovieElasticSearch extends org.apache.avro.specific.SpecificRecordB
       * Gets the value of the 'movieId' field.
       * @return The value.
       */
-    public java.lang.CharSequence getMovieId() {
+    public int getMovieId() {
       return movieId;
     }
 
@@ -878,7 +878,7 @@ public class MovieElasticSearch extends org.apache.avro.specific.SpecificRecordB
       * @param value The value of 'movieId'.
       * @return This builder.
       */
-    public com.kafkastreams.movie.commons.avro.MovieElasticSearch.Builder setMovieId(java.lang.CharSequence value) {
+    public com.kafkastreams.movie.commons.avro.MovieElasticSearch.Builder setMovieId(int value) {
       validate(fields()[9], value);
       this.movieId = value;
       fieldSetFlags()[9] = true;
@@ -899,7 +899,6 @@ public class MovieElasticSearch extends org.apache.avro.specific.SpecificRecordB
       * @return This builder.
       */
     public com.kafkastreams.movie.commons.avro.MovieElasticSearch.Builder clearMovieId() {
-      movieId = null;
       fieldSetFlags()[9] = false;
       return this;
     }
@@ -909,16 +908,16 @@ public class MovieElasticSearch extends org.apache.avro.specific.SpecificRecordB
     public MovieElasticSearch build() {
       try {
         MovieElasticSearch record = new MovieElasticSearch();
-        record.title = fieldSetFlags()[0] ? this.title : (java.lang.CharSequence) defaultValue(fields()[0]);
-        record.genre = fieldSetFlags()[1] ? this.genre : (java.util.List<java.lang.CharSequence>) defaultValue(fields()[1]);
-        record.synopsis = fieldSetFlags()[2] ? this.synopsis : (java.lang.CharSequence) defaultValue(fields()[2]);
+        record.title = fieldSetFlags()[0] ? this.title : (java.lang.String) defaultValue(fields()[0]);
+        record.genre = fieldSetFlags()[1] ? this.genre : (java.util.List<java.lang.String>) defaultValue(fields()[1]);
+        record.synopsis = fieldSetFlags()[2] ? this.synopsis : (java.lang.String) defaultValue(fields()[2]);
         record.releaseYear = fieldSetFlags()[3] ? this.releaseYear : (java.time.Instant) defaultValue(fields()[3]);
-        record.image = fieldSetFlags()[4] ? this.image : (java.lang.CharSequence) defaultValue(fields()[4]);
+        record.image = fieldSetFlags()[4] ? this.image : (java.lang.String) defaultValue(fields()[4]);
         record.rating = fieldSetFlags()[5] ? this.rating : (java.lang.Float) defaultValue(fields()[5]);
-        record.director = fieldSetFlags()[6] ? this.director : (java.util.List<java.lang.CharSequence>) defaultValue(fields()[6]);
-        record.cast = fieldSetFlags()[7] ? this.cast : (java.util.List<java.lang.CharSequence>) defaultValue(fields()[7]);
-        record.url = fieldSetFlags()[8] ? this.url : (java.util.List<java.lang.CharSequence>) defaultValue(fields()[8]);
-        record.movieId = fieldSetFlags()[9] ? this.movieId : (java.lang.CharSequence) defaultValue(fields()[9]);
+        record.director = fieldSetFlags()[6] ? this.director : (java.util.List<java.lang.String>) defaultValue(fields()[6]);
+        record.cast = fieldSetFlags()[7] ? this.cast : (java.util.List<java.lang.String>) defaultValue(fields()[7]);
+        record.url = fieldSetFlags()[8] ? this.url : (java.util.List<java.lang.String>) defaultValue(fields()[8]);
+        record.movieId = fieldSetFlags()[9] ? this.movieId : (java.lang.Integer) defaultValue(fields()[9]);
         return record;
       } catch (org.apache.avro.AvroMissingFieldException e) {
         throw e;

@@ -1,0 +1,30 @@
+{  "name": "psql-source-debezium",
+  "config": {
+    "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+    "tasks.max": "1",
+    "database.hostname": "postgres-movie",
+    "database.port": "5432",
+    "database.user": "netflik",
+    "database.password": "netflik",
+    "database.dbname": "netflik",
+    "topic.prefix": "postgresql",
+    "schema.include.list": "public",
+    "decimal.handling.mode": "string",
+    "poll.interval.ms": "100",
+    "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "key.converter.schema.registry.url": "http://schema-registry:8081",
+    "key.converter.schemas.enable": "false",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "value.converter.schema.registry.url": "http://schema-registry:8081",
+
+    "value.converter.schemas.enable": "false",
+    "database.history.kafka.bootstrap.servers": "kafka:9092",
+    "database.history.kafka.recovery.attempts": "10000",
+    "schema.history.internal.kafka.topic": "schema-changes.public",
+    "schema.history.internal.kafka.bootstrap.servers": "kafka:9092",
+
+    "transforms": "unwrap",
+    "transforms.unwrap.type":"io.debezium.transforms.ExtractNewRecordState",
+    "transforms.unwrap.drop.tombstones":"false"
+  }
+}
