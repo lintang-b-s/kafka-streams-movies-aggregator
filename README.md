@@ -25,7 +25,8 @@ run the application in docker:
      6. docker-compose -f docker-compose-app.yml up -d, wait until all container up & running (5-10 minutes, due to building multistage image movie-search), building & creating container movie-service,movie-streams, and movie-search
      7. python3 insertMovieToMovieService.py, wait for 10-15 minutes, wait until "done" message printed. inserting movies data  with releases between 2020-2023 to postgresql from movie-service
      8. docker-compose -f docker-compose-stream.yml up -d, wait about 5-6 minutes for the data stream to process
-    9. test the query for movies with releases between 2020-2023(ex. Oppenheimer, Dune,etc. Not all movies available)  using the movie-elasticsearch(port 8080) folder in the postman collection (dont search by query release year due to a timestamp stream conversion failure)
+     9. import postman collection file in config/movie-test-stream.postman_collection.json
+    10. test the query for movies with releases between 2020-2023(ex. Oppenheimer, Dune,etc. Not all movies available)  using the movie-elasticsearch(port 8080) folder in the postman collection (dont search by query release year due to a timestamp stream conversion failure)
     
  ```
 
@@ -42,12 +43,12 @@ run the application locally:
      4. bash kafka-connect-2.sh
      5. bash connect-health-2.sh
      6. run movie-service application
-     7. import postman  & test add actor,category,...,movies
+     7. import postman collection file in config/movie-test-stream.postman_collection.json
      8. run movie-streams application
      9.  go to localhost:9001 to see message in each topic
      10. test query with elasticserach index "movieswiki" in localhost:9200
      11. python3 insertMovieToMovieService.py, wait for 12 minutes. inserting movies data to postgresql
-     12. test the query for movies with releases between 2020-2023(ex. Oppenheimer, Dune ,etc. Not all movies available)  using the movie-elasticsearch(port 8080) folder in the postman collection (dont search by query release year due to a timestamp stream conversion failure)
+     13. test the query for movies with releases between 2020-2023(ex. Oppenheimer, Dune ,etc. Not all movies available)  using the movie-elasticsearch(port 8080) folder in the postman collection (dont search by query release year due to a timestamp stream conversion failure)
  ```
 
 

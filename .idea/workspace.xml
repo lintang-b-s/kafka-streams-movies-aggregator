@@ -4,56 +4,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6d1f0110-162b-45d1-8b74-d3d821cc1ccf" name="Changes" comment="fix:  can be consumed by elasticsearch">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/init.sql" beforeDir="false" afterPath="$PROJECT_DIR$/config/init.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/movie-test.postman_collection.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-elasticsearch/internal/controller/http/v1/movie.go" beforeDir="false" afterPath="$PROJECT_DIR$/movie-elasticsearch/internal/controller/http/v1/movie.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-elasticsearch/internal/entity/movie.go" beforeDir="false" afterPath="$PROJECT_DIR$/movie-elasticsearch/internal/entity/movie.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-elasticsearch/internal/usecase/repo/movie_elasticsearch.go" beforeDir="false" afterPath="$PROJECT_DIR$/movie-elasticsearch/internal/usecase/repo/movie_elasticsearch.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/command/service/MovieCommandService.java" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/command/service/MovieCommandService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/entity/MovieEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/entity/MovieEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/entity/VideoEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/src/main/java/com/kafkastreams/movieservice/entity/VideoEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/movie-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-streams/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/movie-streams/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-streams/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/movie-streams/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/java/com/kafkastreams/movie/MovieApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/movie-streams/src/main/java/com/kafkastreams/movie/MovieApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/java/com/kafkastreams/movie/commons/avro/Actor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/java/com/kafkastreams/movie/commons/avro/Category.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/java/com/kafkastreams/movie/commons/avro/Creator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/java/com/kafkastreams/movie/commons/avro/IdAvro.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/java/com/kafkastreams/movie/commons/avro/Movie.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/java/com/kafkastreams/movie/commons/avro/MovieActor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/java/com/kafkastreams/movie/commons/avro/MovieActorKey.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/java/com/kafkastreams/movie/commons/avro/MovieCategory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/java/com/kafkastreams/movie/commons/avro/MovieCategoryJoined.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/java/com/kafkastreams/movie/commons/avro/MovieCategoryKey.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/java/com/kafkastreams/movie/commons/avro/MovieCreator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/java/com/kafkastreams/movie/commons/avro/MovieCreatorKey.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/java/com/kafkastreams/movie/commons/avro/MovieElasticSearch.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/java/com/kafkastreams/movie/commons/avro/MovieTag.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/java/com/kafkastreams/movie/commons/avro/MovieTagKey.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/java/com/kafkastreams/movie/commons/avro/MovieVideoJoined.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/java/com/kafkastreams/movie/commons/avro/MovieWithActorId.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/java/com/kafkastreams/movie/commons/avro/MovieWithActorJoined.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/java/com/kafkastreams/movie/commons/avro/MovieWithCategoryId.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/java/com/kafkastreams/movie/commons/avro/MovieWithCreatorId.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/java/com/kafkastreams/movie/commons/avro/MovieWithCreatorJoined.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/java/com/kafkastreams/movie/commons/avro/Tag.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/java/com/kafkastreams/movie/commons/avro/Video.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/java/com/kafkastreams/movie/model/MovieCategoryJoined.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/java/com/kafkastreams/movie/model/MovieWithCategoryId.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/movie-streams/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/resources/avro/movie-creator-joined.avsc" beforeDir="false" afterPath="$PROJECT_DIR$/movie-streams/src/main/resources/avro/movie-creator-joined.avsc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/resources/avro/movie-elasticsearch-message.avsc" beforeDir="false" afterPath="$PROJECT_DIR$/movie-streams/src/main/resources/avro/movie-elasticsearch-message.avsc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/resources/avro/movie-video-joined.avsc" beforeDir="false" afterPath="$PROJECT_DIR$/movie-streams/src/main/resources/avro/movie-video-joined.avsc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/resources/avro/movie-with-actor-id.avsc" beforeDir="false" afterPath="$PROJECT_DIR$/movie-streams/src/main/resources/avro/movie-with-actor-id.avsc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/resources/avro/movie-with-actor-joined.avsc" beforeDir="false" afterPath="$PROJECT_DIR$/movie-streams/src/main/resources/avro/movie-with-actor-joined.avsc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/resources/avro/movie-with-category-id.avsc" beforeDir="false" afterPath="$PROJECT_DIR$/movie-streams/src/main/resources/avro/movie-with-category-id.avsc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie-streams/src/main/resources/avro/movie-with-creator-id.avsc" beforeDir="false" afterPath="$PROJECT_DIR$/movie-streams/src/main/resources/avro/movie-with-creator-id.avsc" afterDir="false" />
-    </list>
+    <list default="true" id="6d1f0110-162b-45d1-8b74-d3d821cc1ccf" name="Changes" comment="dockerize streams app" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -194,7 +145,7 @@
       <workItem from="1692078233558" duration="4100000" />
       <workItem from="1692082394903" duration="9690000" />
       <workItem from="1692150612718" duration="4403000" />
-      <workItem from="1692186653536" duration="8042000" />
+      <workItem from="1692186653536" duration="8605000" />
     </task>
     <task id="LOCAL-00001" summary="add docker files and how-to.txt">
       <created>1691571102223</created>
@@ -231,7 +182,14 @@
       <option name="project" value="LOCAL" />
       <updated>1692065987726</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="dockerize streams app">
+      <created>1692195295163</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1692195295163</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -243,7 +201,8 @@
     <MESSAGE value="add streams topology (join movie record with category &amp;video&quot;)" />
     <MESSAGE value="update topology (join all input topic) &amp;&amp; change from query-based cdc to log-based cdc(debezium)" />
     <MESSAGE value="fix:  can be consumed by elasticsearch" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix:  can be consumed by elasticsearch" />
+    <MESSAGE value="dockerize streams app" />
+    <option name="LAST_COMMIT_MESSAGE" value="dockerize streams app" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
