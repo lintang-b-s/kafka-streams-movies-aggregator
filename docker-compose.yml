@@ -1,5 +1,10 @@
 version: "3.8"
 
+networks:
+  movie-streams:
+    name: movie-streams
+    driver: bridge
+
 services:
 
 #  movie-service:
@@ -15,6 +20,8 @@ services:
 #      - 8300:8300
 
 
+
+
   pg-admin:
     image: dpage/pgadmin4
     environment:
@@ -25,6 +32,8 @@ services:
       - 5050:5050
     depends_on:
       - postgres-movie
+    networks:
+      - movie-streams
 
   rabbitmq:
     container_name: rabbitmq
@@ -32,6 +41,8 @@ services:
     ports:
       - "5672:5672"
       - "15672:15672"
+    networks:
+      - movie-streams
 
   postgres-movie:
     container_name: postgres-movie
@@ -50,6 +61,8 @@ services:
       - "postgres"
       - "-c"
       - "wal_level=logical"
+    networks:
+      - movie-streams
 
 
   #    postgres-movie:
@@ -86,7 +99,8 @@ services:
       memlock:
         soft: -1
         hard: -1
-
+    networks:
+      - movie-streams
 
 
   elasticsearch-01:
@@ -106,6 +120,8 @@ services:
       memlock:
         soft: -1
         hard: -1
+    networks:
+      - movie-streams
 
 
   zookeeper:
@@ -118,6 +134,8 @@ services:
       ZOOKEEPER_CLIENT_PORT: 2181
     healthcheck:
       test: "echo stat | nc localhost $$ZOOKEEPER_CLIENT_PORT"
+    networks:
+      - movie-streams
 
   kafka:
     image: confluentinc/cp-kafka:7.2.6
@@ -133,9 +151,10 @@ services:
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-
     healthcheck:
       test: [ "CMD", "nc", "-z", "localhost", "9092" ]
+    networks:
+      - movie-streams
 
   schema-registry:
     image: confluentinc/cp-schema-registry:7.2.6
@@ -151,6 +170,8 @@ services:
       SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:8081
     healthcheck:
       test: "curl -f http://localhost:8081 || exit 1"
+    networks:
+      - movie-streams
 
   schema-registry-ui:
     image: landoop/schema-registry-ui:latest
@@ -165,6 +186,8 @@ services:
       PROXY: "true"
     healthcheck:
       test: "wget --quiet --tries=1 --spider http://localhost:8000 || exit 1"
+    networks:
+      - movie-streams
 
   kafka-rest-proxy:
     image: confluentinc/cp-kafka-rest:7.2.6
@@ -184,7 +207,8 @@ services:
       KAFKA_REST_CONSUMER_REQUEST_TIMEOUT_MS: 30000
     healthcheck:
       test: "curl -f http://localhost:8082 || exit 1"
-
+    networks:
+      - movie-streams
 
   kafka-connect:
     build: docker/kafka-connect
@@ -222,6 +246,9 @@ services:
       CONNECT_PLUGIN_PATH: "/usr/share/java"
     healthcheck:
       test: "curl -f http://localhost:$$CONNECT_REST_PORT || exit 1"
+    networks:
+      - movie-streams
+
 
 #  kafka-connect-ui:
 #    image: landoop/kafka-connect-ui:0.9.7
@@ -250,6 +277,8 @@ services:
       CMD_ARGS: "--message.format=AVRO --schemaregistry.connect=http://schema-registry:8081"
     depends_on:
       - kafka
+    networks:
+      - movie-streams
 
 
 

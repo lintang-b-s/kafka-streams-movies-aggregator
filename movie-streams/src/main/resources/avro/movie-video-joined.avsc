@@ -58,11 +58,6 @@
         "type": "array",
         "items": "string"
       }
-    },
-    {
-      "name": "isDeleted",
-      "type": "boolean"
     }
-
   ]
 }

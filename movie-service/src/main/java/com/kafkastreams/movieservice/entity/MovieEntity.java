@@ -28,6 +28,7 @@ public class MovieEntity {
 
     private String type;
 
+    @Column(columnDefinition = "TEXT")
     private String synopsis;
 
     private String mpaRating;

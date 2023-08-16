@@ -21,7 +21,8 @@ import io.confluent.kafka.serializers.AbstractKafkaSchemaSerDeConfig;
 import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
 import io.confluent.kafka.streams.serdes.json.KafkaJsonSchemaSerde;
 import io.debezium.serde.json.JsonSerde;
-import lombok.var;
+
+
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerConfig;
@@ -31,13 +32,25 @@ import org.apache.kafka.common.utils.Bytes;
 import org.apache.kafka.streams.*;
 import org.apache.kafka.streams.kstream.*;
 import org.apache.kafka.streams.state.KeyValueStore;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.SpringApplication;
+
 
 import java.time.Instant;
 import java.util.*;
 import java.util.stream.Collectors;
 
-
+@SpringBootApplication
 public class MovieApplication {
+
+//    local
+//    private static String schemaRegistry = "http://127.0.0.1:8081";
+//
+//    private static  String kafkaBootstrapServer = "localhost:29092";
+////
+//    //    docker
+    private static String schemaRegistry = "http://schema-registry:8081";
+    private static  String kafkaBootstrapServer = "kafka:9092";
 
 
     public static String MOVIES_INPUT="postgresql.public.movies";
@@ -70,7 +83,7 @@ public class MovieApplication {
 
         final Map<String, String> serdeConfig =
                 Collections.singletonMap(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG,
-                        SCHEMA_REGISTRY_URL);
+                        schemaRegistry);
 
         final SpecificAvroSerde<MovieElasticSearch> movieEsSerde = new SpecificAvroSerde<>();
         movieEsSerde.configure(serdeConfig, false);
@@ -159,7 +172,8 @@ public class MovieApplication {
         if (isDeleted[0] == true){
 
             movieTable.mapValues(
-                  val-> new MovieElasticSearch(null, null, null, null, null,null, null, null, null, null)
+//                  val-> new MovieElasticSearch(null, null, null, null, null,null, null, null, null, null)
+                    val -> null
             ).toStream().map((key,value) -> KeyValue.pair(String.valueOf(key), value)).to(MOVIES_OUTPUT);
         }
 //		var movieWithCategoryIdSerde = new SpecificAvroSerde<MovieWithCategoryId>();
@@ -575,36 +589,25 @@ private MovieCategoryJoined toMovieCategoryJoined(
 
 
 
+
         public static void main(String[] args){
             Properties config = new Properties();
 
             config.put(StreamsConfig.APPLICATION_ID_CONFIG, "movies-application");
             config.put(StreamsConfig.CLIENT_ID_CONFIG, "movies-avro-lambda-example-client");
 
-            config.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, "127.0.0.1:29092");
+
+            config.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaBootstrapServer);
             config.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
-//            final Serde<DefaultId> defaultIdSerde = SerdeFactory.createDbzEventJsonPojoSerdeFor(DefaultId.class,true);
-//            config.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, defaultIdSerde.getClass().getName());
 
 //            config.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.Integer().getClass().getName());
             config.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
 
-//            config.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, CustomIdSerde.class);
-//            config.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, "com.kafkastreams.movie.serdes.CustomIdSerde");
 
-//
-//		config.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
             config.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, SpecificAvroSerde.class);
 
-//            gak bisa
-//            config.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, com.kafkastreams.movie.model.MovieElasticSearch.class);
-//		config.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, JsonSerde.class.getName());
-//		config.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, "io.confluent.kafka.serializers.json.KafkaJsonSchemaSerializer");
-//		config.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, "io.confluent.kafka.serializers.json.KafkaJsonSchemaSerde");
-//		config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, "io.confluent.kafka.serializers.json.KafkaJsonSchemaDeserializer");
-//		config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG,  "io.confluent.kafka.serializers.json.KafkaJsonSchemaDeserializer");
 
-            config.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, "http://127.0.0.1:8081");
+            config.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, schemaRegistry);
             config.put(StreamsConfig.STATE_DIR_CONFIG, "/tmp/kafka-streams");
             config.put(StreamsConfig.COMMIT_INTERVAL_MS_CONFIG, 1000);
 
@@ -618,6 +621,7 @@ private MovieCategoryJoined toMovieCategoryJoined(
 
             // shutdown hook to correctly close the streams application
             Runtime.getRuntime().addShutdownHook(new Thread(streams::close));
+            SpringApplication.run(MovieApplication.class, args);
 
             // Update:
             // print the topology every 10 seconds for learning purposes

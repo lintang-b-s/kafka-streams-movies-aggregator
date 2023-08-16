@@ -3,10 +3,17 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
+<!--	<parent>-->
+<!--		<groupId>com.kafkastreams</groupId>-->
+<!--		<artifactId>movie-streams-parent</artifactId>-->
+<!--		<version>0.0.1-SNAPSHOT</version>&lt;!&ndash; lookup parent from repository &ndash;&gt;-->
+<!--	</parent>-->
+
 	<parent>
-		<groupId>com.kafkastreams</groupId>
-		<artifactId>movie-streams-parent</artifactId>
-		<version>0.0.1-SNAPSHOT</version><!-- lookup parent from repository -->
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.1.2</version>
+		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
 	<artifactId>movie-streams</artifactId>
@@ -22,6 +29,18 @@
 
 
 	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+
 
 		<!--project dependencies -->
 		<!-- https://mvnrepository.com/artifact/org.apache.kafka/kafka-streams -->
@@ -59,29 +78,31 @@
 
 
 		<!--for logging purposes-->
-		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>1.7.25</version>
-		</dependency>
+<!--		&lt;!&ndash; https://mvnrepository.com/artifact/org.slf4j/slf4j-api &ndash;&gt;-->
+<!--		<dependency>-->
+<!--			<groupId>org.slf4j</groupId>-->
+<!--			<artifactId>slf4j-api</artifactId>-->
+<!--			<version>1.7.25</version>-->
+<!--		</dependency>-->
 
-		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12 -->
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.7.25</version>
-		</dependency>
+<!--		&lt;!&ndash; https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12 &ndash;&gt;-->
+<!--		<dependency>-->
+<!--			<groupId>org.slf4j</groupId>-->
+<!--			<artifactId>slf4j-log4j12</artifactId>-->
+<!--			<version>1.7.25</version>-->
+<!--		</dependency>-->
 
 
 
 		<!--        khusus macos m1 rocksdb harus version 6.29.5-->
+		<!-- https://mvnrepository.com/artifact/org.rocksdb/rocksdbjni -->
 		<dependency>
 			<groupId>org.rocksdb</groupId>
 			<artifactId>rocksdbjni</artifactId>
-			<version>6.29.5</version>
+			<version>7.9.2</version>
 		</dependency>
-<!--		movie-module-->
+
+		<!--		movie-module-->
 		<dependency>
 			<groupId>com.kafkastreams</groupId>
 			<artifactId>movie-module</artifactId>
@@ -169,6 +190,11 @@
 	<build>
 		<plugins>
 
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
 			<!--force java 8-->
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
@@ -181,6 +207,35 @@
 				</plugin>
 
 
+			<!--package as one fat jar-->
+<!--			<plugin>-->
+<!--				<groupId>org.apache.maven.plugins</groupId>-->
+<!--				<artifactId>maven-assembly-plugin</artifactId>-->
+<!--				<version>3.1.0</version>-->
+<!--				<configuration>-->
+<!--					<descriptorRefs>-->
+<!--						<descriptorRef>jar-with-dependencies</descriptorRef>-->
+<!--					</descriptorRefs>-->
+<!--					<archive>-->
+<!--						<manifest>-->
+<!--							<addClasspath>true</addClasspath>-->
+<!--							<mainClass>com.kafkastreams.movie.MovieApplication</mainClass>-->
+<!--						</manifest>-->
+<!--					</archive>-->
+<!--				</configuration>-->
+<!--				<executions>-->
+<!--					<execution>-->
+<!--						<id>assemble-all</id>-->
+<!--						<phase>package</phase>-->
+<!--						<goals>-->
+<!--							<goal>single</goal>-->
+<!--						</goals>-->
+<!--					</execution>-->
+<!--				</executions>-->
+<!--			</plugin>-->
+
+<!--			uncomment to generate avro -->
+<!--			comment for build successfully-->
 
 			<plugin>
 				<groupId>org.apache.avro</groupId>
@@ -204,6 +259,7 @@
 
 							<sourceDirectory>${project.basedir}/src/main/resources/avro</sourceDirectory>
 							<outputDirectory>${project.basedir}/src/main/java</outputDirectory>
+
 						</configuration>
 					</execution>
 				</executions>
@@ -215,11 +271,7 @@
 
 
 	<repositories>
-		<repository>
-			<id>spring-milestones</id>
-			<name>Spring Milestones</name>
-			<url>https://repo.spring.io/milestone</url>
-		</repository>
+
 		<repository>
 			<id>confluent</id>
 			<url>https://packages.confluent.io/maven/</url>

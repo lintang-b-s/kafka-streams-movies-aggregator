@@ -7,7 +7,7 @@ type Movie struct {
 	Cast        []string `json:"cast"`
 	Genre       []string `json:"genre"`
 	Synopsis    string   `json:"synopsis"`
-	Url         string   `json:"url"`
+	Url         []string `json:"url"`
 	Rating      float64  `json:"rating"`
 	Image       string   `json:"image"`
 }

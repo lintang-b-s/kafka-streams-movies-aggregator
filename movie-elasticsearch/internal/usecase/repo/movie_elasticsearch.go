@@ -30,7 +30,7 @@ type indexedMovie struct {
 	Cast        []string `json:"cast"`
 	Genre       []string `json:"genre"`
 	Synopsis    string   `json:"synopsis"`
-	Url         string   `json:"url"`
+	Url         []string `json:"url"`
 	Rating      float64  `json:"rating"`
 	Image       string   `json:"image"`
 }
@@ -202,6 +202,8 @@ func (r *MovieRepo) Search(ctx context.Context, args entity.Search) ([]entity.Mo
 	var res []entity.Movie
 
 	for _, hit := range hits.Hits.Hits {
+		//time := time.Unix(int64(hit.Source.ReleaseYear), 0)
+		//releaseYear, _ := strconv.Atoi(time.Format("2006"))
 		mov := entity.Movie{
 			ReleaseYear: hit.Source.ReleaseYear,
 			Title:       hit.Source.Title,

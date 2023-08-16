@@ -64,11 +64,6 @@
     {
       "name": "movieId",
       "type": "int"
-    },
-
-    {
-      "name": "isDeleted",
-      "type": "boolean"
     }
   ]
 }

@@ -1,0 +1,18 @@
+
+
+
+networks:
+  movie-streams:
+    name: movie-streams
+    external: true
+
+
+
+services:
+  streams-app:
+    container_name: streams-app
+    build: ./movie-streams
+    ports:
+      - 8300:8300
+    networks:
+      - movie-streams

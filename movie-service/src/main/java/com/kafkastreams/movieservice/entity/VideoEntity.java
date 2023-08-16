@@ -26,6 +26,7 @@ public class VideoEntity {
 
     private String title;
 
+    @Column(columnDefinition = "TEXT")
     private String synopsis;
 
     @ManyToOne( fetch = FetchType.LAZY)

@@ -1,7 +1,8 @@
 #FROM openjdk:17
-FROM amazoncorretto:17-alpine3.15
+FROM openjdk:17
 ADD target/*.jar myapplication
 ADD src/main/resources/application.yml  application.yml
+#RUN #microdnf install  lib32stdc++6
 EXPOSE 8300
 ENTRYPOINT ["java", "-Djava.security.egd=file:/dev/./urandom --spring.config.location=classpath:file:/application.yml,classpath:file:/bootstrap.yml ", "-jar","myapplication"]
 

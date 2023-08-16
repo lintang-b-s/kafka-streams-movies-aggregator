@@ -9,165 +9,18 @@ spring:
   config:
     activate:
       on-profile: local
-#  cloud:
-#    stream:
-#      bindings:
-#        stockInput-in-0:
-#          destination: stock-tick-topic
-#        joinMovie-in-0:
-#          destination: postgresql.tenflix.movies
-#          group: movieStreamsGroup
-#          consumer:
-#            use-native-decoding: true
-#        jointMovie-in-1:
-#          destination: postgresql.tenflix.movie_category
-#          group: movieStreamsGroup
-#          consumer:
-#            use-native-decoding: true
-#        joinMovie-in-2:
-#          destination: postgresql.tenflix.categories
-#          group: movieStreamsGroup
-#          consumer:
-#            use-native-decoding: true
-#        joinMovie-in-3:
-#          destination: postgresql.tenflix.videos
-#          group: movieStreamsGroup
-#          consumer:
-#            use-native-decoding: true
-##        joinMovie-in-4:
-##          destination: postgresql.tenflix.movie_creator
-##          group: movieStreamsGroup
-##          consumer:
-##            use-native-decoding: true
-##        joinMovie-in-5:
-##          destination: postgresql.tenflix.creators
-##          group: movieStreamsGroup
-##          consumer:
-##            use-native-decoding: true
-##        joinMovie-in-6:
-##          destination: postgresql.tenflix.movie_actor
-##          group: movieStreamsGroup
-##          consumer:
-##            use-native-decoding: true
-##        joinMovie-in-7:
-##          destination: postgresql.tenflix.actors
-##          group: movieStreamsGroup
-##          consumer:
-##            use-native-decoding: true
-#
-#        joinMovie-out-0:
-#          destination: movies.output
-#          producer:
-#            use-native-encoding: true
-#      kafka:
-#        streams:
-#          binder:
-#            brokers: localhost:29092
-#
-#            configuration:
-#              schema.registry.url: http://localhost:8081
-#              commit.interval.ms: 10000
-#              default:
-#                key:
-#                  serde: org.apache.kafka.common.serialization.Serdes$StringSerde
-#                value:
-#                  serde: org.apache.kafka.common.serialization.Serdes$StringSerde
-#            application-id: movie-streams
-#            state.dir: state-store
-#
-#          bindings:
-#            stock-input-channel:
-#              consumer:
-#                materializedAs: stock-input-store
-#            joinMovie-in-0:
-#              consumer:
-#                valueSerde: com.kafkastreams.movie.serde.MovieAvroSerde
-#                materializedAs: ktable_movie
-#            joinMovie-in-1:
-#              consumer:
-#                valueSerde: com.kafkastreams.movie.serde.MovieCategoryAvroSerde
-#                materialized-as: ktable_movie_category
-#            joinMovie-in-2:
-#              consumer:
-#                valueSerde: com.kafkastreams.movie.serde.CategoryAvroSerde
-#                materializedAs: ktable_category
-#            joinMovie-in-3:
-#              consumer:
-#                valueSerde: com.kafkastreams.movie.serde.VideoAvroSerde
-#                materializedAs: ktable_video
-#            joinMovie-in-4:
-#              consumer:
-#                valueSerde: com.kafkastreams.movie.serde.MovieCreatorAvroSerde
-#                materializedAs: ktable_movie_creator
-#            joinMovie-in-5:
-#              consumer:
-#                valueSerde: com.kafkastreams.movie.serde.CreatorAvroSerde
-#                materializedAs: ktable_creator
-#            joinMovie-in-6:
-#              consumer:
-#                valueSerde: com.kafkastreams.movie.serde.MovieActorAvroSerde
-#                materializedAs: ktable_movie_actor
-#            joinMovie-in-7:
-#              consumer:
-#                valueSerde: com.kafkastreams.movie.serde.ActorAvroSerde
-#                materializedAs: ktable_actor
+schemaRegistry: localhost:8081
 
+kafkaServer: localhost:29092
 
+---
+spring:
+  config:
+    activate:
+      on-profile: docker
 
-#
-#            joinMovie-out-0:
-#              producer:
-#                value-serde: com.kafkastreams.movie.serde.MovieElasticsearchAvroSerde
-#
-#
-#
-##  kafka:
-#    producer:
-#      bootstrap-servers: localhost:29092
-#    consumer:
-#      bootstrap-servers: localhost:29092
-#    streams:
-#
-#      bootstrap-servers: localhost:29092
-#      application-id: movies-kafka-streams
+schemaRegistry: schema-registry:8081
 
-
-
-
-#  cloud:
-#    stream:
-#      kafka:
-#        streams:
-#          binder:
-#            configuration:
-#              schema:
-#                registry:
-#                  url: localhost:8081
-#
-#
-#---
-#spring:
-#  config:
-#    activate:
-#      on-profile: docker
-#
-#  kafka:
-#    producer:
-#      bootstrap-servers: kafka:9092
-#    consumer:
-#      bootstrap-servers: kafka:9092
-#    streams:
-#      bootstrap-servers: kafka:9092
-#      application-id: movies-kafka-streams
-#
-#
-#
-#  cloud:
-#    stream:
-#      kafka:
-#        streams:
-#          binder:
-#            configuration:
-#              schema:
-#                registry:
-#                  url: schema-registry:8081
+kafka:
+  bootstrap:
+    server: kafka:9092

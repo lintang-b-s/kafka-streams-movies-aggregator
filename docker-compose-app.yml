@@ -1,0 +1,28 @@
+
+networks:
+  movie-streams:
+    name: movie-streams
+    external: true
+
+
+services:
+  movie-service:
+    container_name: movie-service
+    build: ./movie-service
+    ports:
+      - 8200:8200
+    networks:
+      - movie-streams
+
+
+
+  movie-search:
+    container_name: movie-search
+    build: movie-elasticsearch
+    environment:
+      - ELASTICSEARCH_URL=elasticsearch:9200
+    ports:
+      - 8080:8080
+    networks:
+      - movie-streams
+

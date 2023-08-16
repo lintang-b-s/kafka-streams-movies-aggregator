@@ -45,20 +45,23 @@ public class MovieCommandService {
         AddMovieMessage message= messageMapper.movieEntityToMessage(savedMovie);
         OutboxEntity movieOutbox=null;
         if (newMovie.getNotification()) {
-            try {
-                movieOutbox = outboxAction.insertOutbox(
-                        "movie.request",
-                        String.valueOf(savedMovie.getId()),
-                        OutboxEventType.ADD_MOVIE,message
-                );
-            } catch (JsonProcessingException e) {
-                throw new InternalServerEx("error json processing : " + e.getMessage());
-            }
+            notificationProducer.sendMessageEmail(message);
+            LOG.info("sending add movie event with id " +  String.valueOf(savedMovie.getId()) + " to notification-service!" );
+
+        }
+        LOG.info("sending add movie event with id " +  String.valueOf(savedMovie.getId()) + " to movie-query-service!" );
+
+        try {
+            movieOutbox = outboxAction.insertOutbox(
+                    "movie.request",
+                    String.valueOf(savedMovie.getId()),
+                    OutboxEventType.ADD_MOVIE,message
+            );
+
+        } catch (JsonProcessingException e) {
+            throw new InternalServerEx("error json processing : " + e.getMessage());
         }
         outboxAction.deleteOutbox(movieOutbox);
-        LOG.info("sending add movie event with id " +  String.valueOf(savedMovie.getId()) + " to movie-query-service!" );
-        notificationProducer.sendMessageEmail(message);
-        LOG.info("sending add movie event with id " +  String.valueOf(savedMovie.getId()) + " to notification-service!" );
         return savedMovie;
     }
 
