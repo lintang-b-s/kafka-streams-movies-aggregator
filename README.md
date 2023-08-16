@@ -3,7 +3,7 @@
 transform normalized movies data from multiple kafka topics(send by cdc postgres) into denormalized movies data, then send it to movies-output and consumed by es connector. Then the data stored/updarted in elasticsearch index.
 
 
-Prequisite
+### Prequisite
 1. download elasticseaerch-sink-connector version 14.0.6 in https://www.confluent.io/hub/confluentinc/kafka-connect-elasticsearch
    copy and paste zip file into docker/kafka-connect directory
 2. 
@@ -13,7 +13,7 @@ Prequisite
 
 
 
-run the application in docker:
+### run the application in docker:
  ```
      1. ./mvnw  package -DskipTests
      2. docker compose up -d
@@ -33,7 +33,7 @@ run the application in docker:
 
 
 
-run the application locally:
+### run the application locally:
  ```
      1. ./mvnw  package -DskipTests
      2. docker compose up -d
