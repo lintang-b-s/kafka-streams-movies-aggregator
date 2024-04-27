@@ -31,3 +31,13 @@ build/
 
 ### VS Code ###
 .vscode/
+
+actors-data.json
+*.json
+categories-data.json
+directors-data.json
+movies-data.json
+movies.json
+video-data.json
+docker/confluentinc-kafka-connect-elasticsearch-14.0.6.zip
+

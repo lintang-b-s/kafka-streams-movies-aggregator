@@ -32,12 +32,16 @@ services:
       - 5050:5050
     depends_on:
       - postgres-movie
+    mem_limit: "300mb"
+    cpus: 0.5
     networks:
       - movie-streams
 
   rabbitmq:
     container_name: rabbitmq
     image: rabbitmq:3-management
+    mem_limit: "300mb"
+    cpus: 0.3
     ports:
       - "5672:5672"
       - "15672:15672"
@@ -48,6 +52,8 @@ services:
     container_name: postgres-movie
     image: debezium/postgres:14-alpine
     restart: unless-stopped
+    mem_limit: "300mb"
+    cpus: 0.5
     environment:
       POSTGRES_DB: netflik
       POSTGRES_USER: netflik
@@ -84,6 +90,8 @@ services:
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:8.9.0
     container_name: elasticsearch
+    mem_limit: "700mb"
+    cpus: 0.4
     volumes:
       - elasticsearch-data:/usr/share/elasticsearch/data
     ports:
@@ -91,7 +99,7 @@ services:
     environment:
       - cluster-name=elastic-cluster
       - xpack.security.enabled=false
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "ES_JAVA_OPTS=-Xms256m -Xmx256m" #512m asilnya
       - node.name=elasticsearch
       - cluster.initial_master_nodes=elasticsearch-01,elasticsearch
       - discovery.seed_hosts=elasticsearch-01
@@ -106,13 +114,15 @@ services:
   elasticsearch-01:
     image: docker.elastic.co/elasticsearch/elasticsearch:8.9.0
     container_name: elasticsearch-01
+    mem_limit: "700mb"
+    cpus: 0.4
     volumes:
       - elasticsearch-data-01:/usr/share/elasticsearch/data
 
     environment:
       - cluster-name=elastic-cluster
       - xpack.security.enabled=false
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "ES_JAVA_OPTS=-Xms256m -Xmx256m"
       - node.name=elasticsearch-01
       - cluster.initial_master_nodes=elasticsearch-01,elasticsearch
       - discovery.seed_hosts=elasticsearch
@@ -128,6 +138,8 @@ services:
     image: confluentinc/cp-zookeeper:7.2.6
     container_name: zookeeper
     restart: unless-stopped
+    mem_limit: "700mb"
+    cpus: 0.6
     ports:
       - "2181:2181"
     environment:
@@ -141,6 +153,8 @@ services:
     image: confluentinc/cp-kafka:7.2.6
     container_name: kafka
     restart: unless-stopped
+    mem_limit: "1024mb"
+    cpus: 0.7
     depends_on:
       - zookeeper
     ports:
@@ -160,6 +174,8 @@ services:
     image: confluentinc/cp-schema-registry:7.2.6
     container_name: schema-registry
     restart: unless-stopped
+    mem_limit: "300mb"
+    cpus: 0.5
     depends_on:
       - kafka
     ports:
@@ -177,6 +193,8 @@ services:
     image: landoop/schema-registry-ui:latest
     container_name: kafka-schema-registry-ui
     restart: unless-stopped
+    mem_limit: "300mb"
+    cpus: 0.4
     depends_on:
       - schema-registry
     ports:
@@ -193,6 +211,8 @@ services:
     image: confluentinc/cp-kafka-rest:7.2.6
     container_name: kafka-rest-proxy
     restart: unless-stopped
+    mem_limit: "300mb"
+    cpus: 0.4
     depends_on:
       - zookeeper
       - kafka
@@ -214,6 +234,8 @@ services:
     build: docker/kafka-connect
     container_name: kafka-connect
     restart: unless-stopped
+    mem_limit: "1500mb"
+    cpus: 0.6
     depends_on:
       - schema-registry
     ports:
@@ -266,14 +288,16 @@ services:
 
 
   kafdrop:
-    image: obsidiandynamics/kafdrop
+    image: obsidiandynamics/kafdrop:3.31.0
     container_name: kafdrop
     restart: "no"
+    mem_limit: "300mb"
+    cpus: 0.3
     ports:
       - "9001:9000"
     environment:
       KAFKA_BROKERCONNECT: "kafka:9092"
-      JVM_OPTS: "-Xms16M -Xmx48M -Xss180K -XX:-TieredCompilation -XX:+UseStringDeduplication -noverify"
+      # JVM_OPTS: "-Xms16M -Xmx48M -Xss180K -XX:-TieredCompilation -XX:+UseStringDeduplication -noverify"
       CMD_ARGS: "--message.format=AVRO --schemaregistry.connect=http://schema-registry:8081"
     depends_on:
       - kafka

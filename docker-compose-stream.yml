@@ -12,6 +12,8 @@ services:
   streams-app:
     container_name: streams-app
     build: ./movie-streams
+    mem_limit: "500mb"
+    cpus: 0.4
     ports:
       - 8300:8300
     networks:

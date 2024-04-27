@@ -112,12 +112,6 @@
 		</dependency>
 
 
-		<dependency>
-			<groupId>com.kafkastreams</groupId>
-			<artifactId>movie-module</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-
 
 	</dependencies>
 
